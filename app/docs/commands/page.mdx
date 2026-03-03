@@ -1,0 +1,62 @@
+# Commands
+
+Complete reference for all genesis-env commands.
+
+## validate
+
+Validate an environment variable template file.
+
+```bash
+genesis-env validate .env.template
+```
+
+### Options
+
+- `--strict`: Fail on placeholder values
+- `--output`: Specify output format (json, text)
+- `--required`: Comma-separated list of required keys
+
+### Examples
+
+```bash
+# Basic validation
+genesis-env validate .env.template
+
+# Strict mode
+genesis-env validate .env.template --strict
+
+# JSON output
+genesis-env validate .env.template --output json
+
+# Check for specific required keys
+genesis-env validate .env.template --required DATABASE_URL,API_KEY
+```
+
+## generate
+
+Generate a `.env` file from a template.
+
+```bash
+genesis-env generate .env.template
+```
+
+This command reads your template and prompts for missing values.
+
+## check
+
+Check if current environment matches template requirements.
+
+```bash
+genesis-env check .env.template
+```
+
+Useful in CI/CD pipelines to verify environment setup.
+
+## Help
+
+Get help for any command:
+
+```bash
+genesis-env --help
+genesis-env validate --help
+```

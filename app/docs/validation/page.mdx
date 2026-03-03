@@ -1,0 +1,65 @@
+# Validation
+
+Learn how genesis-env validates and enforces environment variable standards.
+
+## How Validation Works
+
+genesis-env reads your `.env.template` file and checks:
+
+1. **Key Presence**: All required keys are defined
+2. **Value Format**: Values match expected patterns
+3. **Placeholder Detection**: No placeholder values in production
+4. **Type Safety**: Values are of the correct type
+
+## Validation Rules
+
+### Required Keys
+
+Mark keys as required in your template:
+
+```bash
+DATABASE_URL=required
+API_KEY=required
+```
+
+### Pattern Matching
+
+Validate value formats:
+
+```bash
+# Email format
+ADMIN_EMAIL=email:admin@example.com
+
+# URL format
+API_URL=url:https://api.example.com
+
+# Number range
+PORT=number:1-65535
+```
+
+### Placeholder Detection
+
+genesis-env automatically detects common placeholder patterns:
+
+- `your_*`
+- `change_me*`
+- `localhost`
+- `development` (in production)
+- Generic placeholder text
+
+## CI/CD Integration
+
+Add validation to your pipeline:
+
+```yaml
+# GitHub Actions example
+- name: Validate environment
+  run: genesis-env validate .env.template --strict
+```
+
+## Best Practices
+
+1. Always use `.env.template` files
+2. Validate in CI/CD before deployment
+3. Use strict mode in production
+4. Document required keys in your README
