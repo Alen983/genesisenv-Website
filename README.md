@@ -1,6 +1,6 @@
 # genesis-env Website
 
-Modern, terminal-inspired website for genesis-env built with Next.js, TypeScript, and TailwindCSS.
+Modern, terminal-inspired website for genesis-env built with Next.js, TypeScript, and TailwindCSS..
 
 ## Getting Started
 
