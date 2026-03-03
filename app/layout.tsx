@@ -11,12 +11,13 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
+  metadataBase: new URL('https://alen983.github.io'),
   title: 'genesis-env - Configuration Discipline for Environment Variables',
   description: 'genesis-env is not a tool. It\'s a configuration discipline. Validate, manage, and enforce environment variable standards.',
   openGraph: {
     title: 'genesis-env - Configuration Discipline',
     description: 'Validate, manage, and enforce environment variable standards.',
-    images: ['/og-image.png'],
+    images: ['/genesisenv-Website/og-image.png'],
   },
 }
 

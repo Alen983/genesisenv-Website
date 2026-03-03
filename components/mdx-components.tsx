@@ -1,5 +1,5 @@
 import type { MDXComponents } from 'mdx/types'
-import CodeBlock from './CodeBlock'
+import CodeBlockServer from './CodeBlockServer'
 
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
@@ -41,7 +41,7 @@ export function useMDXComponents(components: MDXComponents): MDXComponents {
         const className = codeProps?.className || ''
         const language = className?.replace('language-', '') || 'bash'
         const code = String(codeProps?.children || '').trim()
-        return <CodeBlock code={code} language={language} />
+        return <CodeBlockServer code={code} language={language} />
       }
       return <pre className="bg-surface border border-gray-800 rounded-lg p-4 overflow-x-auto">{children}</pre>
     },

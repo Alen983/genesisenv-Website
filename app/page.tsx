@@ -77,11 +77,11 @@ export default function Home() {
               genesis-env is not a tool.
             </h2>
             <p className="text-2xl md:text-3xl text-accent font-semibold mb-8">
-              It's a configuration discipline.
+              It&apos;s a configuration discipline.
             </p>
             <p className="text-lg text-gray-400 leading-relaxed">
               genesis-env enforces standards, validates configurations, and ensures your environment variables
-              are never a source of production failures. It's the difference between chaos and control.
+              are never a source of production failures. It&apos;s the difference between chaos and control.
             </p>
           </div>
         </section>
