@@ -9,7 +9,7 @@ const withMDX = require('@next/mdx')({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: '/genesisenv-Website',
+  basePath: process.env.NODE_ENV === 'production' ? '/genesisenv-Website' : '',
   pageExtensions: ['ts', 'tsx', 'js', 'jsx', 'md', 'mdx'],
   images: {
     unoptimized: true,

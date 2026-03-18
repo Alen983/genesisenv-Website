@@ -112,10 +112,10 @@ jobs:
             const outDir = './out';
             const files = fs.readdirSync(outDir);
             
-            const comment = `## 🚀 Preview Build Complete
+            const comment = `##  Preview Build Complete
             
-            ✅ All tests passed!
-            ✅ Build completed successfully
+             All tests passed!
+             Build completed successfully
             
             **Build artifacts are available for download.**
             

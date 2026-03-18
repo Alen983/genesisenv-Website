@@ -12,10 +12,12 @@ const config: Config = {
         background: '#0F0F0F',
         surface: '#171717',
         accent: '#00FF88',
+        accentGold: '#E5B84C',
+        accentCyan: '#22d3ee',
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'Consolas', 'Monaco', 'Courier New', 'monospace'],
+        mono: ['var(--font-fira-code)', 'Fira Code', 'JetBrains Mono', 'Consolas', 'monospace'],
       },
     },
   },

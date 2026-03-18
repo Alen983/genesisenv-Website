@@ -3,10 +3,29 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 
-const command = 'genesis-env validate .env.template'
-const typingSpeed = 100
+const DEFAULT_COMMAND = 'genesis-env validate .env.template'
+const typingSpeed = 80
 
-export default function TerminalHero() {
+type AccentVariant = 'gold' | 'cyan' | 'green'
+
+const accentClasses: Record<AccentVariant, string> = {
+  gold: 'text-accentGold',
+  cyan: 'text-accentCyan',
+  green: 'text-accent',
+}
+
+export default function TerminalHero({
+  command = DEFAULT_COMMAND,
+  highlightKeyword = 'validate',
+  accentVariant = 'green',
+  compact = false,
+}: {
+  command?: string
+  highlightKeyword?: string
+  accentVariant?: AccentVariant
+  /** Smaller padding and text for use inside headline or tight layouts */
+  compact?: boolean
+}) {
   const [displayedText, setDisplayedText] = useState('')
   const [showCursor, setShowCursor] = useState(true)
 
@@ -22,43 +41,71 @@ export default function TerminalHero() {
     }, typingSpeed)
 
     return () => clearInterval(interval)
-  }, [])
+  }, [command])
 
   useEffect(() => {
-    const cursorInterval = setInterval(() => {
-      setShowCursor((prev) => !prev)
-    }, 530)
-
+    const cursorInterval = setInterval(() => setShowCursor((prev) => !prev), 530)
     return () => clearInterval(cursorInterval)
   }, [])
+
+  const accentClass = accentClasses[accentVariant]
+
+  function renderLine(text: string) {
+    if (!highlightKeyword || !text.includes(highlightKeyword)) {
+      return <span className="text-gray-300">{text}</span>
+    }
+    const idx = text.indexOf(highlightKeyword)
+    const before = text.slice(0, idx)
+    const keyword = text.slice(idx, idx + highlightKeyword.length)
+    const after = text.slice(idx + highlightKeyword.length)
+    return (
+      <span className="text-gray-300">
+        {before}
+        <span className={accentClass}>{keyword}</span>
+        {after}
+      </span>
+    )
+  }
 
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6 }}
-      className="w-full max-w-3xl mx-auto"
+      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      className={compact ? 'w-full max-w-md' : 'w-full max-w-3xl mx-auto'}
     >
-      <div className="bg-surface border border-gray-800 rounded-lg overflow-hidden">
-        <div className="flex items-center space-x-2 px-4 py-3 bg-black/50 border-b border-gray-800">
-          <div className="w-3 h-3 rounded-full bg-red-500"></div>
-          <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-          <div className="w-3 h-3 rounded-full bg-green-500"></div>
-          <span className="ml-4 text-xs text-gray-500 font-mono">terminal</span>
+      <div
+        className={
+          compact
+            ? 'bg-surface/95 border border-gray-600/60 rounded-lg overflow-hidden shadow-xl shadow-black/40 backdrop-blur-sm'
+            : 'bg-surface/90 border border-gray-700/50 rounded-xl overflow-hidden shadow-2xl shadow-black/30 backdrop-blur-sm'
+        }
+      >
+        <div
+          className={
+            compact
+              ? 'flex items-center space-x-2 px-2 py-1.5 bg-black/50 border-b border-gray-700/50'
+              : 'flex items-center space-x-2 px-4 py-3 bg-black/50 border-b border-gray-700/50'
+          }
+        >
+          <div className={`rounded-full bg-red-500 ${compact ? 'w-2 h-2' : 'w-3 h-3'}`} />
+          <div className={`rounded-full bg-yellow-500 ${compact ? 'w-2 h-2' : 'w-3 h-3'}`} />
+          <div className={`rounded-full bg-green-500 ${compact ? 'w-2 h-2' : 'w-3 h-3'}`} />
+          <span className={`text-gray-500 font-mono ${compact ? 'ml-2 text-[10px]' : 'ml-4 text-xs'}`}>terminal</span>
         </div>
-        <div className="p-6 font-mono text-sm">
+        <div className={compact ? 'px-3 py-2 font-mono text-xs' : 'p-6 font-mono text-sm'}>
           <div className="flex items-center">
-            <span className="text-accent">$</span>
-            <span className="ml-2 text-gray-300">
-              {displayedText}
-              {showCursor && <span className="text-accent">▋</span>}
+            <span className={accentClass}>$</span>
+            <span className="ml-1.5">
+              {renderLine(displayedText)}
+              {showCursor && <span className={accentClass}>▋</span>}
             </span>
           </div>
-          {displayedText === command && (
+          {!compact && displayedText === command && (
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
+              transition={{ delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
               className="mt-4 text-green-400"
             >
               ✓ Validation complete. 12 keys found.
