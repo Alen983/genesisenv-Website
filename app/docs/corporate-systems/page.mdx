@@ -1,64 +1,40 @@
-# Corporate Systems
+# Teams & onboarding
 
-Enterprise features and team workflows for genesis-env.
+How teams use genesis-env with a single committed template and a repeatable local setup. This matches what the CLI supports today: **`init`** and **`generate`** (default `npx genesis-env`).
 
-## Team Workflows
+## Shared template in the repo
 
-### Shared Templates
+Keep one committed template in the project root (see format and line rules in [Templates & `.env`](/docs/validation)). Each developer generates their own **`.env`** locally — never commit secrets.
 
-Maintain a central `.env.template` file in your repository:
+## Contributor workflow
 
-```bash
-# .env.template (committed to git)
-DATABASE_URL=required
-API_KEY=required
-REDIS_URL=optional
-```
+After cloning, follow the **Sample workflow** on the [Commands](/docs/commands) page (`init` once if needed → edit the template → **`npx genesis-env`**). Document new keys in your README when you change the template. Use **`--force`** only when you intend to replace an existing local **`.env`**.
 
-Each developer creates their own `.env` from the template.
+## CI / automation
 
-### Validation in CI/CD
+The current CLI is focused on **interactive** setup on a developer machine. It does not ship a separate `validate` command for pipelines as described in older drafts of this site.
 
-Ensure all environments match the template:
+If you need a lightweight CI check without inventing CLI features, you can assert that the template exists, for example:
 
 ```yaml
-# .github/workflows/validate-env.yml
-name: Validate Environment
-on: [push, pull_request]
-jobs:
-  validate:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Validate .env.template
-        run: genesis-env validate .env.template --strict
+# Example: fail the job if the template is missing (shell only)
+- name: Require env template
+  run: test -f .env.template || test -f .env.example
 ```
 
-## Enterprise Features (Planned)
+For future direction (validation in CI, policy, and so on), see the [Roadmap](/roadmap) and your repository’s `docs/ROADMAP.md` if published there.
 
-### Role-Based Access
+## Planned ideas (not in the CLI yet)
 
-Control who can modify environment variable templates.
+The following are **not** shipped features—only roadmap-style ideas:
 
-### Audit Logs
+- Role-based access to who can change templates  
+- Audit logs for template changes  
+- Organization-wide policy enforcement  
+- Multi-environment variable management with inheritance  
 
-Track all changes to environment configurations.
-
-### Policy Enforcement
-
-Define and enforce organization-wide environment variable policies.
-
-### Multi-Environment Management
-
-Manage variables across dev, staging, and production with inheritance.
-
-## Getting Started
-
-1. Create a `.env.template` file in your repository
-2. Add validation to your CI/CD pipeline
-3. Document required keys for your team
-4. Use the playground to test templates before committing
+Treat any older documentation that referenced `genesis-env validate` or `check` as superseded by the README and [Commands](/docs/commands).
 
 ## Support
 
-For enterprise support and custom integrations, contact the genesis-env team.
+For questions about the open-source tool, use your project’s usual channels (issues, discussions). For enterprise support, contact your organization’s maintainers of genesis-env.

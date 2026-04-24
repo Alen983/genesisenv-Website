@@ -1,62 +1,68 @@
 # Commands
 
-Complete reference for all genesis-env commands.
+Reference for running genesis-env from your **project root** (current working directory).
 
-## validate
+## Default: interactive generate
 
-Validate an environment variable template file.
+Running genesis-env with **no subcommand** is the same as `generate`: it finds a template, prompts once per variable, then writes `.env`.
 
-```bash
-genesis-env validate .env.template
-```
+| Goal | Command |
+|------|---------|
+| No local install (recommended try) | `npx genesis-env` |
+| After `npm i -g genesis-env` | `genesis-env` |
+| After local `npm i genesis-env` | `npx genesis-env` or `node_modules/.bin/genesis-env` |
 
-### Options
+Template discovery, prompts, defaults, and overwrite rules are covered in [Templates & `.env`](/docs/validation).
 
-- `--strict`: Fail on placeholder values
-- `--output`: Specify output format (json, text)
-- `--required`: Comma-separated list of required keys
+## generate (explicit)
 
-### Examples
-
-```bash
-# Basic validation
-genesis-env validate .env.template
-
-# Strict mode
-genesis-env validate .env.template --strict
-
-# JSON output
-genesis-env validate .env.template --output json
-
-# Check for specific required keys
-genesis-env validate .env.template --required DATABASE_URL,API_KEY
-```
-
-## generate
-
-Generate a `.env` file from a template.
+Same behavior as the default command:
 
 ```bash
-genesis-env generate .env.template
+npx genesis-env generate
 ```
 
-This command reads your template and prompts for missing values.
-
-## check
-
-Check if current environment matches template requirements.
+Overwrite an existing `.env` instead of exiting with an error:
 
 ```bash
-genesis-env check .env.template
+npx genesis-env generate --force
+# or
+npx genesis-env generate -f
 ```
 
-Useful in CI/CD pipelines to verify environment setup.
+You can also use the default form:
+
+```bash
+npx genesis-env --force
+```
+
+## init
+
+Scaffold missing files and keep `.gitignore` safe:
+
+```bash
+npx genesis-env init
+```
+
+Creates missing `.env` and `.env.template` when needed, and ensures `.env` is listed in `.gitignore` (no duplicate lines).
+
+## Options / flags
+
+| Flag | Effect |
+|------|--------|
+| `--force` / `-f` | Overwrite an existing `.env` instead of exiting with an error (with `generate` or the default command). |
 
 ## Help
 
-Get help for any command:
-
 ```bash
-genesis-env --help
-genesis-env validate --help
+npx genesis-env --help
 ```
+
+## Sample workflow
+
+1. `npx genesis-env init` (optional) — scaffold `.env`, `.env.template`, update `.gitignore` if needed.  
+2. Edit `.env.template` or `.env.example` with your variable names and optional defaults.  
+3. `npx genesis-env` — answer prompts to generate `.env`.  
+4. Run your app with the new `.env`.
+
+For template file rules and examples, see [Templates & `.env`](/docs/validation).

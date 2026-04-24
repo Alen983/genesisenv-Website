@@ -3,27 +3,28 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
+import DocsTerminalHeader from '@/components/DocsTerminalHeader'
 
 const docSections = [
   {
     title: 'Installation',
     href: '/docs/installation',
-    description: 'Get genesis-env up and running in minutes',
+    description: 'npm i, npx, optional global install, and verify from project root',
   },
   {
     title: 'Commands',
     href: '/docs/commands',
-    description: 'Complete command reference and usage examples',
+    description: 'init, generate (default), and --force / -f',
   },
   {
-    title: 'Validation',
+    title: 'Templates & .env',
     href: '/docs/validation',
-    description: 'Learn how to validate and enforce environment variable standards',
+    description: 'Template files, defaults, generate behavior, and quick examples',
   },
   {
-    title: 'Corporate Systems',
+    title: 'Teams & onboarding',
     href: '/docs/corporate-systems',
-    description: 'Enterprise integration and team workflows',
+    description: 'Shared templates, contributor flow, and honest CI notes',
   },
 ]
 
@@ -37,10 +38,8 @@ export default function DocsPage() {
           transition={{ duration: 0.6 }}
           className="mb-16"
         >
-          <h1 className="text-4xl md:text-5xl font-bold mb-4">
-            Documentation
-          </h1>
-          <p className="text-lg text-gray-400">
+          <DocsTerminalHeader />
+          <p className="text-lg text-gray-400 mt-2">
             Everything you need to know about genesis-env
           </p>
         </motion.div>
@@ -80,17 +79,26 @@ export default function DocsPage() {
           transition={{ duration: 0.6, delay: 0.4 }}
           className="mt-16 bg-surface border border-gray-800 rounded-lg p-6"
         >
-          <h2 className="text-xl font-semibold mb-2">Quick Start</h2>
+          <h2 className="text-xl font-semibold mb-2">Quick start</h2>
           <p className="text-gray-400 mb-4">
-            New to genesis-env? Start with the installation guide to get up and running quickly.
+            Install (or use <code className="text-accent">npx</code> without installing), then follow the command reference for <code className="text-accent">init</code> and <code className="text-accent">generate</code>. Template rules and examples live under Templates &amp; <code className="text-accent">.env</code>.
           </p>
-          <Link
-            href="/docs/installation"
-            className="text-accent hover:underline inline-flex items-center space-x-1"
-          >
-            <span>Read Installation Guide</span>
-            <ArrowRight size={16} />
-          </Link>
+          <div className="flex flex-wrap gap-4">
+            <Link
+              href="/docs/installation"
+              className="text-accent hover:underline inline-flex items-center space-x-1"
+            >
+              <span>Installation</span>
+              <ArrowRight size={16} />
+            </Link>
+            <Link
+              href="/docs/commands"
+              className="text-accent hover:underline inline-flex items-center space-x-1"
+            >
+              <span>Commands</span>
+              <ArrowRight size={16} />
+            </Link>
+          </div>
         </motion.div>
       </div>
     </div>

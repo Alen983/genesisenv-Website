@@ -2,24 +2,38 @@
 
 Get genesis-env installed and ready to use in your project.
 
-## Quick Install
+## Install as a dependency
 
-Install genesis-env using your preferred package manager:
+From your project root (where `.env.template` or `.env.example` will live):
 
 ```bash
-# npm
-npm install -g genesis-env
-
-# yarn
-yarn global add genesis-env
-
-# pnpm
-pnpm add -g genesis-env
+npm i genesis-env
 ```
 
-## Verify Installation
+After a local install, run:
 
-Check that genesis-env is installed correctly:
+- `npx genesis-env …` from the project root, or  
+- `node_modules/.bin/genesis-env …`
+
+## Run without adding to package.json
+
+Uses the registry copy (recommended for trying it out):
+
+```bash
+npx genesis-env
+```
+
+## Optional global install
+
+```bash
+npm i -g genesis-env
+```
+
+Then you can run `genesis-env` from your PATH.
+
+## Verify installation
+
+If genesis-env is on your PATH (global install, or via `npx` for a one-off check):
 
 ```bash
 genesis-env --version
@@ -27,8 +41,8 @@ genesis-env --version
 
 You should see the version number printed to your terminal.
 
-## Next Steps
+## Next steps
 
-- Read the [Commands](/docs/commands) documentation to learn how to use genesis-env
-- Try the [Playground](/playground) to test validation interactively
-- Check out [Validation](/docs/validation) to understand how genesis-env validates your environment variables
+- Read the [Commands](/docs/commands) reference for `init`, `generate`, and flags.
+- Try the [Playground](/playground) to experiment with templates in the browser.
+- See [Templates & `.env`](/docs/validation) for how template files relate to your local `.env`.

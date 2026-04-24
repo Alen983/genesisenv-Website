@@ -1,7 +1,10 @@
+const remarkGfm = require('remark-gfm').default
+
 const withMDX = require('@next/mdx')({
   extension: /\.mdx?$/,
   options: {
-    remarkPlugins: [],
+    // GFM tables, strikethrough, task lists, autolink literals (fixes pipe tables in docs)
+    remarkPlugins: [remarkGfm],
     rehypePlugins: [],
   },
 })

@@ -1,65 +1,61 @@
-# Validation
+# Templates & `.env`
 
-Learn how genesis-env validates and enforces environment variable standards.
+How genesis-env uses your committed template and your local secrets file. There is **no** `validate` subcommand in the current CLI; this page describes **generate** (including the default `npx genesis-env` flow) and **init**.
 
-## How Validation Works
+## Concepts
 
-genesis-env reads your `.env.template` file and checks:
+| Concept | File | Role |
+|--------|------|------|
+| Template (committed) | `.env.template` or `.env.example` | Lists keys and optional defaults; safe to commit to git. |
+| Local secrets | `.env` | Filled by **generate**; should stay local and gitignored; **init** helps add `.env` to `.gitignore`. |
 
-1. **Key Presence**: All required keys are defined
-2. **Value Format**: Values match expected patterns
-3. **Placeholder Detection**: No placeholder values in production
-4. **Type Safety**: Values are of the correct type
+If both **`.env.template`** and **`.env.example`** exist in the project root, **`.env.template` is used**.
 
-## Validation Rules
+The genesis-env CLI does **not** require you to set any environment variables on your machine to run it. The variables you care about are the ones your **application** defines in its template.
 
-### Required Keys
+## How generate uses the template
 
-Mark keys as required in your template:
+The CLI reads the template from the **project root**, prompts once per variable (using optional defaults from `KEY=value` lines), then writes **`.env`**. It refuses to overwrite an existing **`.env`** without **`--force` / `-f`** (documented under **Options / flags** on the [Commands](/docs/commands) page). Command forms (`npx genesis-env`, `generate`, etc.) are on that page too.
 
-```bash
-DATABASE_URL=required
-API_KEY=required
-```
-
-### Pattern Matching
-
-Validate value formats:
+**Line rules:** comments and blank lines are skipped. Each other line should define a variable, optionally with a default:
 
 ```bash
-# Email format
-ADMIN_EMAIL=email:admin@example.com
-
-# URL format
-API_URL=url:https://api.example.com
-
-# Number range
-PORT=number:1-65535
+# Comments are ignored
+DATABASE_URL=
+API_KEY=changeme
+PORT=3000
 ```
 
-### Placeholder Detection
+Prompt text comes from each variable’s name and optional default (the part after `=` on each line).
 
-genesis-env automatically detects common placeholder patterns:
+## Template requirements
 
-- `your_*`
-- `change_me*`
-- `localhost`
-- `development` (in production)
-- Generic placeholder text
+- The template must live in the **root directory** (where you run the CLI).
+- The file must be **UTF-8** encoded (UTF-16 is not supported).
 
-## CI/CD Integration
+## `init` (scaffold)
 
-Add validation to your pipeline:
+Use **`npx genesis-env init`** when you need missing `.env` / `.env.template` files or a **`.gitignore`** entry for `.env`. Full syntax is under **init** on the [Commands](/docs/commands) page. Typical messages include `.env created`, `.env.template created`, or `.env already ignored`, depending on what already exists.
 
-```yaml
-# GitHub Actions example
-- name: Validate environment
-  run: genesis-env validate .env.template --strict
+## Quick example: generate
+
+```bash
+$ npx genesis-env
+
+Found .env.template
+
+? DATABASE_URL:
+? API_KEY (default: changeme):
+? PORT (default: 3000):
+
+Created .env
 ```
 
-## Best Practices
+To overwrite an existing `.env`, use **`--force` / `-f`** as on the [Commands](/docs/commands) page.
 
-1. Always use `.env.template` files
-2. Validate in CI/CD before deployment
-3. Use strict mode in production
-4. Document required keys in your README
+## Why this flow
+
+- **Saves time** — no manual copy-and-edit of example env files.
+- **Fewer missing keys** — you walk through every key in the template before `.env` is written.
+- **Easier onboarding** — new contributors follow the same one-command flow.
+- **Runs locally** — no network calls; nothing you type is sent anywhere.
