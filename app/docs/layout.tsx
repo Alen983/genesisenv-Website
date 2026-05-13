@@ -1,11 +1,6 @@
-export default function DocsLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    <div className="docs-mdx max-w-4xl mx-auto prose prose-invert prose-headings:text-white prose-p:text-gray-300 prose-a:text-accent prose-code:text-accent">
-      {children}
-    </div>
-  )
+import type { ReactNode } from 'react'
+
+/** Full-width shell — do not max-width here or the hero grid collapses to a narrow column */
+export default function DocsLayout({ children }: { children: ReactNode }) {
+  return <div className="w-full min-w-0">{children}</div>
 }

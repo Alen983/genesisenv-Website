@@ -2,8 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowRight } from 'lucide-react'
-import DocsTerminalHeader from '@/components/DocsTerminalHeader'
+import DocsLandingHero from '@/components/DocsLandingHero'
 
 const docSections = [
   {
@@ -30,73 +29,68 @@ const docSections = [
 
 export default function DocsPage() {
   return (
-    <div className="min-h-screen pt-24 pb-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-4xl mx-auto">
+    <div className="docs-atmosphere relative w-full min-h-screen pb-32 pt-24 font-mono text-white">
+      <div className="docs-atmosphere-grid" aria-hidden />
+      <div className="docs-atmosphere-bloom" aria-hidden />
+      <div className="docs-atmosphere-vignette" aria-hidden />
+      <div className="docs-atmosphere-grain" aria-hidden />
+      <div className="docs-crosshair-layer" aria-hidden />
+
+      <div className="relative z-10 w-full max-w-[min(100%,1800px)] mx-auto px-5 sm:px-8 lg:px-12 xl:px-16">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
-          className="mb-16"
+          className="border-b border-white/[0.06] pb-1 mb-2 sm:mb-3"
         >
-          <DocsTerminalHeader />
-          <p className="text-lg text-gray-400 mt-2">
-            Everything you need to know about genesis-env
-          </p>
+          <DocsLandingHero />
         </motion.div>
 
-        <div className="space-y-4">
+        <div className="w-full max-w-3xl mx-auto space-y-4">
           {docSections.map((section, index) => (
             <motion.div
               key={section.href}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              transition={{ duration: 0.45, delay: 0.05 + index * 0.05 }}
             >
               <Link
                 href={section.href}
-                className="block bg-surface border border-gray-800 rounded-lg p-6 hover:border-accent transition-colors group"
+                className="group block border border-white/[0.08] bg-transparent px-6 py-8 transition-colors duration-300 hover:border-white/[0.18]"
               >
-                <div className="flex items-start justify-between">
-                  <div className="flex-1">
-                    <h2 className="text-xl font-semibold mb-2 group-hover:text-accent transition-colors">
-                      {section.title}
-                    </h2>
-                    <p className="text-gray-400">{section.description}</p>
-                  </div>
-                  <ArrowRight 
-                    size={20} 
-                    className="text-gray-500 group-hover:text-accent group-hover:translate-x-1 transition-all ml-4"
-                  />
-                </div>
+                <h2 className="mb-3 flex items-center gap-3 text-sm font-medium uppercase tracking-[0.12em] text-white">
+                  {section.title}
+                  <span className="text-zinc-500 transition-transform duration-300 group-hover:translate-x-1 group-hover:text-zinc-300">
+                    →
+                  </span>
+                </h2>
+                <p className="max-w-lg text-sm leading-relaxed tracking-[0.02em] text-zinc-400">
+                  {section.description}
+                </p>
               </Link>
             </motion.div>
           ))}
         </div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mt-16 bg-surface border border-gray-800 rounded-lg p-6"
+          transition={{ duration: 0.45, delay: 0.28 }}
+          className="mx-auto mt-20 max-w-3xl border border-white/[0.08] px-6 py-10"
         >
-          <h2 className="text-xl font-semibold mb-2">Quick start</h2>
-          <p className="text-gray-400 mb-4">
-            Install (or use <code className="text-accent">npx</code> without installing), then follow the command reference for <code className="text-accent">init</code> and <code className="text-accent">generate</code>. Template rules and examples live under Templates &amp; <code className="text-accent">.env</code>.
+          <h2 className="mb-4 text-sm font-medium uppercase tracking-[0.12em] text-white">Quick start</h2>
+          <p className="max-w-lg text-sm leading-[1.8] text-zinc-400">
+            Install (or use <code className="text-docsBlue/90">npx</code> without installing), then follow the command
+            reference for <code className="text-docsBlue/90">init</code> and{' '}
+            <code className="text-docsBlue/90">generate</code>. Template rules and examples live under Templates &amp;{' '}
+            <code className="text-docsBlue/90">.env</code>.
           </p>
-          <div className="flex flex-wrap gap-4">
-            <Link
-              href="/docs/installation"
-              className="text-accent hover:underline inline-flex items-center space-x-1"
-            >
-              <span>Installation</span>
-              <ArrowRight size={16} />
+          <div className="mt-8 flex flex-wrap gap-10 text-sm uppercase tracking-[0.12em] text-zinc-400">
+            <Link href="/docs/installation" className="transition-colors hover:text-white">
+              Installation →
             </Link>
-            <Link
-              href="/docs/commands"
-              className="text-accent hover:underline inline-flex items-center space-x-1"
-            >
-              <span>Commands</span>
-              <ArrowRight size={16} />
+            <Link href="/docs/commands" className="transition-colors hover:text-white">
+              Commands →
             </Link>
           </div>
         </motion.div>
