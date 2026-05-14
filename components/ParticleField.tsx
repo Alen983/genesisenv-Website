@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useMemo, useSyncExternalStore } from 'react'
 import { motion } from 'framer-motion'
 
 const SYMBOLS = ['{', '}', '=', '.', 'env', 'KEY']
@@ -34,13 +34,21 @@ function buildParticles(): Particle[] {
   }))
 }
 
-export default function ParticleField() {
-  const [particles, setParticles] = useState<Particle[]>([])
+function subscribe() {
+  return () => {}
+}
 
-  useEffect(() => {
-    const generated = buildParticles()
-    setParticles(generated)
-  }, [])
+function getServerSnapshot() {
+  return false
+}
+
+function getSnapshot() {
+  return true
+}
+
+export default function ParticleField() {
+  const isClient = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
+  const particles = useMemo(() => (isClient ? buildParticles() : []), [isClient])
 
   return (
     <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden>
