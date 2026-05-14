@@ -1,6 +1,6 @@
 'use client'
 
-import { useMemo } from 'react'
+import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 
 const SYMBOLS = ['{', '}', '=', '.', 'env', 'KEY']
@@ -10,18 +10,36 @@ function random(min: number, max: number) {
   return min + Math.random() * (max - min)
 }
 
+type Particle = {
+  id: number
+  symbol: string
+  x: number
+  y: number
+  delay: number
+  duration: number
+  size: number
+  opacity: number
+}
+
+function buildParticles(): Particle[] {
+  return Array.from({ length: COUNT }, (_, i) => ({
+    id: i,
+    symbol: SYMBOLS[i % SYMBOLS.length],
+    x: random(0, 100),
+    y: random(0, 100),
+    delay: random(0, 4),
+    duration: random(8, 16),
+    size: random(10, 18),
+    opacity: random(0.08, 0.2),
+  }))
+}
+
 export default function ParticleField() {
-  const particles = useMemo(() => {
-    return Array.from({ length: COUNT }, (_, i) => ({
-      id: i,
-      symbol: SYMBOLS[i % SYMBOLS.length],
-      x: random(0, 100),
-      y: random(0, 100),
-      delay: random(0, 4),
-      duration: random(8, 16),
-      size: random(10, 18),
-      opacity: random(0.08, 0.2),
-    }))
+  const [particles, setParticles] = useState<Particle[]>([])
+
+  useEffect(() => {
+    const generated = buildParticles()
+    setParticles(generated)
   }, [])
 
   return (

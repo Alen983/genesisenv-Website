@@ -114,17 +114,15 @@ function LoopingTerminalLog() {
 
 function DocsStatusSidebar() {
   const reduceMotion = useReducedMotion()
-  const [progress, setProgress] = useState(0)
+  const [liveProgress, setLiveProgress] = useState(0)
+  const progress = reduceMotion ? 100 : liveProgress
 
   useEffect(() => {
-    if (reduceMotion) {
-      setProgress(100)
-      return
-    }
+    if (reduceMotion) return
     const ctrl = animate(0, 100, {
       duration: LOAD_SEQUENCE_MS / 1000,
       ease: [0.22, 0.99, 0.36, 1],
-      onUpdate: (latest) => setProgress(latest),
+      onUpdate: (latest) => setLiveProgress(latest),
     })
     return () => ctrl.stop()
   }, [reduceMotion])

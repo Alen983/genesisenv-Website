@@ -33,7 +33,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${inter.variable} ${firaCode.variable}`}>
+    <html
+      lang="en"
+      className={`${inter.variable} ${firaCode.variable}`}
+      data-scroll-behavior="smooth"
+    >
       <body>
         <Navbar />
         <main>{children}</main>
