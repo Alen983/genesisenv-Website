@@ -261,3 +261,42 @@ body {
     animation: none;
   }
 }
+
+/* Roadmap: orbital header + in-progress node pulse */
+@keyframes roadmap-orbit-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes roadmap-core-pulse {
+  0%,
+  100% {
+    opacity: 0.55;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.12);
+  }
+}
+
+.roadmap-orbit-spin {
+  animation: roadmap-orbit-spin 72s linear infinite;
+}
+
+.roadmap-core-pulse {
+  animation: roadmap-core-pulse 3.2s ease-in-out infinite;
+}
+
+.roadmap-core-pulse-fast {
+  animation: roadmap-core-pulse 2.4s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .roadmap-orbit-spin,
+  .roadmap-core-pulse,
+  .roadmap-core-pulse-fast {
+    animation: none;
+  }
+}
