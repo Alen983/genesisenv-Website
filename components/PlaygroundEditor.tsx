@@ -79,7 +79,7 @@ TIMEOUT=30`)
   }
 
   return (
-    <div className="w-full max-w-7xl mx-auto">
+    <div className="w-full">
       <div className="grid lg:grid-cols-2 gap-6 mb-6">
         {/* Left: Template Editor */}
         <div className="flex flex-col">
@@ -108,7 +108,7 @@ TIMEOUT=30`)
       </div>
 
       {/* Validate Button */}
-      <div className="flex justify-center mb-6">
+      <div className="mb-6 flex justify-start">
         <motion.button
           onClick={handleValidate}
           whileHover={{ scale: 1.02 }}
