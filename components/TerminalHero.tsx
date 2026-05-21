@@ -72,13 +72,13 @@ export default function TerminalHero({
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className={compact ? 'w-full max-w-md' : 'w-full max-w-3xl mx-auto'}
+      className={`min-w-0 ${compact ? 'w-full max-w-md' : 'w-full max-w-3xl mx-auto'}`}
     >
       <div
         className={
           compact
-            ? 'bg-surface/95 border border-gray-600/60 rounded-lg overflow-hidden shadow-xl shadow-black/40 backdrop-blur-sm'
-            : 'bg-surface/90 border border-gray-700/50 rounded-xl overflow-hidden shadow-2xl shadow-black/30 backdrop-blur-sm'
+            ? 'min-w-0 bg-surface/95 border border-gray-600/60 rounded-lg overflow-hidden shadow-xl shadow-black/40 backdrop-blur-sm'
+            : 'min-w-0 bg-surface/90 border border-gray-700/50 rounded-xl overflow-hidden shadow-2xl shadow-black/30 backdrop-blur-sm'
         }
       >
         <div
@@ -94,9 +94,9 @@ export default function TerminalHero({
           <span className={`text-gray-500 font-mono ${compact ? 'ml-2 text-[10px]' : 'ml-4 text-xs'}`}>terminal</span>
         </div>
         <div className={compact ? 'px-3 py-2 font-mono text-xs' : 'p-6 font-mono text-sm'}>
-          <div className="flex items-center">
-            <span className={accentClass}>$</span>
-            <span className="ml-1.5">
+          <div className="flex min-w-0 items-center">
+            <span className={`shrink-0 ${accentClass}`}>$</span>
+            <span className="ml-1.5 min-w-0 flex-1 overflow-x-auto whitespace-nowrap [scrollbar-width:thin]">
               {renderLine(displayedText)}
               {showCursor && <span className={accentClass}>▋</span>}
             </span>

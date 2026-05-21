@@ -42,7 +42,7 @@ function StepCard({
       initial={{ opacity: 0, y: 40 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: index * 0.1 }}
-      className="relative flex items-start gap-6"
+      className="relative flex min-w-0 items-start gap-4 sm:gap-6"
     >
       <div className="flex shrink-0 flex-col items-center pt-2">
         <div className="h-4 w-4 rounded-full border-2 border-accentCyan/60 bg-background" />
@@ -51,7 +51,7 @@ function StepCard({
         )}
       </div>
       <motion.div
-        className="w-full max-w-lg rounded-2xl border border-white/10 bg-gray-900/40 backdrop-blur-md p-8 shadow-xl pb-12"
+        className="w-full min-w-0 max-w-lg rounded-2xl border border-white/10 bg-gray-900/40 p-5 pb-10 shadow-xl backdrop-blur-md sm:p-8 sm:pb-12"
         whileHover={{
           y: -4,
           boxShadow: '0 20px 40px -15px rgba(34, 211, 238, 0.15), 0 0 0 1px rgba(255,255,255,0.05)',
@@ -80,7 +80,7 @@ export default function HowItWorksTimeline() {
           Four steps from template to production
         </p>
       </div>
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pb-20">
+      <div className="mx-auto max-w-4xl min-w-0 px-4 pb-20 sm:px-6 lg:px-8">
         {steps.map((step, index) => (
           <StepCard key={step.title} step={step} index={index} />
         ))}

@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { animate, motion, useReducedMotion } from 'framer-motion'
-import { useEffect, useState } from 'react'
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 
 const STATUS_LOG_LINES = [
   'TRAINING.STARTED .......... EPOCH 001',
@@ -66,15 +66,56 @@ const DOC_ASCII_LINES = [
 const DOC_ASCII = DOC_ASCII_LINES.join('\n')
 
 function DocsAsciiHeadline() {
+  const outerRef = useRef<HTMLDivElement>(null)
+  const preRef = useRef<HTMLPreElement>(null)
+  const [scale, setScale] = useState(1)
+  const [boxH, setBoxH] = useState<number | undefined>(undefined)
+
+  useLayoutEffect(() => {
+    const outer = outerRef.current
+    const pre = preRef.current
+    if (!outer || !pre) return
+
+    const run = () => {
+      const avail = outer.clientWidth
+      if (avail < 1) return
+      const natural = pre.scrollWidth
+      if (natural < 1) return
+      const next = natural > avail ? (avail - 0.5) / natural : 1
+      setScale(next)
+      setBoxH(Math.max(1, Math.ceil(pre.offsetHeight * next)))
+    }
+
+    run()
+    const ro = new ResizeObserver(() => {
+      requestAnimationFrame(run)
+    })
+    ro.observe(outer)
+    return () => ro.disconnect()
+  }, [])
+
   return (
-    <div className="min-w-0 w-full">
-      <pre
-        className="docs-ascii-headline w-full overflow-x-auto pb-1 font-mono leading-[1.05] tracking-normal text-zinc-50 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden [font-size:clamp(0.42rem,1.05vw+0.32rem,0.95rem)] sm:leading-[1.04]"
-        style={{ fontFeatureSettings: '"liga" 0' }}
-        aria-hidden
+    <div
+      ref={outerRef}
+      className="min-w-0 w-full overflow-hidden pb-1"
+      style={boxH !== undefined ? { height: `${boxH}px` } : undefined}
+    >
+      <div
+        className="inline-block will-change-transform"
+        style={{
+          transform: `scale(${scale})`,
+          transformOrigin: 'left top',
+        }}
       >
-        {DOC_ASCII}
-      </pre>
+        <pre
+          ref={preRef}
+          className="docs-ascii-headline w-max max-w-none whitespace-pre pb-0.5 font-mono text-[1.05rem] leading-[1.05] tracking-normal text-zinc-50 sm:text-[1.125rem] sm:leading-[1.04]"
+          style={{ fontFeatureSettings: '"liga" 0' }}
+          aria-hidden
+        >
+          {DOC_ASCII}
+        </pre>
+      </div>
     </div>
   )
 }
@@ -243,7 +284,7 @@ function DocsBottomNavBleed({ inline = false }: { inline?: boolean }) {
 
 export default function DocsLandingHero() {
   return (
-    <section className="relative overflow-x-clip font-mono text-white">
+    <section className="relative min-w-0 font-mono text-white">
       <div className="mx-auto flex w-full max-w-[min(100%,1800px)] flex-col">
         <motion.p
           className="mb-6 text-xs uppercase tracking-[0.28em] text-zinc-500 sm:mb-7 sm:text-[13px]"

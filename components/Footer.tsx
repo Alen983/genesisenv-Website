@@ -9,7 +9,7 @@ export default function Footer() {
           <div className="text-sm text-gray-400">
             © {new Date().getFullYear()} genesis-env. Configuration discipline.
           </div>
-          <div className="flex items-center space-x-6">
+          <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 md:justify-end">
             <Link
               href="/docs"
               className="text-sm text-gray-400 hover:text-accent transition-colors"

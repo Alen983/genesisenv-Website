@@ -56,6 +56,17 @@ body {
   font-size: 0.875em;
 }
 
+.docs-mdx pre {
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.docs-mdx img {
+  max-width: 100%;
+  height: auto;
+}
+
 .chromatic-ascii {
   color: #f4f4f5;
   text-shadow:
@@ -90,7 +101,8 @@ body {
   position: relative;
   isolation: isolate;
   background-color: #000000;
-  overflow-x: clip;
+  /* hidden (not clip) so descendants with overflow-x-auto can scroll; clip was cutting off the docs ASCII headline */
+  overflow-x: hidden;
 }
 
 .docs-atmosphere-grid {

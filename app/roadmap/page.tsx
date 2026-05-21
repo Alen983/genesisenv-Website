@@ -182,7 +182,7 @@ function RoadmapCard({ item }: { item: (typeof ROADMAP_ITEMS)[number] }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-      className={`relative rounded-lg border border-zinc-800/90 bg-zinc-950/80 px-5 py-4 backdrop-blur-sm sm:px-6 sm:py-5 ${
+      className={`relative min-w-0 rounded-lg border border-zinc-800/90 bg-zinc-950/80 px-5 py-4 backdrop-blur-sm sm:px-6 sm:py-5 ${
         item.status === 'in-progress'
           ? 'shadow-[0_0_0_1px_rgba(56,189,248,0.12),0_0_40px_-8px_rgba(14,165,233,0.25)]'
           : 'shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]'
@@ -195,7 +195,7 @@ function RoadmapCard({ item }: { item: (typeof ROADMAP_ITEMS)[number] }) {
           <span className="text-zinc-600">{item.quarter}</span>
         </div>
       </div>
-      <h2 className="font-sans text-base font-bold uppercase tracking-wide text-zinc-100 sm:text-lg">
+      <h2 className="break-words font-sans text-base font-bold uppercase tracking-wide text-zinc-100 sm:text-lg">
         {item.title}
       </h2>
       <p className="mt-2 text-sm leading-relaxed text-zinc-500 sm:text-[0.9375rem]">
@@ -237,7 +237,7 @@ export default function RoadmapPage() {
         <h1 className="sr-only">Roadmap</h1>
 
         {/* Header */}
-        <header className="mb-12 flex flex-col gap-8 lg:mb-16 lg:flex-row lg:items-start lg:justify-between">
+        <header className="mb-12 flex min-w-0 flex-col flex-wrap gap-8 lg:mb-16 lg:flex-row lg:items-start lg:justify-between">
           <div className="min-w-0 text-left">
             <p className="mb-4 font-mono text-xs uppercase tracking-[0.28em] text-zinc-500">
               [ 04 ]
@@ -249,7 +249,7 @@ export default function RoadmapPage() {
               transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
             >
               <pre
-                className="docs-ascii-headline w-full overflow-x-auto pb-1 text-left font-mono leading-[1.05] tracking-normal text-zinc-50 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden [font-size:clamp(0.32rem,0.72vw+0.26rem,0.72rem)] sm:leading-[1.04]"
+                className="docs-ascii-headline w-full overflow-x-auto pb-1 text-left font-mono leading-[1.05] tracking-normal text-zinc-50 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden [font-size:clamp(0.38rem,1.05vw+0.32rem,0.95rem)] sm:leading-[1.04]"
                 style={{ fontFeatureSettings: '"liga" 0' }}
                 aria-hidden
               >
@@ -260,7 +260,7 @@ export default function RoadmapPage() {
               The future of configuration discipline
             </p>
           </div>
-          <div className="flex shrink-0 items-start gap-4 sm:gap-6">
+          <div className="flex w-full min-w-0 flex-wrap items-start justify-start gap-4 sm:gap-6 lg:w-auto lg:shrink-0 lg:justify-end">
             <div className="text-right font-mono">
               <p className="text-[11px] uppercase tracking-[0.2em] text-sky-400 sm:text-xs">
                 SYSTEM ORIGIN

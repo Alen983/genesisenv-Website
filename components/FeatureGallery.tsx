@@ -47,7 +47,7 @@ function FeatureCard({
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: index * 0.1 }}
-      className="h-64"
+      className="min-h-[15rem] sm:h-64"
       style={{ perspective: 1000 }}
     >
       <motion.div
@@ -57,7 +57,7 @@ function FeatureCard({
         whileHover={{ scale: 1.02 }}
       >
         <motion.div
-          className="absolute inset-0 rounded-2xl border border-white/10 bg-gray-900/50 backdrop-blur-md p-6 shadow-inner"
+          className="absolute inset-0 rounded-2xl border border-white/10 bg-gray-900/50 p-5 shadow-inner backdrop-blur-md sm:p-6"
           style={{
             backfaceVisibility: 'hidden',
             boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.03), 0 4px 20px rgba(0,0,0,0.3)',
@@ -76,7 +76,7 @@ function FeatureCard({
           <p className="text-gray-500 text-xs mt-4">Hover or click to reveal</p>
         </motion.div>
         <motion.div
-          className="absolute inset-0 rounded-2xl border border-accentCyan/30 bg-gray-900/80 backdrop-blur-md p-6 flex items-center justify-center"
+          className="absolute inset-0 flex items-center justify-center rounded-2xl border border-accentCyan/30 bg-gray-900/80 p-5 backdrop-blur-md sm:p-6"
           style={{
             backfaceVisibility: 'hidden',
             rotateY: 180,
@@ -84,7 +84,7 @@ function FeatureCard({
           animate={{ rotateY: flipped ? 0 : 180 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
         >
-          <pre className="font-mono text-sm text-gray-300 whitespace-pre-wrap text-center">
+          <pre className="max-h-full max-w-full overflow-x-auto whitespace-pre-wrap text-center font-mono text-xs text-gray-300 sm:text-sm">
             {feature.backSnippet}
           </pre>
         </motion.div>
@@ -103,7 +103,7 @@ export default function FeatureGallery() {
         initial={{ opacity: 0, y: 20 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5 }}
-        className="max-w-7xl mx-auto"
+        className="max-w-7xl min-w-0 mx-auto"
       >
         <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
           Feature gallery
@@ -111,7 +111,7 @@ export default function FeatureGallery() {
         <p className="text-gray-500 text-center mb-16 max-w-xl mx-auto">
           Explore what genesis-env can do — like exhibits in a museum
         </p>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+        <div className="grid min-w-0 grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-4">
           {features.map((feature, index) => (
             <FeatureCard key={feature.title} feature={feature} index={index} />
           ))}

@@ -1,4 +1,4 @@
-import type { Metadata } from 'next'
+import type { Metadata, Viewport } from 'next'
 import { Inter, Fira_Code } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/Navbar'
@@ -15,6 +15,11 @@ const firaCode = Fira_Code({
   variable: '--font-fira-code',
   display: 'swap',
 })
+
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://alen983.github.io'),
@@ -40,7 +45,7 @@ export default function RootLayout({
     >
       <body>
         <Navbar />
-        <main>{children}</main>
+        <main className="min-w-0 w-full">{children}</main>
         <Footer />
       </body>
     </html>

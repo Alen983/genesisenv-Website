@@ -39,7 +39,7 @@ export default function PlaygroundPage() {
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
           >
             <pre
-              className="docs-ascii-headline w-full overflow-x-auto pb-1 font-mono leading-[1.05] tracking-normal text-zinc-50 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden [font-size:clamp(0.42rem,1.05vw+0.32rem,0.95rem)] sm:leading-[1.04]"
+              className="docs-ascii-headline w-full overflow-x-auto pb-1 font-mono leading-[1.05] tracking-normal text-zinc-50 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden [font-size:clamp(0.38rem,1.05vw+0.32rem,0.95rem)] sm:leading-[1.04]"
               style={{ fontFeatureSettings: '"liga" 0' }}
               aria-hidden
             >

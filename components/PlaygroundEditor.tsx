@@ -80,26 +80,26 @@ TIMEOUT=30`)
 
   return (
     <div className="w-full">
-      <div className="grid lg:grid-cols-2 gap-6 mb-6">
+      <div className="mb-6 grid min-w-0 grid-cols-1 gap-6 lg:grid-cols-2">
         {/* Left: Template Editor */}
-        <div className="flex flex-col">
+        <div className="flex min-w-0 flex-col">
           <label className="text-sm font-semibold mb-2 text-gray-300">
             .env.template
           </label>
           <textarea
             value={template}
             onChange={(e) => setTemplate(e.target.value)}
-            className="flex-1 bg-surface border border-gray-800 rounded-lg p-4 font-mono text-sm text-gray-300 focus:outline-none focus:border-accent resize-none"
+            className="min-h-[12rem] flex-1 resize-none rounded-lg border border-gray-800 bg-surface p-3 font-mono text-xs text-gray-300 focus:border-accent focus:outline-none sm:min-h-[16rem] sm:p-4 sm:text-sm"
             placeholder="Enter your .env.template content..."
           />
         </div>
 
         {/* Right: Generated .env */}
-        <div className="flex flex-col">
+        <div className="flex min-w-0 flex-col">
           <label className="text-sm font-semibold mb-2 text-gray-300">
             Generated .env
           </label>
-          <div className="flex-1 bg-surface border border-gray-800 rounded-lg p-4 font-mono text-sm text-gray-400 overflow-auto">
+          <div className="min-h-[12rem] flex-1 overflow-auto rounded-lg border border-gray-800 bg-surface p-3 font-mono text-xs text-gray-400 sm:min-h-[16rem] sm:p-4 sm:text-sm">
             {generated || (
               <span className="text-gray-600">Generated output will appear here...</span>
             )}
@@ -124,7 +124,7 @@ TIMEOUT=30`)
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="bg-surface border border-gray-800 rounded-lg p-6 space-y-4"
+          className="min-w-0 space-y-4 rounded-lg border border-gray-800 bg-surface p-6"
         >
           <div className="flex items-center space-x-2 text-green-400">
             <CheckCircle2 size={20} />

@@ -17,24 +17,26 @@ export default function DemoSection() {
         initial={{ opacity: 0, y: 24 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-        className="max-w-4xl mx-auto text-center"
+        className="max-w-4xl min-w-0 mx-auto text-center"
       >
         <h2 className="text-3xl md:text-4xl font-bold mb-4">Virtual tour</h2>
         <p className="text-gray-500 mb-10 max-w-xl mx-auto">
           Explore genesis-env in the browser — run commands and see output live, like a hands-on exhibit.
         </p>
         <motion.div
-          className="rounded-2xl border border-white/10 bg-gray-900/50 backdrop-blur-sm p-8 shadow-xl inline-block"
+          className="inline-block max-w-full rounded-2xl border border-white/10 bg-gray-900/50 p-5 shadow-xl backdrop-blur-sm sm:p-8"
           whileHover={{
             boxShadow: '0 20px 40px -15px rgba(34, 211, 238, 0.12), 0 0 0 1px rgba(255,255,255,0.05)',
             transition: { duration: 0.2 },
           }}
         >
-          <div className="font-mono text-sm text-gray-400 mb-4 text-left">
-            $ npx genesis-env validate .env.template
-          </div>
-          <div className="font-mono text-sm text-green-400/90 text-left mb-6">
-            ✓ Validation complete. 12 keys found.
+          <div className="mb-6 max-w-full overflow-x-auto text-left">
+            <div className="min-w-0 whitespace-nowrap font-mono text-xs text-gray-400 sm:text-sm">
+              $ npx genesis-env validate .env.template
+            </div>
+            <div className="mt-2 min-w-0 whitespace-nowrap font-mono text-xs text-green-400/90 sm:text-sm">
+              ✓ Validation complete. 12 keys found.
+            </div>
           </div>
           <Link
             href="/playground"

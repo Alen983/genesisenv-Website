@@ -29,7 +29,7 @@ const docSections = [
 
 export default function DocsPage() {
   return (
-    <div className="docs-atmosphere relative w-full min-h-screen pb-32 pt-24 font-mono text-white">
+    <div className="docs-atmosphere relative min-h-screen w-full pb-32 pt-24 font-mono text-white">
       <div className="docs-atmosphere-grid" aria-hidden />
       <div className="docs-atmosphere-bloom" aria-hidden />
       <div className="docs-atmosphere-vignette" aria-hidden />

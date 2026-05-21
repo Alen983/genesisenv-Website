@@ -13,7 +13,7 @@ export default function MuseumHero() {
   return (
     <section
       ref={ref}
-      className="relative min-h-screen flex flex-col items-center justify-center pt-24 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden"
+      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 pb-20 pt-24 sm:px-6 lg:px-8"
       style={{
         background: 'linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 50%, #0F0F0F 100%)',
         backgroundImage: 'linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 50%, #0F0F0F 100%), radial-gradient(circle at 20% 80%, rgba(34,211,238,0.03) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(229,184,76,0.02) 0%, transparent 40%)',
@@ -22,7 +22,7 @@ export default function MuseumHero() {
       <ParticleField />
       <HeroFloatingIcons />
 
-      <div className="relative z-10 w-full max-w-6xl mx-auto text-center">
+      <div className="relative z-10 mx-auto w-full min-w-0 max-w-6xl text-center">
         <motion.p
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
@@ -36,7 +36,7 @@ export default function MuseumHero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-extrabold tracking-tight text-white"
+          className="break-words text-4xl font-extrabold tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl"
         >
           STOP BREAKING YOUR .ENV FILES.
         </motion.h1>
@@ -45,7 +45,7 @@ export default function MuseumHero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-10 flex justify-center w-full"
+          className="mt-10 flex min-w-0 w-full justify-center px-0.5"
         >
           <TerminalHero
             command="npx genesis-env validate .env.template"
