@@ -18,10 +18,10 @@ const PLAYGROUND_ASCII = PLAYGROUND_ASCII_LINES.join('\n')
 
 export default function PlaygroundPage() {
   return (
-    <div className="min-h-screen pb-20 pt-24 font-mono text-white">
+    <div className="min-h-screen bg-background pb-20 pt-24 font-mono text-foreground">
       <div className="mx-auto w-full max-w-[min(100%,1800px)] px-5 sm:px-8 lg:px-12 xl:px-16">
         <motion.p
-          className="mb-6 text-left text-xs uppercase tracking-[0.28em] text-zinc-500 sm:mb-7 sm:text-[13px]"
+          className="mb-6 text-left text-xs uppercase tracking-[0.28em] text-muted-foreground sm:mb-7 sm:text-[13px]"
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45 }}
@@ -39,7 +39,7 @@ export default function PlaygroundPage() {
             transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
           >
             <pre
-              className="docs-ascii-headline w-full overflow-x-auto pb-1 font-mono leading-[1.05] tracking-normal text-zinc-50 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden [font-size:clamp(0.38rem,1.05vw+0.32rem,0.95rem)] sm:leading-[1.04]"
+              className="docs-ascii-headline w-full overflow-x-auto pb-1 font-mono leading-[1.05] tracking-normal text-foreground [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden [font-size:clamp(0.38rem,1.05vw+0.32rem,0.95rem)] sm:leading-[1.04] dark:text-zinc-50"
               style={{ fontFeatureSettings: '"liga" 0' }}
               aria-hidden
             >
@@ -48,7 +48,7 @@ export default function PlaygroundPage() {
           </motion.div>
 
           <motion.p
-            className="mt-6 max-w-[36rem] text-left text-sm leading-[1.75] tracking-[0.02em] text-zinc-400 sm:mt-7 sm:text-[0.9375rem] sm:leading-[1.8]"
+            className="mt-6 max-w-[36rem] text-left text-sm leading-[1.75] tracking-[0.02em] text-muted-foreground sm:mt-7 sm:text-[0.9375rem] sm:leading-[1.8]"
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.08 }}

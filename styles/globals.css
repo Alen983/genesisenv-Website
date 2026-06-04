@@ -2,10 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #0a0a0a;
-  --surface: #121212;
-  --accent: #00FF88;
+/* Default + dark: matches next-themes defaultTheme="dark" before/without .light */
+:root,
+html.dark {
+  color-scheme: dark;
+  --accent: #00ff88;
+  --color-background: 10 10 10;
+  --color-foreground: 255 255 255;
+  --color-surface: 18 18 18;
+  --color-muted: 39 39 42;
+  --color-muted-foreground: 161 161 170;
+  --color-border: 63 63 70;
+  --color-card: 24 24 27;
+  --color-accent: 0 255 136;
+}
+
+html.light {
+  color-scheme: light;
+  --accent: #00ff88;
+  --color-background: 250 250 250;
+  --color-foreground: 9 9 11;
+  --color-surface: 244 244 245;
+  --color-muted: 228 228 231;
+  --color-muted-foreground: 82 82 91;
+  --color-border: 212 212 216;
+  --color-card: 255 255 255;
+  --color-accent: 0 255 136;
 }
 
 * {
@@ -19,8 +41,6 @@ html {
 }
 
 body {
-  background-color: var(--background);
-  color: #ffffff;
   font-family: var(--font-inter), Inter, system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -37,19 +57,19 @@ body {
 .docs-mdx thead th {
   text-align: left;
   font-weight: 600;
-  color: #f3f4f6;
-  background-color: rgba(23, 23, 23, 0.9);
+  color: rgb(var(--color-foreground) / 0.95);
+  background-color: rgb(var(--color-muted) / 0.9);
 }
 
 .docs-mdx th,
 .docs-mdx td {
-  border: 1px solid rgba(75, 85, 99, 0.6);
+  border: 1px solid rgb(var(--color-border) / 0.65);
   padding: 0.65rem 0.85rem;
   vertical-align: top;
 }
 
 .docs-mdx tbody tr:nth-child(even) {
-  background-color: rgba(23, 23, 23, 0.35);
+  background-color: rgb(var(--color-muted) / 0.35);
 }
 
 .docs-mdx tbody td code {
@@ -67,8 +87,48 @@ body {
   height: auto;
 }
 
+/* MDX article pages (DocsArticleLayout): theme-aware prose without @tailwindcss/typography */
+.docs-article-layout {
+  color: rgb(var(--color-foreground));
+}
+
+.docs-article-layout :where(p, li, td) {
+  color: rgb(var(--color-muted-foreground));
+}
+
+.docs-article-layout :where(h1, h2, h3, h4, h5, h6, th) {
+  color: rgb(var(--color-foreground));
+}
+
+.docs-article-layout :where(a) {
+  color: rgb(var(--color-accent));
+}
+
+.docs-article-layout :where(code):not(pre code) {
+  color: rgb(var(--color-accent));
+}
+
+.docs-article-layout pre {
+  background-color: rgb(var(--color-muted) / 0.45);
+  border: 1px solid rgb(var(--color-border) / 0.5);
+}
+
+/* Docs landing status card — deep shadow only in dark */
+.docs-status-panel {
+  box-shadow:
+    inset 0 0 48px rgba(0, 0, 0, 0.04),
+    0 12px 32px rgba(0, 0, 0, 0.06);
+}
+
+html.dark .docs-status-panel {
+  box-shadow:
+    inset 0 0 64px rgba(255, 255, 255, 0.028),
+    inset 0 0 100px rgba(0, 0, 0, 0.68),
+    0 16px 48px rgba(0, 0, 0, 0.45);
+}
+
 .chromatic-ascii {
-  color: #f4f4f5;
+  color: rgb(var(--color-foreground) / 0.96);
   text-shadow:
     1px 0 0 rgba(248, 113, 113, 0.55),
     -1px 0 0 rgba(34, 211, 238, 0.5),
@@ -76,10 +136,25 @@ body {
     -2px 0 1px rgba(34, 211, 238, 0.22);
 }
 
+html.light .chromatic-ascii {
+  color: rgb(var(--color-foreground) / 0.95);
+  text-shadow:
+    1px 0 0 rgba(225, 29, 72, 0.22),
+    -1px 0 0 rgba(2, 132, 199, 0.22),
+    2px 0 1px rgba(225, 29, 72, 0.1),
+    -2px 0 1px rgba(2, 132, 199, 0.1);
+}
+
 .chromatic-ascii-muted:hover {
   text-shadow:
     1px 0 0 rgba(248, 113, 113, 0.35),
     -1px 0 0 rgba(34, 211, 238, 0.35);
+}
+
+html.light .chromatic-ascii-muted:hover {
+  text-shadow:
+    1px 0 0 rgba(225, 29, 72, 0.18),
+    -1px 0 0 rgba(2, 132, 199, 0.18);
 }
 
 .terminal-grid-bg {
@@ -96,13 +171,56 @@ body {
     );
 }
 
+html.light .terminal-grid-bg {
+  background-image:
+    repeating-linear-gradient(
+      90deg,
+      rgba(9, 9, 11, 0.06) 0 1px,
+      transparent 1px 5px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      rgba(9, 9, 11, 0.055) 0 1px,
+      transparent 1px 4px
+    );
+}
+
+/* Home hero: theme-aware gradient (replaces inline styles on MuseumHero) */
+.museum-hero-bg {
+  background-color: rgb(var(--color-background));
+  background-image:
+    linear-gradient(
+      180deg,
+      rgb(26 26 26) 0%,
+      rgb(13 13 13) 50%,
+      rgb(15 15 15) 100%
+    ),
+    radial-gradient(circle at 20% 80%, rgba(34, 211, 238, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(229, 184, 76, 0.02) 0%, transparent 40%);
+}
+
+html.light .museum-hero-bg {
+  background-image:
+    linear-gradient(
+      180deg,
+      rgb(250 250 250) 0%,
+      rgb(244 244 245) 50%,
+      rgb(228 228 231) 100%
+    ),
+    radial-gradient(circle at 20% 80%, rgba(34, 211, 238, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(229, 184, 76, 0.05) 0%, transparent 40%);
+}
+
 /* ─── Docs landing atmosphere (restraint: grid fades, never competes with type) ─── */
 .docs-atmosphere {
   position: relative;
   isolation: isolate;
   background-color: #000000;
-  /* hidden (not clip) so descendants with overflow-x-auto can scroll; clip was cutting off the docs ASCII headline */
   overflow-x: hidden;
+}
+
+html.light .docs-atmosphere {
+  background-color: #fafafa;
 }
 
 .docs-atmosphere-grid {
@@ -121,6 +239,15 @@ body {
   animation: docs-grid-drift 140s linear infinite;
 }
 
+html.light .docs-atmosphere-grid {
+  opacity: 0.05;
+  background-image:
+    linear-gradient(rgba(9, 9, 11, 0.12) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(9, 9, 11, 0.12) 1px, transparent 1px);
+  mask-image: radial-gradient(ellipse 72% 58% at 48% 40%, #fff 12%, transparent 68%);
+  -webkit-mask-image: radial-gradient(ellipse 72% 58% at 48% 40%, #fff 12%, transparent 68%);
+}
+
 .docs-atmosphere-bloom {
   position: absolute;
   inset: 0;
@@ -130,6 +257,13 @@ body {
     radial-gradient(ellipse 90% 65% at 14% 22%, rgba(72, 82, 150, 0.16), transparent 55%),
     radial-gradient(ellipse 75% 55% at 88% 78%, rgba(77, 93, 255, 0.09), transparent 52%),
     radial-gradient(ellipse 50% 40% at 55% 95%, rgba(120, 90, 180, 0.06), transparent 50%);
+}
+
+html.light .docs-atmosphere-bloom {
+  background:
+    radial-gradient(ellipse 90% 65% at 14% 22%, rgba(72, 82, 150, 0.1), transparent 55%),
+    radial-gradient(ellipse 75% 55% at 88% 78%, rgba(77, 93, 255, 0.07), transparent 52%),
+    radial-gradient(ellipse 50% 40% at 55% 95%, rgba(120, 90, 180, 0.05), transparent 50%);
 }
 
 .docs-atmosphere-vignette {
@@ -142,6 +276,12 @@ body {
     inset 0 0 280px rgba(0, 0, 0, 0.75);
 }
 
+html.light .docs-atmosphere-vignette {
+  box-shadow:
+    inset 0 0 100px rgba(255, 255, 255, 0.55),
+    inset 0 0 220px rgba(250, 250, 250, 0.65);
+}
+
 .docs-atmosphere-grain {
   position: absolute;
   inset: 0;
@@ -150,6 +290,11 @@ body {
   opacity: 0.045;
   mix-blend-mode: soft-light;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+html.light .docs-atmosphere-grain {
+  opacity: 0.035;
+  mix-blend-mode: multiply;
 }
 
 /* Sparse technical + marks — very low contrast */
@@ -187,6 +332,19 @@ body {
     calc(48% - 5px) calc(72% - 5px),
     72% 58%,
     calc(72% - 4px) calc(58% - 4px);
+}
+
+html.light .docs-crosshair-layer {
+  opacity: 0.06;
+  background-image:
+    linear-gradient(to bottom, rgba(9, 9, 11, 0.2), rgba(9, 9, 11, 0.2)),
+    linear-gradient(to right, rgba(9, 9, 11, 0.2), rgba(9, 9, 11, 0.2)),
+    linear-gradient(to bottom, rgba(9, 9, 11, 0.16), rgba(9, 9, 11, 0.16)),
+    linear-gradient(to right, rgba(9, 9, 11, 0.16), rgba(9, 9, 11, 0.16)),
+    linear-gradient(to bottom, rgba(9, 9, 11, 0.14), rgba(9, 9, 11, 0.14)),
+    linear-gradient(to right, rgba(9, 9, 11, 0.14), rgba(9, 9, 11, 0.14)),
+    linear-gradient(to bottom, rgba(9, 9, 11, 0.12), rgba(9, 9, 11, 0.12)),
+    linear-gradient(to right, rgba(9, 9, 11, 0.12), rgba(9, 9, 11, 0.12));
 }
 
 .docs-ascii-headline {
@@ -305,10 +463,30 @@ body {
   animation: roadmap-core-pulse 2.4s ease-in-out infinite;
 }
 
+/* Roadmap sidebar: subtle phoenix “loader” breathing */
+@keyframes roadmap-phoenix-loader-pulse {
+  0%,
+  100% {
+    opacity: 0.78;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.roadmap-phoenix-loader {
+  animation: roadmap-phoenix-loader-pulse 2.8s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .roadmap-orbit-spin,
   .roadmap-core-pulse,
-  .roadmap-core-pulse-fast {
+  .roadmap-core-pulse-fast,
+  .roadmap-phoenix-loader {
     animation: none;
+  }
+
+  .roadmap-phoenix-loader {
+    opacity: 1;
   }
 }

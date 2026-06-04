@@ -2,72 +2,96 @@
 
 import { motion } from 'framer-motion'
 import { Check } from 'lucide-react'
+import { ROADMAP_PHOENIX_ASCII } from '@/data/roadmapPhoenixAscii'
 
-type RoadmapStatus = 'completed' | 'in-progress' | 'planned' | 'future'
+/** Ship checklist: only items that are actually done vs still open (no speculative “future product” cards). */
+type RoadmapStatus = 'completed' | 'todo'
 
 const ROADMAP_ITEMS: {
   id: string
   title: string
   description: string
   status: RoadmapStatus
-  quarter: string
 }[] = [
   {
     id: '01',
-    title: 'CI/CD INTEGRATION',
+    title: 'Core CLI shipped locally',
     description:
-      'Native plugins for GitHub Actions, GitLab CI, and Jenkins. Validate environment variables in your pipeline automatically.',
+      'Done (in repo): init + generate (default), templates, prompts — matches README / source layout.',
     status: 'completed',
-    quarter: 'Q4 2024',
   },
   {
     id: '02',
-    title: 'CORPORATE SYSTEMS INTEGRATION',
+    title: 'README: discoverability',
     description:
-      'Enterprise features for managing environment variables across teams, with role-based access and audit logs.',
+      'Done: install, badges, quick start, example, usage — as documented in the repo README.',
     status: 'completed',
-    quarter: 'Q4 2024',
   },
   {
     id: '03',
-    title: 'VALIDATION ENGINE V2',
-    description:
-      'Advanced validation rules, custom validators, and support for complex environment variable patterns.',
-    status: 'in-progress',
-    quarter: 'Q2 2026',
+    title: 'Package metadata for npm/GitHub',
+    description: 'Done: repository, bugs, PR/discussion URLs, homepage.',
+    status: 'completed',
   },
   {
     id: '04',
-    title: 'CONFIGURATION GOVERNANCE',
+    title: 'Public docs / marketing site',
     description:
-      'Policy enforcement, compliance checks, and automated remediation for environment variable violations.',
-    status: 'planned',
-    quarter: 'TBD',
+      'Done (external): site at your homepage; keep it in sync with the real CLI commands.',
+    status: 'completed',
   },
   {
     id: '05',
-    title: 'MULTI-ENVIRONMENT MANAGEMENT',
+    title: 'npm publish: name + account',
     description:
-      'Manage and validate environment variables across development, staging, and production environments.',
-    status: 'planned',
-    quarter: 'TBD',
+      'To do: fix E404 — confirm npm whoami, who owns genesis-env on npm, scoped rename or access — until this works, installs from npm as documented may not match your package.',
+    status: 'todo',
   },
   {
     id: '06',
-    title: 'CLI ENHANCEMENTS',
+    title: 'package.json polish',
     description:
-      'Interactive mode, better error messages, and support for environment variable templates with inheritance.',
-    status: 'planned',
-    quarter: 'TBD',
+      'To do: fill keywords, author (and optional files / engines) so npm search and trust look complete.',
+    status: 'todo',
+  },
+  {
+    id: '07',
+    title: 'Publish tarball hygiene',
+    description:
+      'To do: npm warned about .gitignore as fallback — consider .npmignore or files so only dist + essentials ship (avoid publishing unnecessary src if you don’t want that).',
+    status: 'todo',
+  },
+  {
+    id: '08',
+    title: 'Tests & CI',
+    description:
+      'To do: npm test is still a stub; add real tests + CI (e.g. GitHub Actions) before calling it “stable.”',
+    status: 'todo',
+  },
+  {
+    id: '09',
+    title: 'Roadmap vs product',
+    description:
+      'To do: docs/ROADMAP.md lists validation, merge, secret managers, etc. Align site, README, and roadmap so users aren’t misled about what the CLI actually does today.',
+    status: 'todo',
+  },
+  {
+    id: '10',
+    title: 'Post–v1 quality & ecosystem',
+    description:
+      'To do: changelog/releases, issue templates usage, semver discipline, and v0.2+ themes (progress UI, stricter validation, optional keys, etc.).',
+    status: 'todo',
   },
 ]
 
 const STATUS_LABEL: Record<RoadmapStatus, string> = {
-  completed: 'COMPLETED',
-  'in-progress': 'IN PROGRESS',
-  planned: 'PLANNED',
-  future: 'FUTURE',
+  completed: 'DONE',
+  todo: 'TO DO',
 }
+
+const DONE_COUNT = ROADMAP_ITEMS.filter((i) => i.status === 'completed').length
+const TOTAL_COUNT = ROADMAP_ITEMS.length
+const PROGRESS_PCT = Math.round((DONE_COUNT / TOTAL_COUNT) * 100)
 
 const ROADMAP_TITLE_ASCII_LINES = [
   '  _____                 _                       ',
@@ -81,14 +105,6 @@ const ROADMAP_TITLE_ASCII_LINES = [
 ] as const
 
 const ROADMAP_TITLE_ASCII = ROADMAP_TITLE_ASCII_LINES.join('\n')
-
-const SIDEBAR_ASCII = [
-  '    .-----.',
-  '  ./       \\.',
-  ' |  *     *  |',
-  '  .\\  ___  /.',
-  "    `-----'",
-].join('\n')
 
 function SystemOriginGraphic() {
   return (
@@ -147,34 +163,15 @@ function TimelineNode({ status }: { status: RoadmapStatus }) {
       </div>
     )
   }
-  if (status === 'in-progress') {
-    return (
-      <div className="relative z-[1] flex h-10 w-10 items-center justify-center">
-        <div className="roadmap-core-pulse-fast absolute h-9 w-9 rounded-full bg-sky-400/30 blur-md" />
-        <div className="relative h-4 w-4 rounded-full bg-sky-300 shadow-[0_0_20px_rgba(56,189,248,0.9),0_0_40px_rgba(14,165,233,0.45)] ring-2 ring-sky-400/80" />
-      </div>
-    )
-  }
-  if (status === 'future') {
-    return (
-      <div className="relative z-[1] h-4 w-4 rounded-full border border-zinc-700 bg-zinc-900/80" />
-    )
-  }
   return (
-    <div className="relative z-[1] h-4 w-4 rounded-full border border-zinc-600 bg-zinc-900/90 shadow-inner" />
+    <div className="relative z-[1] h-4 w-4 rounded-full border border-border bg-muted shadow-inner dark:border-zinc-600 dark:bg-zinc-900/90" />
   )
 }
 
 function RoadmapCard({ item }: { item: (typeof ROADMAP_ITEMS)[number] }) {
   const label = STATUS_LABEL[item.status]
   const labelColor =
-    item.status === 'completed'
-      ? 'text-emerald-400'
-      : item.status === 'in-progress'
-        ? 'text-sky-400'
-        : item.status === 'future'
-          ? 'text-zinc-600'
-          : 'text-zinc-500'
+    item.status === 'completed' ? 'text-emerald-400' : 'text-muted-foreground'
 
   return (
     <motion.article
@@ -182,23 +179,18 @@ function RoadmapCard({ item }: { item: (typeof ROADMAP_ITEMS)[number] }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
       transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
-      className={`relative min-w-0 rounded-lg border border-zinc-800/90 bg-zinc-950/80 px-5 py-4 backdrop-blur-sm sm:px-6 sm:py-5 ${
-        item.status === 'in-progress'
-          ? 'shadow-[0_0_0_1px_rgba(56,189,248,0.12),0_0_40px_-8px_rgba(14,165,233,0.25)]'
-          : 'shadow-[inset_0_1px_0_rgba(255,255,255,0.04)]'
-      }`}
+      className="relative min-w-0 rounded-lg border border-border/70 bg-card/90 px-5 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] backdrop-blur-sm dark:border-zinc-800/90 dark:bg-zinc-950/80 sm:px-6 sm:py-5"
     >
       <div className="mb-3 flex flex-wrap items-start justify-between gap-2 font-mono text-[11px] uppercase tracking-[0.14em] sm:text-xs">
-        <span className="text-zinc-500">{item.id}</span>
+        <span className="text-muted-foreground">{item.id}</span>
         <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-right">
           <span className={labelColor}>{label}</span>
-          <span className="text-zinc-600">{item.quarter}</span>
         </div>
       </div>
-      <h2 className="break-words font-sans text-base font-bold uppercase tracking-wide text-zinc-100 sm:text-lg">
+      <h2 className="break-words font-sans text-base font-bold uppercase tracking-wide text-foreground sm:text-lg">
         {item.title}
       </h2>
-      <p className="mt-2 text-sm leading-relaxed text-zinc-500 sm:text-[0.9375rem]">
+      <p className="mt-2 text-sm leading-relaxed text-muted-foreground sm:text-[0.9375rem]">
         {item.description}
       </p>
     </motion.article>
@@ -207,10 +199,10 @@ function RoadmapCard({ item }: { item: (typeof ROADMAP_ITEMS)[number] }) {
 
 export default function RoadmapPage() {
   return (
-    <div className="relative min-h-screen overflow-x-hidden bg-black pb-24 pt-24 text-white">
-      {/* Starfield + grid */}
+    <div className="relative min-h-screen overflow-x-hidden bg-background pb-24 pt-24 text-foreground">
+      {/* Starfield + grid — dark only; light mode uses subtle grid */}
       <div
-        className="pointer-events-none absolute inset-0 opacity-[0.55]"
+        className="pointer-events-none absolute inset-0 hidden opacity-[0.45] dark:block dark:opacity-[0.55]"
         aria-hidden
         style={{
           backgroundImage: `
@@ -229,7 +221,17 @@ export default function RoadmapPage() {
         }}
       />
       <div
-        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black via-transparent to-black opacity-80"
+        className="pointer-events-none absolute inset-0 block bg-[length:64px_64px] opacity-50 dark:hidden"
+        aria-hidden
+        style={{
+          backgroundImage: `
+            linear-gradient(rgba(9,9,11,0.06) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(9,9,11,0.06) 1px, transparent 1px)
+          `,
+        }}
+      />
+      <div
+        className="pointer-events-none absolute inset-0 bg-gradient-to-b from-background via-transparent to-background opacity-70 dark:from-black dark:via-transparent dark:to-black dark:opacity-80"
         aria-hidden
       />
 
@@ -239,8 +241,8 @@ export default function RoadmapPage() {
         {/* Header */}
         <header className="mb-12 flex min-w-0 flex-col flex-wrap gap-8 lg:mb-16 lg:flex-row lg:items-start lg:justify-between">
           <div className="min-w-0 text-left">
-            <p className="mb-4 font-mono text-xs uppercase tracking-[0.28em] text-zinc-500">
-              [ 04 ]
+            <p className="mb-4 font-mono text-xs uppercase tracking-[0.28em] text-muted-foreground">
+              [ SHIP · DONE VS TO DO ]
             </p>
             <motion.div
               className="min-w-0 w-full"
@@ -249,15 +251,16 @@ export default function RoadmapPage() {
               transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
             >
               <pre
-                className="docs-ascii-headline w-full overflow-x-auto pb-1 text-left font-mono leading-[1.05] tracking-normal text-zinc-50 [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden [font-size:clamp(0.38rem,1.05vw+0.32rem,0.95rem)] sm:leading-[1.04]"
+                className="docs-ascii-headline w-full overflow-x-auto pb-1 text-left font-mono leading-[1.05] tracking-normal text-foreground [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden [font-size:clamp(0.38rem,1.05vw+0.32rem,0.95rem)] sm:leading-[1.04] dark:text-zinc-50"
                 style={{ fontFeatureSettings: '"liga" 0' }}
                 aria-hidden
               >
                 {ROADMAP_TITLE_ASCII}
               </pre>
             </motion.div>
-            <p className="mt-3 max-w-md text-sm text-zinc-500 sm:text-base">
-              The future of configuration discipline
+            <p className="mt-3 max-w-md text-sm text-muted-foreground sm:text-base">
+              What&apos;s already shipped (repo + site) vs what&apos;s still open before npm and &quot;stable&quot;
+              claims line up.
             </p>
           </div>
           <div className="flex w-full min-w-0 flex-wrap items-start justify-start gap-4 sm:gap-6 lg:w-auto lg:shrink-0 lg:justify-end">
@@ -271,44 +274,52 @@ export default function RoadmapPage() {
           </div>
         </header>
 
-        <div className="grid gap-12 lg:grid-cols-[minmax(240px,280px)_1fr] lg:gap-16 xl:gap-20">
+        <div className="grid gap-12 lg:grid-cols-[minmax(268px,22rem)_1fr] lg:gap-16 xl:gap-20">
           {/* Sidebar */}
-          <aside className="space-y-8 font-mono text-xs text-zinc-400 lg:space-y-9">
-            <div className="border border-zinc-800/90 bg-zinc-950/50 px-4 py-3">
+          <aside className="space-y-8 font-mono text-xs text-muted-foreground lg:space-y-9">
+            <div className="border border-border/70 bg-card/60 px-4 py-3 dark:border-zinc-800/90 dark:bg-zinc-950/50">
               <div className="flex items-center gap-2">
                 <span className="relative flex h-2 w-2">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-emerald-400/40 opacity-75 motion-reduce:hidden" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-emerald-400 shadow-[0_0_10px_rgba(52,211,153,0.8)]" />
                 </span>
                 <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-emerald-400">
-                  EVOLVING
+                  SHIP CHECKLIST
                 </span>
               </div>
             </div>
 
-            <div className="relative border border-zinc-800/80 bg-black/40 p-4">
-              <span className="absolute left-2 top-2 h-2 w-2 border-l border-t border-zinc-600" />
-              <span className="absolute right-2 top-2 h-2 w-2 border-r border-t border-zinc-600" />
-              <span className="absolute bottom-2 left-2 h-2 w-2 border-b border-l border-zinc-600" />
-              <span className="absolute bottom-2 right-2 h-2 w-2 border-b border-r border-zinc-600" />
-              <pre className="mx-auto max-w-[12rem] whitespace-pre text-[10px] leading-snug text-zinc-500 sm:text-[11px]">
-                {SIDEBAR_ASCII}
-              </pre>
+            <div className="relative border border-border/70 bg-card/50 p-3 sm:p-4 dark:border-zinc-800/80 dark:bg-black/40">
+              <span className="absolute left-2 top-2 h-2 w-2 border-l border-t border-border dark:border-zinc-600" />
+              <span className="absolute right-2 top-2 h-2 w-2 border-r border-t border-border dark:border-zinc-600" />
+              <span className="absolute bottom-2 left-2 h-2 w-2 border-b border-l border-border dark:border-zinc-600" />
+              <span className="absolute bottom-2 right-2 h-2 w-2 border-b border-r border-border dark:border-zinc-600" />
+              <div className="max-h-[min(38vh,18rem)] overflow-auto [-webkit-overflow-scrolling:touch]">
+                <pre
+                  className="roadmap-phoenix-loader mx-auto w-max min-w-0 whitespace-pre pb-0.5 text-left font-mono text-[3.75px] leading-[1.06] tracking-normal text-foreground/90 [font-feature-settings:'liga'_0] sm:text-[4.25px] md:text-[4.5px] dark:text-zinc-200/95"
+                  aria-hidden
+                >
+                  {ROADMAP_PHOENIX_ASCII}
+                </pre>
+              </div>
             </div>
 
             <div>
-              <p className="font-sans text-4xl font-semibold tracking-tight text-white">
-                42%
+              <p className="font-sans text-4xl font-semibold tracking-tight text-foreground">
+                {PROGRESS_PCT}%
               </p>
-              <p className="mb-3 mt-1 text-[10px] uppercase tracking-[0.18em] text-zinc-600">
+              <p className="mt-1 text-[10px] uppercase tracking-[0.22em] text-muted-foreground">
                 Roadmap progress
               </p>
+              <p className="mb-3 mt-0.5 text-[10px] uppercase tracking-[0.18em] text-muted-foreground/75">
+                Done ({DONE_COUNT} / {TOTAL_COUNT})
+              </p>
               <div className="flex gap-1">
-                {Array.from({ length: 10 }).map((_, i) => (
+                {Array.from({ length: TOTAL_COUNT }).map((_, i) => (
                   <div
                     key={i}
                     className={`h-1.5 flex-1 rounded-sm ${
-                      i < 4 ? 'bg-emerald-500' : 'bg-zinc-800'
+                      i < DONE_COUNT ? 'bg-emerald-500' : 'bg-muted dark:bg-zinc-800'
                     }`}
                   />
                 ))}
@@ -316,12 +327,12 @@ export default function RoadmapPage() {
             </div>
 
             <div className="relative px-3 py-3">
-              <span className="absolute left-0 top-0 h-3 w-3 border-l border-t border-zinc-600" />
-              <span className="absolute right-0 top-0 h-3 w-3 border-r border-t border-zinc-600" />
-              <span className="absolute bottom-0 left-0 h-3 w-3 border-b border-l border-zinc-600" />
-              <span className="absolute bottom-0 right-0 h-3 w-3 border-b border-r border-zinc-600" />
-              <p className="text-[11px] leading-relaxed text-zinc-500">
-                <span className="font-semibold uppercase tracking-wider text-zinc-400">
+              <span className="absolute left-0 top-0 h-3 w-3 border-l border-t border-border dark:border-zinc-600" />
+              <span className="absolute right-0 top-0 h-3 w-3 border-r border-t border-border dark:border-zinc-600" />
+              <span className="absolute bottom-0 left-0 h-3 w-3 border-b border-l border-border dark:border-zinc-600" />
+              <span className="absolute bottom-0 right-0 h-3 w-3 border-b border-r border-border dark:border-zinc-600" />
+              <p className="text-[11px] leading-relaxed text-muted-foreground">
+                <span className="font-semibold uppercase tracking-wider text-foreground/80">
                   Tip:
                 </span>{' '}
                 Great systems aren&apos;t built in a day. They&apos;re versioned,
@@ -329,25 +340,23 @@ export default function RoadmapPage() {
               </p>
             </div>
 
-            <div className="space-y-2.5 border-t border-zinc-900 pt-6">
+            <div className="space-y-2.5 border-t border-border pt-6 dark:border-zinc-900">
               {(
                 [
-                  ['completed', 'COMPLETED', 'bg-emerald-400'],
-                  ['in-progress', 'IN PROGRESS', 'bg-sky-400'],
-                  ['planned', 'PLANNED', 'bg-zinc-500'],
-                  ['future', 'FUTURE', 'bg-zinc-800'],
+                  ['done', 'DONE', 'bg-emerald-400'],
+                  ['todo', 'TO DO', 'bg-zinc-500 dark:bg-zinc-600'],
                 ] as const
               ).map(([key, label, dot]) => (
                 <div key={key} className="flex items-center gap-2.5 text-[11px] uppercase tracking-wider">
                   <span className={`h-2 w-2 shrink-0 rounded-full ${dot}`} />
-                  <span className="text-zinc-500">{label}</span>
+                  <span className="text-muted-foreground">{label}</span>
                 </div>
               ))}
             </div>
 
-            <p className="border-t border-zinc-900 pt-6 text-[10px] uppercase tracking-[0.2em] text-zinc-600">
+            <p className="border-t border-border pt-6 text-[10px] uppercase tracking-[0.2em] text-muted-foreground dark:border-zinc-900">
               LAST UPDATED{' '}
-              <span className="inline-flex items-center gap-1.5 text-zinc-500">
+              <span className="inline-flex items-center gap-1.5 text-muted-foreground/90">
                 <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
                 May 21, 2026
               </span>
@@ -371,7 +380,7 @@ export default function RoadmapPage() {
               />
             </svg>
             <div
-              className="absolute left-6 top-6 block h-[calc(100%-3rem)] w-px -translate-x-1/2 bg-zinc-800 sm:hidden"
+              className="absolute left-6 top-6 block h-[calc(100%-3rem)] w-px -translate-x-1/2 bg-border dark:bg-zinc-800 sm:hidden"
               aria-hidden
             />
 
@@ -389,7 +398,7 @@ export default function RoadmapPage() {
         </div>
 
         <footer className="mt-20 flex flex-col items-center text-center sm:mt-24">
-          <p className="text-sm text-zinc-500">Have ideas or want to contribute?</p>
+          <p className="text-sm text-muted-foreground">Have ideas or want to contribute?</p>
           <a
             href="https://github.com"
             target="_blank"

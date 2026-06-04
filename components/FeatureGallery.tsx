@@ -57,7 +57,7 @@ function FeatureCard({
         whileHover={{ scale: 1.02 }}
       >
         <motion.div
-          className="absolute inset-0 rounded-2xl border border-white/10 bg-gray-900/50 p-5 shadow-inner backdrop-blur-md sm:p-6"
+          className="absolute inset-0 rounded-2xl border border-border/50 bg-card/70 p-5 shadow-inner backdrop-blur-md sm:p-6 dark:border-white/10 dark:bg-gray-900/50"
           style={{
             backfaceVisibility: 'hidden',
             boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.03), 0 4px 20px rgba(0,0,0,0.3)',
@@ -71,12 +71,12 @@ function FeatureCard({
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
         >
           <div className="text-3xl mb-4 text-accentCyan">{feature.icon}</div>
-          <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-          <p className="text-gray-400 text-sm leading-relaxed">{feature.description}</p>
-          <p className="text-gray-500 text-xs mt-4">Hover or click to reveal</p>
+          <h3 className="text-xl font-semibold mb-2 text-foreground">{feature.title}</h3>
+          <p className="text-muted-foreground text-sm leading-relaxed">{feature.description}</p>
+          <p className="text-muted-foreground/80 text-xs mt-4">Hover or click to reveal</p>
         </motion.div>
         <motion.div
-          className="absolute inset-0 flex items-center justify-center rounded-2xl border border-accentCyan/30 bg-gray-900/80 p-5 backdrop-blur-md sm:p-6"
+          className="absolute inset-0 flex items-center justify-center rounded-2xl border border-accentCyan/30 bg-card/90 p-5 backdrop-blur-md sm:p-6 dark:bg-gray-900/80"
           style={{
             backfaceVisibility: 'hidden',
             rotateY: 180,
@@ -84,7 +84,7 @@ function FeatureCard({
           animate={{ rotateY: flipped ? 0 : 180 }}
           transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
         >
-          <pre className="max-h-full max-w-full overflow-x-auto whitespace-pre-wrap text-center font-mono text-xs text-gray-300 sm:text-sm">
+          <pre className="max-h-full max-w-full overflow-x-auto whitespace-pre-wrap text-center font-mono text-xs text-foreground/85 sm:text-sm dark:text-gray-300">
             {feature.backSnippet}
           </pre>
         </motion.div>
@@ -105,10 +105,10 @@ export default function FeatureGallery() {
         transition={{ duration: 0.5 }}
         className="max-w-7xl min-w-0 mx-auto"
       >
-        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-4 text-foreground">
           Feature gallery
         </h2>
-        <p className="text-gray-500 text-center mb-16 max-w-xl mx-auto">
+        <p className="text-muted-foreground text-center mb-16 max-w-xl mx-auto">
           Explore what genesis-env can do — like exhibits in a museum
         </p>
         <div className="grid min-w-0 grid-cols-1 gap-6 sm:grid-cols-2 sm:gap-8 lg:grid-cols-4">

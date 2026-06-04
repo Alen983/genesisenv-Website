@@ -495,13 +495,13 @@ export default function NotFound404Experience() {
   }, [])
 
   return (
-    <div className="min-h-[calc(100dvh-3.5rem)] bg-black pt-14 font-mono text-zinc-200">
+    <div className="min-h-[calc(100dvh-3.5rem)] bg-background pt-14 font-mono text-foreground">
       <div className="mx-auto flex max-w-[1720px] min-h-[calc(100dvh-8rem)] flex-col gap-4 px-4 pb-10 sm:flex-row sm:gap-5 sm:px-8 lg:px-12">
-        <aside className="flex w-full shrink-0 flex-col gap-5 border border-white/[0.1] bg-zinc-950/80 p-5 sm:max-w-[320px] sm:self-start sm:p-6">
+        <aside className="flex w-full shrink-0 flex-col gap-5 rounded-lg border border-border/60 bg-card p-5 sm:max-w-[320px] sm:self-start sm:p-6 dark:border-white/[0.1] dark:bg-zinc-950/80">
           <div>
             <p className="text-xs font-medium uppercase tracking-[0.28em] text-red-500">Error 404</p>
-            <h1 className="mt-2 text-xl font-bold tracking-tight text-white sm:text-2xl">PAGE NOT FOUND</h1>
-            <p className="mt-3 text-sm leading-relaxed text-zinc-500">
+            <h1 className="mt-2 text-xl font-bold tracking-tight text-foreground sm:text-2xl">PAGE NOT FOUND</h1>
+            <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
               Looks like you&apos;ve wandered off into uncharted territory. Let&apos;s get you back.
             </p>
           </div>
@@ -510,30 +510,32 @@ export default function NotFound404Experience() {
             <button
               type="button"
               onClick={startGame}
-              className="border border-white/20 bg-black px-3 py-2 text-left text-xs uppercase tracking-[0.18em] text-zinc-200 hover:border-accent hover:text-accent"
+              className="border border-border bg-muted px-3 py-2 text-left text-xs uppercase tracking-[0.18em] text-foreground hover:border-accent hover:text-accent dark:border-white/20 dark:bg-black dark:text-zinc-200"
             >
               [ &gt; PLAY GAME ]
             </button>
-            <span className="text-[10px] uppercase tracking-[0.2em] text-zinc-600">or</span>
+            <span className="text-[10px] uppercase tracking-[0.2em] text-muted-foreground">or</span>
             <Link
               href="/"
-              className="border border-white/20 bg-black px-3 py-2 text-xs uppercase tracking-[0.18em] text-zinc-200 hover:border-white/40 hover:text-white"
+              className="border border-border bg-muted px-3 py-2 text-xs uppercase tracking-[0.18em] text-foreground transition-colors hover:border-foreground/40 hover:text-foreground dark:border-white/20 dark:bg-black dark:text-zinc-200 dark:hover:border-white/40 dark:hover:text-white"
             >
               [ &gt; GO HOME ]
             </Link>
           </div>
 
-          <details className="group border-t border-white/[0.08] pt-4" open>
-            <summary className="cursor-pointer list-none text-[11px] uppercase tracking-[0.22em] text-zinc-500 marker:content-none [&::-webkit-details-marker]:hidden">
+          <details className="group border-t border-border/60 pt-4 dark:border-white/[0.08]" open>
+            <summary className="cursor-pointer list-none text-[11px] uppercase tracking-[0.22em] text-muted-foreground marker:content-none [&::-webkit-details-marker]:hidden">
               <span className="inline-flex items-center gap-2">
-                <span className="inline-block text-zinc-600 transition-transform group-open:rotate-90">▸</span>
+                <span className="inline-block text-muted-foreground/80 transition-transform group-open:rotate-90 dark:text-zinc-600">
+                  ▸
+                </span>
                 System log
               </span>
             </summary>
-            <ul className="mt-3 space-y-1.5 font-mono text-[11px] leading-relaxed text-zinc-500">
+            <ul className="mt-3 space-y-1.5 font-mono text-[11px] leading-relaxed text-muted-foreground">
               {SYSTEM_LOG.map((line, i) => (
                 <li key={i}>
-                  <span className="text-zinc-600">{line.t}</span>{' '}
+                  <span className="text-muted-foreground/80 dark:text-zinc-600">{line.t}</span>{' '}
                   <span className={line.err ? 'text-red-400' : ''}>{line.msg}</span>
                 </li>
               ))}
@@ -541,7 +543,8 @@ export default function NotFound404Experience() {
           </details>
         </aside>
 
-        <section className="flex min-h-[min(56vh,480px)] flex-1 flex-col border border-white/[0.08] bg-[#050505]">
+        {/* Dark stage: canvas colors/game logic assume a near-black field */}
+        <section className="flex min-h-[min(56vh,480px)] flex-1 flex-col overflow-hidden rounded-lg border border-border bg-[#050505] shadow-sm dark:border-white/[0.08]">
           <div className="flex items-center justify-between gap-3 border-b border-white/[0.06] px-3 py-2.5 sm:px-4">
             <p className="text-[10px] uppercase tracking-[0.22em] text-zinc-500 sm:text-[11px]">
               Routes recovered: <span className="font-medium text-zinc-100 tabular-nums">{routes}</span>
@@ -580,7 +583,7 @@ export default function NotFound404Experience() {
         </section>
       </div>
 
-      <p className="mx-auto max-w-[1720px] px-4 pb-6 text-center text-[11px] text-zinc-600 sm:px-8 lg:px-12 sm:text-xs">
+      <p className="mx-auto max-w-[1720px] px-4 pb-6 text-center text-[11px] text-muted-foreground sm:px-8 lg:px-12 sm:text-xs">
         Tip: You can always go back{' '}
         <Link href="/" className="text-accent underline decoration-accent/35 underline-offset-2 hover:decoration-accent">
           home

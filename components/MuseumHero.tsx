@@ -13,11 +13,7 @@ export default function MuseumHero() {
   return (
     <section
       ref={ref}
-      className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 pb-20 pt-24 sm:px-6 lg:px-8"
-      style={{
-        background: 'linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 50%, #0F0F0F 100%)',
-        backgroundImage: 'linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 50%, #0F0F0F 100%), radial-gradient(circle at 20% 80%, rgba(34,211,238,0.03) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(229,184,76,0.02) 0%, transparent 40%)',
-      }}
+      className="museum-hero-bg relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 pb-20 pt-24 sm:px-6 lg:px-8"
     >
       <ParticleField />
       <HeroFloatingIcons />
@@ -27,7 +23,7 @@ export default function MuseumHero() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="text-sm md:text-base text-gray-500 font-medium mb-6 tracking-widest uppercase"
+          className="mb-6 text-sm font-medium uppercase tracking-widest text-muted-foreground md:text-base"
         >
           genesis-env
         </motion.p>
@@ -36,7 +32,7 @@ export default function MuseumHero() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-          className="break-words text-4xl font-extrabold tracking-tight text-white sm:text-6xl md:text-7xl lg:text-8xl"
+          className="break-words text-4xl font-extrabold tracking-tight text-foreground sm:text-6xl md:text-7xl lg:text-8xl"
         >
           STOP BREAKING YOUR .ENV FILES.
         </motion.h1>
@@ -59,7 +55,7 @@ export default function MuseumHero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-8 text-lg md:text-xl text-gray-400 max-w-2xl mx-auto"
+          className="mx-auto mt-8 max-w-2xl text-lg text-muted-foreground md:text-xl"
         >
           Validate, generate, and sync environment configs — consistently.
         </motion.p>
@@ -68,23 +64,23 @@ export default function MuseumHero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center"
+          className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
         >
           <Link
             href="/playground"
-            className="px-8 py-3.5 rounded-full bg-gray-100 text-background font-semibold hover:bg-white transition-all duration-150 hover:scale-[1.02] hover:shadow-lg"
+            className="rounded-full bg-foreground px-8 py-3.5 font-semibold text-background transition-all duration-150 hover:bg-foreground/90 hover:shadow-lg dark:bg-gray-100 dark:text-zinc-950 dark:hover:bg-white"
           >
             Try genesis-env
           </Link>
           <Link
             href="/docs"
-            className="px-6 py-3 rounded-full border-2 border-gray-600 text-gray-300 font-semibold hover:border-gray-400 hover:text-white transition-all duration-150"
+            className="rounded-full border-2 border-border px-6 py-3 font-semibold text-muted-foreground transition-all duration-150 hover:border-border hover:text-foreground"
           >
             Docs
           </Link>
           <Link
             href="/playground"
-            className="px-6 py-3 rounded-full border-2 border-gray-600 text-gray-300 font-semibold hover:border-gray-400 hover:text-white transition-all duration-150"
+            className="rounded-full border-2 border-border px-6 py-3 font-semibold text-muted-foreground transition-all duration-150 hover:border-border hover:text-foreground"
           >
             Playground
           </Link>

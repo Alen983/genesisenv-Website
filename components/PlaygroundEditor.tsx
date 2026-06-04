@@ -83,25 +83,25 @@ TIMEOUT=30`)
       <div className="mb-6 grid min-w-0 grid-cols-1 gap-6 lg:grid-cols-2">
         {/* Left: Template Editor */}
         <div className="flex min-w-0 flex-col">
-          <label className="text-sm font-semibold mb-2 text-gray-300">
+          <label className="mb-2 text-sm font-semibold text-foreground">
             .env.template
           </label>
           <textarea
             value={template}
             onChange={(e) => setTemplate(e.target.value)}
-            className="min-h-[12rem] flex-1 resize-none rounded-lg border border-gray-800 bg-surface p-3 font-mono text-xs text-gray-300 focus:border-accent focus:outline-none sm:min-h-[16rem] sm:p-4 sm:text-sm"
+            className="min-h-[12rem] flex-1 resize-none rounded-lg border border-border/80 bg-surface p-3 font-mono text-xs text-foreground/90 focus:border-accent focus:outline-none sm:min-h-[16rem] sm:p-4 sm:text-sm"
             placeholder="Enter your .env.template content..."
           />
         </div>
 
         {/* Right: Generated .env */}
         <div className="flex min-w-0 flex-col">
-          <label className="text-sm font-semibold mb-2 text-gray-300">
+          <label className="mb-2 text-sm font-semibold text-foreground">
             Generated .env
           </label>
-          <div className="min-h-[12rem] flex-1 overflow-auto rounded-lg border border-gray-800 bg-surface p-3 font-mono text-xs text-gray-400 sm:min-h-[16rem] sm:p-4 sm:text-sm">
+          <div className="min-h-[12rem] flex-1 overflow-auto rounded-lg border border-border/80 bg-surface p-3 font-mono text-xs text-muted-foreground sm:min-h-[16rem] sm:p-4 sm:text-sm">
             {generated || (
-              <span className="text-gray-600">Generated output will appear here...</span>
+              <span className="text-muted-foreground/70">Generated output will appear here...</span>
             )}
           </div>
         </div>
@@ -113,7 +113,7 @@ TIMEOUT=30`)
           onClick={handleValidate}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          className="px-8 py-3.5 rounded-full bg-gray-100 text-background font-semibold hover:bg-white transition-all duration-150 hover:scale-[1.02] hover:shadow-lg"
+          className="rounded-full bg-foreground px-8 py-3.5 font-semibold text-background transition-all duration-150 hover:bg-foreground/90 hover:scale-[1.02] hover:shadow-lg dark:bg-gray-100 dark:text-zinc-950 dark:hover:bg-white"
         >
           Validate
         </motion.button>
@@ -124,7 +124,7 @@ TIMEOUT=30`)
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="min-w-0 space-y-4 rounded-lg border border-gray-800 bg-surface p-6"
+          className="min-w-0 space-y-4 rounded-lg border border-border/80 bg-surface p-6"
         >
           <div className="flex items-center space-x-2 text-green-400">
             <CheckCircle2 size={20} />
@@ -161,7 +161,7 @@ TIMEOUT=30`)
                     <li key={key} className="font-mono">{key}</li>
                   ))}
                   {validationResult.placeholderValues.length > 5 && (
-                    <li className="text-gray-500">
+                    <li className="text-muted-foreground">
                       ...and {validationResult.placeholderValues.length - 5} more
                     </li>
                   )}

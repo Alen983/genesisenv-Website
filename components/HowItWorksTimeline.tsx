@@ -51,7 +51,7 @@ function StepCard({
         )}
       </div>
       <motion.div
-        className="w-full min-w-0 max-w-lg rounded-2xl border border-white/10 bg-gray-900/40 p-5 pb-10 shadow-xl backdrop-blur-md sm:p-8 sm:pb-12"
+        className="w-full min-w-0 max-w-lg rounded-2xl border border-border/50 bg-card/60 p-5 pb-10 shadow-xl backdrop-blur-md sm:p-8 sm:pb-12 dark:border-white/10 dark:bg-gray-900/40"
         whileHover={{
           y: -4,
           boxShadow: '0 20px 40px -15px rgba(34, 211, 238, 0.15), 0 0 0 1px rgba(255,255,255,0.05)',
@@ -61,9 +61,9 @@ function StepCard({
         <div className="text-accentCyan font-mono text-sm font-semibold mb-2">
           Step {index + 1}
         </div>
-        <h3 className="text-2xl font-bold mb-4">{step.title}</h3>
-        <p className="text-gray-400 mb-6 leading-relaxed">{step.description}</p>
-        <div className="rounded-lg bg-black/40 border border-gray-700/50 p-4 font-mono text-sm text-gray-300 overflow-x-auto">
+        <h3 className="text-2xl font-bold mb-4 text-foreground">{step.title}</h3>
+        <p className="text-muted-foreground mb-6 leading-relaxed">{step.description}</p>
+        <div className="rounded-lg border border-border/60 bg-muted/30 p-4 font-mono text-sm text-foreground/90 overflow-x-auto dark:border-gray-700/50 dark:bg-black/40 dark:text-gray-300">
           <pre className="whitespace-pre-wrap">{step.snippet}</pre>
         </div>
       </motion.div>
@@ -75,8 +75,8 @@ export default function HowItWorksTimeline() {
   return (
     <section className="relative bg-background">
       <div className="py-12 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold">How it works</h2>
-        <p className="text-gray-500 mt-2 max-w-xl mx-auto">
+        <h2 className="text-3xl md:text-4xl font-bold text-foreground">How it works</h2>
+        <p className="text-muted-foreground mt-2 max-w-xl mx-auto">
           Four steps from template to production
         </p>
       </div>

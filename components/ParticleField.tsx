@@ -55,7 +55,7 @@ export default function ParticleField() {
       {particles.map((p) => (
         <motion.span
           key={p.id}
-          className="absolute font-mono text-gray-500"
+          className="absolute font-mono text-muted-foreground"
           style={{
             left: `${p.x}%`,
             top: `${p.y}%`,

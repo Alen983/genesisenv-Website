@@ -11,7 +11,7 @@ export default function DemoSection() {
   return (
     <section
       ref={ref}
-      className="py-20 px-4 sm:px-6 lg:px-8 bg-surface/30 border-t border-gray-800/50"
+      className="py-20 px-4 sm:px-6 lg:px-8 bg-surface/30 border-t border-border/50"
     >
       <motion.div
         initial={{ opacity: 0, y: 24 }}
@@ -20,18 +20,18 @@ export default function DemoSection() {
         className="max-w-4xl min-w-0 mx-auto text-center"
       >
         <h2 className="text-3xl md:text-4xl font-bold mb-4">Virtual tour</h2>
-        <p className="text-gray-500 mb-10 max-w-xl mx-auto">
+        <p className="text-muted-foreground mb-10 max-w-xl mx-auto">
           Explore genesis-env in the browser — run commands and see output live, like a hands-on exhibit.
         </p>
         <motion.div
-          className="inline-block max-w-full rounded-2xl border border-white/10 bg-gray-900/50 p-5 shadow-xl backdrop-blur-sm sm:p-8"
+          className="inline-block max-w-full rounded-2xl border border-border/60 bg-card/70 p-5 shadow-xl backdrop-blur-sm sm:p-8 dark:border-white/10 dark:bg-gray-900/50"
           whileHover={{
             boxShadow: '0 20px 40px -15px rgba(34, 211, 238, 0.12), 0 0 0 1px rgba(255,255,255,0.05)',
             transition: { duration: 0.2 },
           }}
         >
           <div className="mb-6 max-w-full overflow-x-auto text-left">
-            <div className="min-w-0 whitespace-nowrap font-mono text-xs text-gray-400 sm:text-sm">
+            <div className="min-w-0 whitespace-nowrap font-mono text-xs text-muted-foreground sm:text-sm">
               $ npx genesis-env validate .env.template
             </div>
             <div className="mt-2 min-w-0 whitespace-nowrap font-mono text-xs text-green-400/90 sm:text-sm">
@@ -40,7 +40,7 @@ export default function DemoSection() {
           </div>
           <Link
             href="/playground"
-            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-gray-100 text-background font-semibold hover:bg-white transition-all duration-150 hover:scale-[1.02] hover:shadow-lg"
+            className="inline-flex items-center gap-2 px-8 py-3.5 rounded-full bg-foreground text-background font-semibold hover:bg-foreground/90 transition-all duration-150 hover:scale-[1.02] hover:shadow-lg dark:bg-gray-100 dark:text-zinc-950 dark:hover:bg-white"
           >
             Open Playground
             <span aria-hidden>→</span>

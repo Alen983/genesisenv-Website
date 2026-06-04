@@ -51,13 +51,13 @@ export default function Home() {
       <FadeInSection>
         <section className="py-20 px-4 sm:px-6 lg:px-8 bg-surface/30">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
               genesis-env is not a tool.
             </h2>
             <p className="text-2xl md:text-3xl text-accentCyan font-semibold mb-8">
               It&apos;s a configuration discipline.
             </p>
-            <p className="text-lg text-gray-400 leading-relaxed">
+            <p className="text-lg text-muted-foreground leading-relaxed">
               genesis-env enforces standards, validates configurations, and ensures your environment variables
               are never a source of production failures. It&apos;s the difference between chaos and control.
             </p>
@@ -79,22 +79,22 @@ export default function Home() {
       <FadeInSection>
         <section className="py-20 px-4 sm:px-6 lg:px-8 bg-background">
           <div className="max-w-4xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
               Ready to enforce configuration discipline?
             </h2>
-            <p className="text-lg text-gray-400 mb-8">
+            <p className="text-lg text-muted-foreground mb-8">
               Start with the playground or dive into the documentation.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 href="/playground"
-                className="px-8 py-3.5 rounded-full bg-gray-100 text-background font-semibold hover:bg-white transition-all duration-150 hover:scale-[1.02] hover:shadow-lg"
+                className="px-8 py-3.5 rounded-full bg-foreground text-background font-semibold hover:bg-foreground/90 transition-all duration-150 hover:scale-[1.02] hover:shadow-lg dark:bg-gray-100 dark:text-zinc-950 dark:hover:bg-white"
               >
                 Open Playground
               </Link>
               <Link
                 href="/docs"
-                className="px-6 py-3 rounded-full border-2 border-gray-600 text-gray-300 font-semibold hover:border-gray-400 hover:text-white transition-all duration-150"
+                className="px-6 py-3 rounded-full border-2 border-border text-muted-foreground font-semibold hover:border-border hover:text-foreground transition-all duration-150"
               >
                 Read Docs
               </Link>

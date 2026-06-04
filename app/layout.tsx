@@ -3,6 +3,7 @@ import { Inter, Fira_Code } from 'next/font/google'
 import './globals.css'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import ThemeProvider from '@/components/ThemeProvider'
 
 const inter = Inter({
   subsets: ['latin'],
@@ -38,15 +39,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html
-      lang="en"
-      className={`${inter.variable} ${firaCode.variable}`}
-      data-scroll-behavior="smooth"
-    >
-      <body>
-        <Navbar />
-        <main className="min-w-0 w-full">{children}</main>
-        <Footer />
+    <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
+      <body
+        className={`${inter.variable} ${firaCode.variable} bg-background text-foreground antialiased`}
+      >
+        <ThemeProvider>
+          <Navbar />
+          <main className="min-w-0 w-full">{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   )
