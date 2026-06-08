@@ -6,7 +6,7 @@ import { useRef } from 'react'
 import Link from 'next/link'
 import MuseumHero from '@/components/MuseumHero'
 import HowItWorksTimeline from '@/components/HowItWorksTimeline'
-import FeatureGallery from '@/components/FeatureGallery'
+import EnvShowcase from '@/components/EnvShowcase'
 import DemoSection from '@/components/DemoSection'
 import ScrollProgress from '@/components/ScrollProgress'
 
@@ -67,7 +67,7 @@ export default function Home() {
 
       <SectionSeparator />
 
-      <FeatureGallery />
+      <EnvShowcase />
 
       <SectionSeparator />
 
