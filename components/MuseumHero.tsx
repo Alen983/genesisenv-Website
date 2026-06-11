@@ -3,6 +3,8 @@
 import { useRef } from 'react'
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { Github, Terminal } from 'lucide-react'
+import { GITHUB_REPO_URL } from '@/lib/site'
 import ParticleField from '@/components/ParticleField'
 import TerminalHero from '@/components/TerminalHero'
 import HeroFloatingIcons from '@/components/HeroFloatingIcons'
@@ -64,26 +66,24 @@ export default function MuseumHero() {
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row"
+          className="mt-10 flex flex-col items-stretch justify-center gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center"
         >
           <Link
             href="/playground"
-            className="rounded-full bg-foreground px-8 py-3.5 font-semibold text-background transition-all duration-150 hover:bg-foreground/90 hover:shadow-lg dark:bg-gray-100 dark:text-zinc-950 dark:hover:bg-white"
+            className="inline-flex min-h-[3.25rem] items-center justify-center gap-2 rounded-2xl bg-foreground px-8 py-3.5 text-center text-sm font-semibold text-background transition-all duration-150 hover:bg-foreground/90 hover:shadow-lg dark:bg-gray-100 dark:text-zinc-950 dark:hover:bg-white sm:text-base"
           >
+            <Terminal className="h-5 w-5 shrink-0" strokeWidth={2} aria-hidden />
             Try genesis-env
           </Link>
-          <Link
-            href="/docs"
-            className="rounded-full border-2 border-border px-6 py-3 font-semibold text-muted-foreground transition-all duration-150 hover:border-border hover:text-foreground"
+          <a
+            href={GITHUB_REPO_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex min-h-[3.25rem] items-center justify-center gap-2 rounded-2xl border border-zinc-300 bg-white px-8 py-3.5 text-sm font-semibold text-zinc-950 shadow-sm transition-all duration-150 hover:bg-zinc-50 dark:border-zinc-600 dark:bg-zinc-900 dark:text-zinc-50 dark:hover:bg-zinc-800 sm:text-base"
           >
-            Docs
-          </Link>
-          <Link
-            href="/playground"
-            className="rounded-full border-2 border-border px-6 py-3 font-semibold text-muted-foreground transition-all duration-150 hover:border-border hover:text-foreground"
-          >
-            Playground
-          </Link>
+            <Github className="h-5 w-5 shrink-0" strokeWidth={2} aria-hidden />
+            Star on GitHub
+          </a>
         </motion.div>
       </div>
     </section>

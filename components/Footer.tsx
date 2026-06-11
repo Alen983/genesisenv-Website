@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { Github } from 'lucide-react'
+import { GITHUB_REPO_URL } from '@/lib/site'
 
 export default function Footer() {
   return (
@@ -17,7 +18,7 @@ export default function Footer() {
               Documentation
             </Link>
             <a
-              href="https://github.com"
+              href={GITHUB_REPO_URL}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center space-x-2 text-sm text-muted-foreground hover:text-accent transition-colors"

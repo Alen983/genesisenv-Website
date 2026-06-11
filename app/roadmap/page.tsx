@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion'
 import { Check } from 'lucide-react'
+import { GITHUB_ISSUES_URL } from '@/lib/site'
 import { ROADMAP_PHOENIX_ASCII } from '@/data/roadmapPhoenixAscii'
 
 /** Ship checklist: only items that are actually done vs still open (no speculative “future product” cards). */
@@ -400,10 +401,10 @@ export default function RoadmapPage() {
         <footer className="mt-20 flex flex-col items-center text-center sm:mt-24">
           <p className="text-sm text-muted-foreground">Have ideas or want to contribute?</p>
           <a
-            href="https://github.com"
+            href={GITHUB_ISSUES_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-5 inline-flex w-full max-w-md items-center justify-center border border-accent px-6 py-3 font-mono text-xs uppercase tracking-[0.2em] text-accent transition hover:bg-accent/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:text-[13px]"
+            className="mt-5 inline-flex w-full max-w-md items-center justify-center rounded-2xl border border-accent px-6 py-3 font-mono text-xs uppercase tracking-[0.2em] text-accent transition hover:bg-accent/10 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent sm:text-[13px]"
           >
             Open an issue on GitHub ↗
           </a>

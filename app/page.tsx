@@ -4,6 +4,8 @@ import { motion } from 'framer-motion'
 import { useInView } from 'framer-motion'
 import { useRef } from 'react'
 import Link from 'next/link'
+import { Github } from 'lucide-react'
+import { GITHUB_REPO_URL } from '@/lib/site'
 import MuseumHero from '@/components/MuseumHero'
 import HowItWorksTimeline from '@/components/HowItWorksTimeline'
 import EnvShowcase from '@/components/EnvShowcase'
@@ -83,21 +85,24 @@ export default function Home() {
               Ready to enforce configuration discipline?
             </h2>
             <p className="text-lg text-muted-foreground mb-8">
-              Start with the playground or dive into the documentation.
+              Start with the playground — full documentation is in the nav.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center">
               <Link
                 href="/playground"
-                className="px-8 py-3.5 rounded-full bg-foreground text-background font-semibold hover:bg-foreground/90 transition-all duration-150 hover:scale-[1.02] hover:shadow-lg dark:bg-gray-100 dark:text-zinc-950 dark:hover:bg-white"
+                className="inline-flex min-h-[3.25rem] items-center justify-center rounded-2xl bg-foreground px-8 py-3.5 text-center text-sm font-semibold text-background transition-all duration-150 hover:scale-[1.02] hover:bg-foreground/90 hover:shadow-lg dark:bg-gray-100 dark:text-zinc-950 dark:hover:bg-white sm:text-base"
               >
                 Open Playground
               </Link>
-              <Link
-                href="/docs"
-                className="px-6 py-3 rounded-full border-2 border-border text-muted-foreground font-semibold hover:border-border hover:text-foreground transition-all duration-150"
+              <a
+                href={GITHUB_REPO_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-[3.25rem] items-center justify-center gap-2 rounded-2xl border border-zinc-300 bg-white px-8 py-3.5 text-sm font-semibold text-zinc-950 shadow-sm transition-all duration-150 hover:bg-zinc-50 dark:border-zinc-600 dark:bg-zinc-900 dark:text-zinc-50 dark:hover:bg-zinc-800 sm:text-base"
               >
-                Read Docs
-              </Link>
+                <Github className="h-5 w-5 shrink-0" strokeWidth={2} aria-hidden />
+                Star on GitHub
+              </a>
             </div>
           </div>
         </section>

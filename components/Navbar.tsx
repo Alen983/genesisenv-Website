@@ -6,6 +6,7 @@ import { useCallback, useEffect, useId, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Github, Menu, X } from 'lucide-react'
 import ThemeToggle from '@/components/ThemeToggle'
+import { GITHUB_REPO_URL } from '@/lib/site'
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -118,7 +119,7 @@ export default function Navbar() {
             <div className="flex shrink-0 items-center gap-2">
               <ThemeToggle />
               <a
-                href="https://github.com"
+                href={GITHUB_REPO_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="flex shrink-0 items-center gap-2 px-2 py-1 text-xs uppercase tracking-[0.18em] text-muted-foreground transition-colors hover:text-foreground dark:text-white/[0.52] dark:hover:text-white/90"
@@ -238,7 +239,7 @@ export default function Navbar() {
                 className="relative mt-auto border-t border-border/60 px-4 py-4 dark:border-white/[0.06]"
               >
                 <a
-                  href="https://github.com"
+                  href={GITHUB_REPO_URL}
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={close}

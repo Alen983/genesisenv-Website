@@ -113,7 +113,7 @@ TIMEOUT=30`)
           onClick={handleValidate}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          className="rounded-full bg-foreground px-8 py-3.5 font-semibold text-background transition-all duration-150 hover:bg-foreground/90 hover:scale-[1.02] hover:shadow-lg dark:bg-gray-100 dark:text-zinc-950 dark:hover:bg-white"
+          className="rounded-2xl bg-foreground px-8 py-3.5 font-semibold text-background transition-all duration-150 hover:scale-[1.02] hover:bg-foreground/90 hover:shadow-lg dark:bg-gray-100 dark:text-zinc-950 dark:hover:bg-white"
         >
           Validate
         </motion.button>
