@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { animate, motion, useReducedMotion } from 'framer-motion'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import BrandName from '@/components/BrandName'
 
 const STATUS_LOG_LINES = [
   'TRAINING.STARTED .......... EPOCH 001',
@@ -211,7 +212,7 @@ function DocsStatusSidebar() {
             </div>
             <div className="h-[3px] w-full rounded-full bg-muted sm:h-1 dark:bg-white/[0.08]">
               <div
-                className="h-full rounded-full bg-foreground transition-[width] duration-75 ease-out dark:bg-white"
+                className="h-full rounded-full bg-accent transition-[width] duration-75 ease-out"
                 style={{ width: `${progress}%` }}
               />
             </div>
@@ -283,7 +284,7 @@ export default function DocsLandingHero() {
     <section className="relative min-w-0 font-mono text-foreground">
       <div className="mx-auto flex w-full max-w-[min(100%,1800px)] flex-col">
         <motion.p
-          className="mb-6 text-xs uppercase tracking-[0.28em] text-muted-foreground sm:mb-7 sm:text-[13px]"
+          className="mb-6 scroll-mt-24 text-xs uppercase tracking-[0.28em] text-muted-foreground sm:mb-7 sm:text-[13px]"
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.45 }}
@@ -310,7 +311,8 @@ export default function DocsLandingHero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.08 }}
             >
-              The genesis-env CLI scaffolds and refreshes environment files from templates—install with npm or{' '}
+              The <BrandName className="text-[0.9375rem] sm:text-[0.9375rem]" /> CLI scaffolds and refreshes environment
+              files from templates—install with npm or{' '}
               <code className="text-foreground/85">npx</code>, run <code className="text-foreground/85">init</code> and{' '}
               <code className="text-foreground/85">generate</code> from your project root, and keep contributors on the same
               baseline without copying secrets by hand.

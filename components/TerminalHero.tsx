@@ -6,11 +6,10 @@ import { motion } from 'framer-motion'
 const DEFAULT_COMMAND = 'genesis-env validate .env.template'
 const typingSpeed = 80
 
-type AccentVariant = 'gold' | 'cyan' | 'green'
+type AccentVariant = 'gold' | 'green'
 
 const accentClasses: Record<AccentVariant, string> = {
   gold: 'text-accentGold',
-  cyan: 'text-accentCyan',
   green: 'text-accent',
 }
 

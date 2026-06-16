@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { Github, Terminal } from 'lucide-react'
 import { GITHUB_REPO_URL } from '@/lib/site'
+import BrandName from '@/components/BrandName'
 import ParticleField from '@/components/ParticleField'
 import TerminalHero from '@/components/TerminalHero'
 import HeroFloatingIcons from '@/components/HeroFloatingIcons'
@@ -25,9 +26,9 @@ export default function MuseumHero() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-6 text-sm font-medium uppercase tracking-widest text-muted-foreground md:text-base"
+          className="mb-6 text-muted-foreground md:text-base"
         >
-          genesis-env
+          <BrandName className="text-lg md:text-xl" />
         </motion.p>
 
         <motion.h1
@@ -48,7 +49,6 @@ export default function MuseumHero() {
           <TerminalHero
             command="npx genesis-env validate .env.template"
             highlightKeyword="validate"
-            accentVariant="cyan"
             compact={false}
           />
         </motion.div>
@@ -59,7 +59,7 @@ export default function MuseumHero() {
           transition={{ duration: 0.5, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
           className="mx-auto mt-8 max-w-2xl text-lg text-muted-foreground md:text-xl"
         >
-          Validate, generate, and sync environment configs — consistently.
+          Define once. Validate automatically. Synchronize everywhere.
         </motion.p>
 
         <motion.div
@@ -73,7 +73,9 @@ export default function MuseumHero() {
             className="inline-flex min-h-[3.25rem] items-center justify-center gap-2 rounded-2xl bg-foreground px-8 py-3.5 text-center text-sm font-semibold text-background transition-all duration-150 hover:bg-foreground/90 hover:shadow-lg dark:bg-gray-100 dark:text-zinc-950 dark:hover:bg-white sm:text-base"
           >
             <Terminal className="h-5 w-5 shrink-0" strokeWidth={2} aria-hidden />
-            Try genesis-env
+            <span className="inline-flex items-center gap-1.5">
+              Try <BrandName className="text-[0.9375rem] sm:text-base" />
+            </span>
           </Link>
           <a
             href={GITHUB_REPO_URL}

@@ -7,7 +7,7 @@ const icons = [
     id: 'terminal',
     symbol: '>_',
     label: 'terminal',
-    color: 'accentCyan',
+    color: 'accent',
     top: '18%',
     left: '8%',
     delay: 0,
@@ -28,7 +28,7 @@ const icons = [
     id: 'env',
     symbol: '.env',
     label: 'env file',
-    color: 'accentCyan',
+    color: 'accent',
     bottom: '22%',
     left: '12%',
     top: 'auto',
@@ -44,8 +44,8 @@ export default function HeroFloatingIcons() {
         <motion.div
           key={icon.id}
           className={`absolute font-mono text-sm font-bold rounded-xl border-2 shadow-lg px-2 py-1 ${
-            icon.color === 'accentCyan'
-              ? 'border-accentCyan/60 bg-accentCyan/10 text-accentCyan'
+            icon.color === 'accent'
+              ? 'border-accent/60 bg-accent/10 text-accent'
               : 'border-accentGold/60 bg-accentGold/10 text-accentGold'
           }`}
           style={{

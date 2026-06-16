@@ -1,7 +1,9 @@
 'use client'
 
+import type { ReactNode } from 'react'
 import { motion } from 'framer-motion'
 import { Check } from 'lucide-react'
+import BrandName from '@/components/BrandName'
 import { GITHUB_ISSUES_URL } from '@/lib/site'
 import { ROADMAP_PHOENIX_ASCII } from '@/data/roadmapPhoenixAscii'
 
@@ -11,7 +13,7 @@ type RoadmapStatus = 'completed' | 'todo'
 const ROADMAP_ITEMS: {
   id: string
   title: string
-  description: string
+  description: ReactNode
   status: RoadmapStatus
 }[] = [
   {
@@ -44,8 +46,12 @@ const ROADMAP_ITEMS: {
   {
     id: '05',
     title: 'npm publish: name + account',
-    description:
-      'To do: fix E404 — confirm npm whoami, who owns genesis-env on npm, scoped rename or access — until this works, installs from npm as documented may not match your package.',
+    description: (
+      <>
+        To do: fix E404 — confirm npm whoami, who owns <BrandName className="text-sm" /> on npm, scoped rename or access —
+        until this works, installs from npm as documented may not match your package.
+      </>
+    ),
     status: 'todo',
   },
   {
@@ -116,7 +122,7 @@ function SystemOriginGraphic() {
       <div className="roadmap-orbit-spin pointer-events-none absolute inset-0 flex items-center justify-center">
         <svg
           viewBox="0 0 100 100"
-          className="h-full w-full text-sky-400/35"
+          className="h-full w-full text-accent/35"
           fill="none"
         >
           <ellipse
@@ -149,8 +155,8 @@ function SystemOriginGraphic() {
         </svg>
       </div>
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="roadmap-core-pulse h-10 w-10 rounded-full bg-sky-400/25 blur-md" />
-        <div className="absolute h-5 w-5 rounded-full bg-sky-300 shadow-[0_0_24px_rgba(56,189,248,0.85),0_0_48px_rgba(14,165,233,0.35)]" />
+        <div className="roadmap-core-pulse h-10 w-10 rounded-full bg-accent/25 blur-md" />
+        <div className="absolute h-5 w-5 rounded-full bg-accent shadow-[0_0_24px_rgba(0,255,136,0.75),0_0_48px_rgba(0,255,136,0.28)]" />
       </div>
     </div>
   )
@@ -266,10 +272,10 @@ export default function RoadmapPage() {
           </div>
           <div className="flex w-full min-w-0 flex-wrap items-start justify-start gap-4 sm:gap-6 lg:w-auto lg:shrink-0 lg:justify-end">
             <div className="text-right font-mono">
-              <p className="text-[11px] uppercase tracking-[0.2em] text-sky-400 sm:text-xs">
+              <p className="text-[11px] uppercase tracking-[0.2em] text-accent sm:text-xs">
                 SYSTEM ORIGIN
               </p>
-              <p className="mt-1 text-sm text-sky-300/90 sm:text-base">v1.0.0</p>
+              <p className="mt-1 text-sm text-accent/90 sm:text-base">v1.0.0</p>
             </div>
             <SystemOriginGraphic />
           </div>

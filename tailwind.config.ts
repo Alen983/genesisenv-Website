@@ -19,12 +19,11 @@ const config: Config = {
         card: 'rgb(var(--color-card) / <alpha-value>)',
         accent: 'rgb(var(--color-accent) / <alpha-value>)',
         accentGold: '#E5B84C',
-        accentCyan: '#22d3ee',
-        docsBlue: '#4D5DFF',
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'Inter', 'system-ui', 'sans-serif'],
         mono: ['var(--font-fira-code)', 'Fira Code', 'JetBrains Mono', 'Consolas', 'monospace'],
+        display: ['var(--font-instrument-serif)', 'Georgia', 'Times New Roman', 'serif'],
       },
     },
   },

@@ -3,6 +3,7 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import Link from 'next/link'
+import BrandName from '@/components/BrandName'
 
 export default function DemoSection() {
   const ref = useRef(null)
@@ -21,12 +22,13 @@ export default function DemoSection() {
       >
         <h2 className="text-3xl md:text-4xl font-bold mb-4">Virtual tour</h2>
         <p className="text-muted-foreground mb-10 max-w-xl mx-auto">
-          Explore genesis-env in the browser — run commands and see output live, like a hands-on exhibit.
+          Explore <BrandName className="text-base" /> in the browser — run commands and see output live, like a hands-on
+          exhibit.
         </p>
         <motion.div
           className="inline-block max-w-full rounded-2xl border border-border/60 bg-card/70 p-5 shadow-xl backdrop-blur-sm sm:p-8 dark:border-white/10 dark:bg-gray-900/50"
           whileHover={{
-            boxShadow: '0 20px 40px -15px rgba(34, 211, 238, 0.12), 0 0 0 1px rgba(255,255,255,0.05)',
+            boxShadow: '0 20px 40px -15px rgba(0, 255, 136, 0.12), 0 0 0 1px rgba(255,255,255,0.05)',
             transition: { duration: 0.2 },
           }}
         >

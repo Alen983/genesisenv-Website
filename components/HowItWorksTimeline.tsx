@@ -1,90 +1,220 @@
 'use client'
 
-import { useRef } from 'react'
+import { Fragment, useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import {
+  Braces,
+  CheckCircle2,
+  Clock,
+  FileCode2,
+  Lock,
+  RefreshCw,
+  ShieldCheck,
+  Users,
+} from 'lucide-react'
 
-const steps = [
+const processSteps = [
   {
-    title: '.env.template Creation',
-    description: 'Define a single source of truth. One template, committed to git, that describes every variable your app needs.',
-    snippet: '# .env.template\nDATABASE_URL=\nAPI_KEY=',
+    num: '01',
+    title: 'Template',
+    Icon: FileCode2,
+    description:
+      'Define variables once in `.env.template` — one versioned file that lists what your app needs from dev to prod.',
   },
   {
-    title: 'Validation',
-    description: 'Ensure every required key is present and valid before your app runs. No more missing vars in production.',
-    snippet: 'genesis-env validate .env.template',
+    num: '02',
+    title: 'Validate',
+    Icon: CheckCircle2,
+    description:
+      'Run `genesis-env validate` to catch missing keys and sketchy placeholders before they become production incidents.',
   },
   {
-    title: 'Generation',
-    description: 'Generate local .env files from the template. Developers get the right structure without guesswork.',
-    snippet: 'genesis-env generate .env.template',
+    num: '03',
+    title: 'Generate',
+    Icon: Braces,
+    description:
+      'Use `genesis-env generate` to materialize local `.env` files from the template with a consistent shape for every developer.',
   },
   {
-    title: 'CI/CD Integration',
-    description: 'Run validation in your pipeline. Fail the build when the template is out of sync or invalid.',
-    snippet: 'run: genesis-env validate --strict',
+    num: '04',
+    title: 'Sync',
+    Icon: RefreshCw,
+    description:
+      'Wire validation into CI so the template stays the single source of truth — teams and pipelines stay aligned automatically.',
   },
-]
+] as const
 
-function StepCard({
+const outcomes = [
+  {
+    title: 'Fewer errors',
+    Icon: ShieldCheck,
+    description: 'Validate early and stop “works on my machine” env drift before it hits runtime.',
+  },
+  {
+    title: 'Aligned teams',
+    Icon: Users,
+    description: 'Everyone pulls from the same template — onboarding is copy the file, not tribal knowledge.',
+  },
+  {
+    title: 'Faster setup',
+    Icon: Clock,
+    description: 'Regenerate env files in seconds when keys change instead of hand-editing ten `.env` variants.',
+  },
+  {
+    title: 'Production confidence',
+    Icon: Lock,
+    description: 'Ship knowing required keys and formats were checked against the template you already trust.',
+  },
+] as const
+
+function StepConnector() {
+  return (
+    <div
+      className="hidden h-[4.5rem] w-8 shrink-0 items-center self-start pt-2 lg:flex"
+      aria-hidden
+    >
+      <div className="flex h-px w-full items-center">
+        <span className="h-px flex-1 border-t border-dashed border-accent/45" />
+        <span className="mx-0.5 h-2 w-2 shrink-0 rounded-full bg-accent shadow-[0_0_10px_rgba(0,255,136,0.35)]" />
+        <span className="h-px flex-1 border-t border-dashed border-accent/45" />
+      </div>
+    </div>
+  )
+}
+
+function ProcessStepBlock({
   step,
   index,
 }: {
-  step: (typeof steps)[number]
+  step: (typeof processSteps)[number]
   index: number
 }) {
-  const ref = useRef(null)
-  const isInView = useInView(ref, { once: true, margin: '-80px' })
+  const Icon = step.Icon
+  return (
+    <Fragment key={step.num}>
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: '-40px' }}
+        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1], delay: index * 0.06 }}
+        className="relative flex min-w-0 flex-1 flex-col border-l-2 border-accent/25 pl-5 lg:border-l-0 lg:pl-0 lg:text-left"
+      >
+        <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-accent">
+          {step.num}
+        </span>
+        <div className="mt-3 flex h-14 w-14 items-center justify-center rounded-full border border-accent/45 bg-accent/10 text-accent">
+          <Icon className="h-6 w-6" strokeWidth={1.5} aria-hidden />
+        </div>
+        <h3 className="mt-4 text-lg font-semibold tracking-tight text-foreground">{step.title}</h3>
+        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{step.description}</p>
+      </motion.div>
+      {index < processSteps.length - 1 && (
+        <>
+          <StepConnector />
+          <div className="my-2 h-px w-full shrink-0 border-t border-dashed border-accent/30 lg:hidden" aria-hidden />
+        </>
+      )}
+    </Fragment>
+  )
+}
 
+function OutcomeCard({
+  item,
+  index,
+}: {
+  item: (typeof outcomes)[number]
+  index: number
+}) {
+  const Icon = item.Icon
   return (
     <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 40 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 40 }}
-      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1], delay: index * 0.1 }}
-      className="relative flex min-w-0 items-start gap-4 sm:gap-6"
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: '-50px' }}
+      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1], delay: index * 0.05 }}
+      className="flex flex-col items-start"
     >
-      <div className="flex shrink-0 flex-col items-center pt-2">
-        <div className="h-4 w-4 rounded-full border-2 border-accentCyan/60 bg-background" />
-        {index < steps.length - 1 && (
-          <div className="mt-1 w-0.5 h-16 bg-gradient-to-b from-accentCyan/40 to-transparent" />
-        )}
+      <div className="flex h-11 w-11 items-center justify-center rounded-full border border-accent/40 bg-accent/10 text-accent">
+        <Icon className="h-5 w-5" strokeWidth={1.5} aria-hidden />
       </div>
-      <motion.div
-        className="w-full min-w-0 max-w-lg rounded-2xl border border-border/50 bg-card/60 p-5 pb-10 shadow-xl backdrop-blur-md sm:p-8 sm:pb-12 dark:border-white/10 dark:bg-gray-900/40"
-        whileHover={{
-          y: -4,
-          boxShadow: '0 20px 40px -15px rgba(34, 211, 238, 0.15), 0 0 0 1px rgba(255,255,255,0.05)',
-          transition: { duration: 0.2 },
-        }}
-      >
-        <div className="text-accentCyan font-mono text-sm font-semibold mb-2">
-          Step {index + 1}
-        </div>
-        <h3 className="text-2xl font-bold mb-4 text-foreground">{step.title}</h3>
-        <p className="text-muted-foreground mb-6 leading-relaxed">{step.description}</p>
-        <div className="rounded-lg border border-border/60 bg-muted/30 p-4 font-mono text-sm text-foreground/90 overflow-x-auto dark:border-gray-700/50 dark:bg-black/40 dark:text-gray-300">
-          <pre className="whitespace-pre-wrap">{step.snippet}</pre>
-        </div>
-      </motion.div>
+      <h3 className="mt-4 text-base font-semibold text-foreground">{item.title}</h3>
+      <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{item.description}</p>
     </motion.div>
   )
 }
 
 export default function HowItWorksTimeline() {
+  const sectionRef = useRef(null)
+  const inView = useInView(sectionRef, { once: true, margin: '-80px' })
+
   return (
-    <section className="relative bg-background">
-      <div className="py-12 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold text-foreground">How it works</h2>
-        <p className="text-muted-foreground mt-2 max-w-xl mx-auto">
-          Four steps from template to production
-        </p>
-      </div>
-      <div className="mx-auto max-w-4xl min-w-0 px-4 pb-20 sm:px-6 lg:px-8">
-        {steps.map((step, index) => (
-          <StepCard key={step.title} step={step} index={index} />
-        ))}
-      </div>
-    </section>
+    <div ref={sectionRef} className="relative bg-background">
+      {/* —— How it works —— */}
+      <section className="border-b border-border/40 py-16 sm:py-20 lg:py-24 dark:border-white/[0.06]">
+        <div className="mx-auto w-full max-w-[min(100%,1400px)] px-4 sm:px-8 lg:px-12">
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,22rem)_1fr] lg:gap-16 xl:gap-24">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="max-w-lg lg:sticky lg:top-28 lg:self-start"
+            >
+              <p className="font-mono text-xs font-semibold uppercase tracking-[0.28em] text-accent">
+                How it works
+              </p>
+              <h2 className="mt-4 text-3xl font-bold leading-[1.15] tracking-tight text-foreground sm:text-4xl lg:text-[2.35rem] lg:leading-[1.12]">
+                Four steps to configuration that{' '}
+                <span className="font-display text-[1.65rem] italic font-normal text-foreground/95 sm:text-[2rem] lg:text-[2.15rem]">
+                  just works
+                </span>
+                .
+              </h2>
+              <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
+                Define once. Validate automatically. Synchronize everywhere. Generate, validate, and sync
+                configuration from development to production.
+              </p>
+            </motion.div>
+
+            <div className="flex min-w-0 flex-col gap-0 lg:flex-row lg:items-start lg:gap-0">
+              {processSteps.map((step, index) => (
+                <ProcessStepBlock key={step.num} step={step} index={index} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* —— The outcome —— */}
+      <section className="bg-surface/25 py-16 sm:py-20 lg:py-24 dark:bg-white/[0.02]">
+        <div className="mx-auto w-full max-w-[min(100%,1400px)] px-4 sm:px-8 lg:px-12">
+          <div className="grid gap-12 lg:grid-cols-[minmax(0,22rem)_1fr] lg:gap-16 xl:gap-24">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-60px' }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              className="max-w-lg"
+            >
+              <p className="font-mono text-xs font-semibold uppercase tracking-[0.28em] text-accent">
+                The outcome
+              </p>
+              <h2 className="mt-4 text-3xl font-bold leading-[1.15] tracking-tight text-foreground sm:text-4xl lg:text-[2.35rem]">
+                One source of truth.{' '}
+                <span className="font-display text-[1.65rem] italic font-normal text-foreground/95 sm:text-[2rem] lg:text-[2.15rem]">
+                  Zero surprises
+                </span>
+                .
+              </h2>
+            </motion.div>
+
+            <div className="grid min-w-0 grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-12 lg:grid-cols-2 xl:grid-cols-4 xl:gap-8">
+              {outcomes.map((item, index) => (
+                <OutcomeCard key={item.title} item={item} index={index} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
   )
 }

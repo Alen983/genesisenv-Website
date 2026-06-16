@@ -40,7 +40,7 @@ export default function EnvShowcase() {
             transition={{ duration: 0.45, delay: 0.08 }}
             className="min-w-0 rounded-2xl border border-border/60 bg-card/50 p-5 shadow-lg backdrop-blur-sm dark:border-white/10 dark:bg-gray-900/40 sm:p-6"
           >
-            <p className="mb-3 font-mono text-xs font-semibold uppercase tracking-wider text-accentCyan">
+            <p className="mb-3 font-mono text-xs font-semibold uppercase tracking-wider text-accent">
               In the repo
             </p>
             <pre className="max-h-[22rem] overflow-auto whitespace-pre-wrap rounded-lg border border-border/50 bg-muted/30 p-4 font-mono text-xs leading-relaxed text-foreground/90 dark:border-gray-700/50 dark:bg-black/35 dark:text-gray-300 sm:text-sm">
@@ -51,9 +51,9 @@ export default function EnvShowcase() {
             initial={{ opacity: 0, y: 24 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.45, delay: 0.16 }}
-            className="min-w-0 rounded-2xl border border-accentCyan/25 bg-card/60 p-5 shadow-lg backdrop-blur-sm dark:bg-gray-900/50 sm:p-6"
+            className="min-w-0 rounded-2xl border border-accent/25 bg-card/60 p-5 shadow-lg backdrop-blur-sm dark:bg-gray-900/50 sm:p-6"
           >
-            <p className="mb-3 font-mono text-xs font-semibold uppercase tracking-wider text-accentCyan">
+            <p className="mb-3 font-mono text-xs font-semibold uppercase tracking-wider text-accent">
               On your machine
             </p>
             <pre className="max-h-[22rem] overflow-auto whitespace-pre-wrap rounded-lg border border-border/50 bg-muted/30 p-4 font-mono text-xs leading-relaxed text-foreground/90 dark:border-gray-700/50 dark:bg-black/35 dark:text-gray-300 sm:text-sm">

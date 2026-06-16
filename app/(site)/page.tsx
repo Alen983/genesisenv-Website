@@ -6,6 +6,7 @@ import { useRef } from 'react'
 import Link from 'next/link'
 import { Github } from 'lucide-react'
 import { GITHUB_REPO_URL } from '@/lib/site'
+import BrandName from '@/components/BrandName'
 import MuseumHero from '@/components/MuseumHero'
 import HowItWorksTimeline from '@/components/HowItWorksTimeline'
 import EnvShowcase from '@/components/EnvShowcase'
@@ -15,7 +16,7 @@ import ScrollProgress from '@/components/ScrollProgress'
 function SectionSeparator() {
   return (
     <div
-      className="h-px w-full bg-gradient-to-r from-transparent via-accentCyan/30 to-transparent"
+      className="h-px w-full bg-gradient-to-r from-transparent via-accent/30 to-transparent"
       aria-hidden
     />
   )
@@ -54,14 +55,14 @@ export default function Home() {
         <section className="py-20 px-4 sm:px-6 lg:px-8 bg-surface/30">
           <div className="max-w-4xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-6 text-foreground">
-              genesis-env is not a tool.
+              <BrandName className="text-3xl md:text-4xl" /> is not a tool.
             </h2>
-            <p className="text-2xl md:text-3xl text-accentCyan font-semibold mb-8">
+            <p className="text-2xl md:text-3xl text-accent font-semibold mb-8">
               It&apos;s a configuration discipline.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              genesis-env enforces standards, validates configurations, and ensures your environment variables
-              are never a source of production failures. It&apos;s the difference between chaos and control.
+              <BrandName className="text-lg" /> enforces standards, validates configurations, and ensures your environment
+              variables are never a source of production failures. It&apos;s the difference between chaos and control.
             </p>
           </div>
         </section>

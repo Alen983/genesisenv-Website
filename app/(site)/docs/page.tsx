@@ -29,7 +29,7 @@ const docSections = [
 
 export default function DocsPage() {
   return (
-    <div className="docs-atmosphere relative min-h-screen w-full pb-32 pt-24 font-mono text-foreground">
+    <div className="docs-atmosphere relative min-h-0 w-full pb-32 pt-2 font-mono text-foreground lg:min-h-[calc(100dvh-3.5rem)] lg:pt-4">
       <div className="docs-atmosphere-grid" aria-hidden />
       <div className="docs-atmosphere-bloom" aria-hidden />
       <div className="docs-atmosphere-vignette" aria-hidden />
@@ -80,10 +80,10 @@ export default function DocsPage() {
         >
           <h2 className="mb-4 text-sm font-medium uppercase tracking-[0.12em] text-foreground">Quick start</h2>
           <p className="max-w-lg text-sm leading-[1.8] text-muted-foreground">
-            Install (or use <code className="text-docsBlue/90">npx</code> without installing), then follow the command
-            reference for <code className="text-docsBlue/90">init</code> and{' '}
-            <code className="text-docsBlue/90">generate</code>. Template rules and examples live under Templates &amp;{' '}
-            <code className="text-docsBlue/90">.env</code>.
+            Install (or use <code className="text-accent/90">npx</code> without installing), then follow the command
+            reference for <code className="text-accent/90">init</code> and{' '}
+            <code className="text-accent/90">generate</code>. Template rules and examples live under Templates &amp;{' '}
+            <code className="text-accent/90">.env</code>.
           </p>
           <div className="mt-8 flex flex-wrap gap-10 text-sm uppercase tracking-[0.12em] text-muted-foreground">
             <Link href="/docs/installation" className="transition-colors hover:text-foreground">

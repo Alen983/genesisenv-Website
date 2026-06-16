@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import BrandName from '@/components/BrandName'
 import PlaygroundEditor from '@/components/PlaygroundEditor'
 
 const PLAYGROUND_ASCII_LINES = [
@@ -53,7 +54,8 @@ export default function PlaygroundPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.08 }}
           >
-            Test genesis-env validation in real-time. Edit the template, click validate, and see instant feedback.
+            Test <BrandName className="text-[0.9375rem] sm:text-[0.9375rem]" /> validation in real-time. Edit the
+            template, click validate, and see instant feedback.
           </motion.p>
         </div>
 

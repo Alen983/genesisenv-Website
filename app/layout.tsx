@@ -1,8 +1,6 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Fira_Code } from 'next/font/google'
+import { Fira_Code, Instrument_Serif, Inter } from 'next/font/google'
 import './globals.css'
-import Navbar from '@/components/Navbar'
-import Footer from '@/components/Footer'
 import ThemeProvider from '@/components/ThemeProvider'
 
 const inter = Inter({
@@ -15,6 +13,13 @@ const firaCode = Fira_Code({
   subsets: ['latin'],
   variable: '--font-fira-code',
   display: 'swap',
+})
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ['latin'],
+  variable: '--font-instrument-serif',
+  display: 'swap',
+  weight: ['400'],
 })
 
 export const viewport: Viewport = {
@@ -41,13 +46,9 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning data-scroll-behavior="smooth">
       <body
-        className={`${inter.variable} ${firaCode.variable} bg-background text-foreground antialiased`}
+        className={`${inter.variable} ${firaCode.variable} ${instrumentSerif.variable} bg-background text-foreground antialiased`}
       >
-        <ThemeProvider>
-          <Navbar />
-          <main className="min-w-0 w-full">{children}</main>
-          <Footer />
-        </ThemeProvider>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   )

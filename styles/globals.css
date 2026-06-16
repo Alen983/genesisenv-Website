@@ -131,30 +131,30 @@ html.dark .docs-status-panel {
   color: rgb(var(--color-foreground) / 0.96);
   text-shadow:
     1px 0 0 rgba(248, 113, 113, 0.55),
-    -1px 0 0 rgba(34, 211, 238, 0.5),
+    -1px 0 0 rgba(0, 255, 136, 0.5),
     2px 0 1px rgba(248, 113, 113, 0.22),
-    -2px 0 1px rgba(34, 211, 238, 0.22);
+    -2px 0 1px rgba(0, 255, 136, 0.22);
 }
 
 html.light .chromatic-ascii {
   color: rgb(var(--color-foreground) / 0.95);
   text-shadow:
     1px 0 0 rgba(225, 29, 72, 0.22),
-    -1px 0 0 rgba(2, 132, 199, 0.22),
+    -1px 0 0 rgba(5, 150, 105, 0.22),
     2px 0 1px rgba(225, 29, 72, 0.1),
-    -2px 0 1px rgba(2, 132, 199, 0.1);
+    -2px 0 1px rgba(5, 150, 105, 0.1);
 }
 
 .chromatic-ascii-muted:hover {
   text-shadow:
     1px 0 0 rgba(248, 113, 113, 0.35),
-    -1px 0 0 rgba(34, 211, 238, 0.35);
+    -1px 0 0 rgba(0, 255, 136, 0.35);
 }
 
 html.light .chromatic-ascii-muted:hover {
   text-shadow:
     1px 0 0 rgba(225, 29, 72, 0.18),
-    -1px 0 0 rgba(2, 132, 199, 0.18);
+    -1px 0 0 rgba(5, 150, 105, 0.18);
 }
 
 .terminal-grid-bg {
@@ -195,7 +195,7 @@ html.light .terminal-grid-bg {
       rgb(13 13 13) 50%,
       rgb(15 15 15) 100%
     ),
-    radial-gradient(circle at 20% 80%, rgba(34, 211, 238, 0.03) 0%, transparent 50%),
+    radial-gradient(circle at 20% 80%, rgba(0, 255, 136, 0.04) 0%, transparent 50%),
     radial-gradient(circle at 80% 20%, rgba(229, 184, 76, 0.02) 0%, transparent 40%);
 }
 
@@ -207,7 +207,7 @@ html.light .museum-hero-bg {
       rgb(244 244 245) 50%,
       rgb(228 228 231) 100%
     ),
-    radial-gradient(circle at 20% 80%, rgba(34, 211, 238, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 20% 80%, rgba(0, 255, 136, 0.07) 0%, transparent 50%),
     radial-gradient(circle at 80% 20%, rgba(229, 184, 76, 0.05) 0%, transparent 40%);
 }
 
@@ -350,7 +350,7 @@ html.light .docs-crosshair-layer {
 .docs-ascii-headline {
   text-shadow:
     1px 0 0 rgba(236, 72, 153, 0.09),
-    -1px 0 0 rgba(96, 165, 250, 0.11);
+    -1px 0 0 rgba(0, 255, 136, 0.12);
 }
 
 @keyframes docs-grid-drift {
@@ -367,12 +367,12 @@ html.light .docs-crosshair-layer {
   100% {
     text-shadow:
       1px 0 0 rgba(236, 72, 153, 0.14),
-      -1px 0 0 rgba(96, 165, 250, 0.16);
+      -1px 0 0 rgba(0, 255, 136, 0.16);
   }
   50% {
     text-shadow:
       2px 0 0 rgba(236, 72, 153, 0.18),
-      -2px 0 0 rgba(96, 165, 250, 0.2);
+      -2px 0 0 rgba(0, 255, 136, 0.2);
   }
 }
 
@@ -389,8 +389,32 @@ html.light .docs-crosshair-layer {
     animation: none;
     text-shadow:
       1px 0 0 rgba(236, 72, 153, 0.12),
-      -1px 0 0 rgba(96, 165, 250, 0.14);
+      -1px 0 0 rgba(0, 255, 136, 0.14);
   }
+}
+
+/* Docs sidebar / mobile browse: thin accent scrollbar (replaces heavy OS bar) */
+.docs-sidebar-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(var(--color-accent) / 0.55) rgb(var(--color-muted) / 0.12);
+}
+
+.docs-sidebar-scroll::-webkit-scrollbar {
+  width: 5px;
+}
+
+.docs-sidebar-scroll::-webkit-scrollbar-track {
+  background: rgb(var(--color-muted) / 0.12);
+  border-radius: 9999px;
+}
+
+.docs-sidebar-scroll::-webkit-scrollbar-thumb {
+  background: rgb(var(--color-accent) / 0.42);
+  border-radius: 9999px;
+}
+
+.docs-sidebar-scroll::-webkit-scrollbar-thumb:hover {
+  background: rgb(var(--color-accent) / 0.72);
 }
 
 @layer utilities {

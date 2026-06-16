@@ -6,6 +6,7 @@ import { useCallback, useEffect, useId, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Github, Menu, X } from 'lucide-react'
 import ThemeToggle from '@/components/ThemeToggle'
+import BrandName from '@/components/BrandName'
 import { GITHUB_REPO_URL } from '@/lib/site'
 
 const navLinks = [
@@ -55,16 +56,16 @@ export default function Navbar() {
     <>
       <nav className="fixed left-0 right-0 top-0 z-50 border-b border-border/40 bg-background/55 font-mono backdrop-blur-md dark:border-white/[0.06] dark:bg-black/55">
         <div className="mx-auto max-w-[1720px] px-4 sm:px-8 lg:px-12">
-          {/* Mobile: minimal top bar only */}
-          <div className="flex h-14 items-center justify-between gap-2 md:hidden">
+          {/* Mobile: brand centered, actions on the right */}
+          <div className="relative flex h-14 items-center justify-center md:hidden">
             <Link
               href="/"
-              className="min-w-0 text-[15px] font-semibold tracking-[-0.02em] text-foreground transition-colors hover:text-foreground/85"
+              className="min-w-0 transition-opacity hover:opacity-90"
               onClick={close}
             >
-              genesis-env
+              <BrandName className="text-[15px]" />
             </Link>
-            <div className="flex shrink-0 items-center gap-1.5">
+            <div className="absolute right-0 flex shrink-0 items-center gap-1.5">
               <ThemeToggle />
               <button
                 type="button"
@@ -79,44 +80,43 @@ export default function Navbar() {
             </div>
           </div>
 
-          {/* Desktop: full horizontal nav */}
-          <div className="hidden h-14 items-center justify-between gap-4 md:flex lg:gap-8">
-            <div className="flex min-w-0 flex-1 items-center gap-6 lg:gap-10">
+          {/* Desktop: logo left, nav centered in viewport, utilities right */}
+          <div className="hidden h-14 w-full grid-cols-[1fr_auto_1fr] items-center gap-4 md:grid lg:gap-8">
+            <div className="flex min-w-0 justify-self-start">
               <Link
                 href="/"
-                className="group relative shrink-0 overflow-hidden rounded-sm border border-border/60 bg-card/60 px-2.5 py-1.5 transition-colors hover:border-border dark:border-white/[0.08] dark:bg-black/40 dark:hover:border-white/[0.14]"
-                aria-label="genesis-env home"
+                className="shrink-0 py-1 transition-opacity hover:opacity-90"
+                aria-label="Genesis-env home"
               >
-                <div className="pointer-events-none absolute inset-0 terminal-grid-bg opacity-[0.12]" aria-hidden />
-                <div className="relative">
-                  <div className="text-xs font-medium leading-tight text-foreground sm:text-sm">genesis-env</div>
-                  <div className="mt-0.5 text-[11px] text-muted-foreground sm:text-xs">templates · validate · generate</div>
-                </div>
+                <BrandName className="text-sm sm:text-base" />
               </Link>
-
-              <nav className="flex min-w-0 flex-wrap items-center justify-end gap-x-2 gap-y-1 lg:gap-x-4" aria-label="Main">
-                {navLinks.map((item) => {
-                  const isActive =
-                    pathname === item.href || (item.href !== '/' && pathname?.startsWith(item.href))
-                  return (
-                    <Link
-                      key={item.href}
-                      href={item.href}
-                      aria-current={isActive ? 'page' : undefined}
-                      className={`shrink-0 whitespace-nowrap px-2 py-1 text-xs font-normal uppercase tracking-[0.22em] transition-colors sm:px-2.5 ${
-                        isActive
-                          ? 'border-b border-foreground text-foreground dark:border-white/80'
-                          : 'border-b border-transparent text-muted-foreground hover:text-foreground/80 dark:hover:text-zinc-300'
-                      }`}
-                    >
-                      {item.label}
-                    </Link>
-                  )
-                })}
-              </nav>
             </div>
 
-            <div className="flex shrink-0 items-center gap-2">
+            <nav
+              className="flex min-w-0 flex-wrap items-center justify-center justify-self-center gap-x-2 gap-y-1 lg:gap-x-4"
+              aria-label="Main"
+            >
+              {navLinks.map((item) => {
+                const isActive =
+                  pathname === item.href || (item.href !== '/' && pathname?.startsWith(item.href))
+                return (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    aria-current={isActive ? 'page' : undefined}
+                    className={`shrink-0 whitespace-nowrap px-2 py-1 text-xs font-normal uppercase tracking-[0.22em] transition-colors sm:px-2.5 ${
+                      isActive
+                        ? 'border-b border-foreground text-foreground dark:border-white/80'
+                        : 'border-b border-transparent text-muted-foreground hover:text-foreground/80 dark:hover:text-zinc-300'
+                    }`}
+                  >
+                    {item.label}
+                  </Link>
+                )
+              })}
+            </nav>
+
+            <div className="flex shrink-0 items-center justify-self-end gap-2">
               <ThemeToggle />
               <a
                 href={GITHUB_REPO_URL}
@@ -127,7 +127,7 @@ export default function Navbar() {
               >
                 <Github size={14} className="opacity-80" />
                 <span className="hidden lg:inline">GitHub</span>
-                <span className="text-docsBlue/90" aria-hidden>
+                <span className="text-accent/90" aria-hidden>
                   ↗
                 </span>
               </a>
@@ -181,17 +181,14 @@ export default function Navbar() {
                 </div>
               </div>
 
-              <div className="relative border-b border-border/50 px-4 py-4 dark:border-white/[0.05]">
+              <div className="relative border-b border-border/50 px-4 py-3 dark:border-white/[0.05]">
                 <Link
                   href="/"
                   onClick={close}
-                  className="block text-sm font-medium tracking-tight text-foreground transition-colors hover:text-muted-foreground"
+                  className="block transition-opacity hover:opacity-80"
                 >
-                  genesis-env
+                  <BrandName className="text-sm" />
                 </Link>
-                <p className="mt-1 text-[10px] leading-relaxed tracking-wide text-muted-foreground dark:text-zinc-600">
-                  templates · validate · generate
-                </p>
               </div>
 
               <nav className="relative flex flex-1 flex-col gap-0.5 overflow-y-auto px-3 py-4" aria-label="Main">
@@ -217,7 +214,7 @@ export default function Navbar() {
                         aria-current={isActive ? 'page' : undefined}
                         className={`block border-l-2 py-2.5 pl-3 pr-2 text-xs font-normal uppercase tracking-[0.2em] transition-colors ${
                           isActive
-                            ? 'border-docsBlue text-foreground'
+                            ? 'border-accent text-foreground'
                             : 'border-transparent text-muted-foreground hover:border-border hover:bg-muted/30 hover:text-foreground dark:hover:border-white/15 dark:hover:bg-white/[0.03] dark:hover:text-zinc-200'
                         }`}
                       >
@@ -243,11 +240,11 @@ export default function Navbar() {
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={close}
-                  className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-docsBlue"
+                  className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.2em] text-muted-foreground transition-colors hover:text-accent"
                 >
                   <Github size={14} className="opacity-80" aria-hidden />
                   <span>GitHub</span>
-                  <span className="text-docsBlue/90" aria-hidden>
+                  <span className="text-accent/90" aria-hidden>
                     ↗
                   </span>
                 </a>
