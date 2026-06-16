@@ -3,7 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { Search } from 'lucide-react'
-import { useEffect, useMemo, useState, type RefObject } from 'react'
+import { useMemo, useSyncExternalStore, type RefObject } from 'react'
 import { DOC_NAV_SECTIONS, type DocsNavLink } from '@/lib/docs-nav'
 
 function isActive(pathname: string | null, href: string): boolean {
@@ -24,6 +24,15 @@ function linkMatchesQuery(link: DocsNavLink, q: string): boolean {
 
 type Layout = 'sidebar' | 'stacked' | 'navOnly'
 
+function subscribeModKey() {
+  return () => {}
+}
+
+function getModKeyClient(): '⌘' | 'Ctrl' {
+  if (typeof navigator === 'undefined') return 'Ctrl'
+  return /Mac|iPhone|iPod|iPad/i.test(navigator.platform) ? '⌘' : 'Ctrl'
+}
+
 export default function DocsSidebar({
   query,
   onQueryChange,
@@ -38,11 +47,7 @@ export default function DocsSidebar({
   hideSearch?: boolean
 }) {
   const pathname = usePathname()
-  const [modKey, setModKey] = useState('Ctrl')
-
-  useEffect(() => {
-    setModKey(typeof navigator !== 'undefined' && /Mac|iPhone|iPod|iPad/i.test(navigator.platform) ? '⌘' : 'Ctrl')
-  }, [])
+  const modKey = useSyncExternalStore(subscribeModKey, getModKeyClient, () => 'Ctrl')
 
   const filteredSections = useMemo(() => {
     return DOC_NAV_SECTIONS.map((section) => ({
