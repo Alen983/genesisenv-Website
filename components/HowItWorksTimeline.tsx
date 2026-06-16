@@ -75,7 +75,7 @@ function StepConnector() {
     >
       <div className="flex h-px w-full items-center">
         <span className="h-px flex-1 border-t border-dashed border-accent/45" />
-        <span className="mx-0.5 h-2 w-2 shrink-0 rounded-full bg-accent shadow-[0_0_10px_rgba(0,255,136,0.35)]" />
+        <span className="mx-0.5 h-2 w-2 shrink-0 rounded-full bg-accent shadow-[0_0_10px_rgb(var(--color-accent)/0.35)]" />
         <span className="h-px flex-1 border-t border-dashed border-accent/45" />
       </div>
     </div>

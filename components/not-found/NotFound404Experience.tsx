@@ -308,6 +308,9 @@ export default function NotFound404Experience() {
       last = now
       const s = stateRef.current
       const { w, h } = s
+      const accentRgb =
+        getComputedStyle(document.documentElement).getPropertyValue('--accent-rgb-channels').trim() ||
+        '0, 255, 136'
 
       ctx.fillStyle = '#030303'
       ctx.fillRect(0, 0, w, h)
@@ -418,7 +421,7 @@ export default function NotFound404Experience() {
 
       for (const b of s.bolts) {
         ctx.save()
-        ctx.strokeStyle = 'rgba(0, 255, 170, 0.72)'
+        ctx.strokeStyle = `rgba(${accentRgb}, 0.72)`
         ctx.lineWidth = 2
         ctx.lineCap = 'round'
         ctx.beginPath()
@@ -432,9 +435,9 @@ export default function NotFound404Experience() {
       ctx.save()
       ctx.translate(s.px, s.py)
       const g = ctx.createRadialGradient(0, 0, 0, 0, 0, 22)
-      g.addColorStop(0, `rgba(0,255,136,${0.35 * pulse})`)
-      g.addColorStop(0.45, `rgba(0,255,136,${0.12 * pulse})`)
-      g.addColorStop(1, 'rgba(0,255,136,0)')
+      g.addColorStop(0, `rgba(${accentRgb},${0.35 * pulse})`)
+      g.addColorStop(0.45, `rgba(${accentRgb},${0.12 * pulse})`)
+      g.addColorStop(1, `rgba(${accentRgb},0)`)
       ctx.fillStyle = g
       ctx.beginPath()
       ctx.arc(0, 0, 22, 0, Math.PI * 2)
@@ -443,7 +446,7 @@ export default function NotFound404Experience() {
       ctx.beginPath()
       ctx.arc(0, 0, 4.2, 0, Math.PI * 2)
       ctx.fill()
-      ctx.strokeStyle = 'rgba(0,255,136,0.5)'
+      ctx.strokeStyle = `rgba(${accentRgb}, 0.5)`
       ctx.lineWidth = 1
       ctx.stroke()
       ctx.restore()

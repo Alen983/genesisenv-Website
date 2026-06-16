@@ -156,7 +156,7 @@ function SystemOriginGraphic() {
       </div>
       <div className="absolute inset-0 flex items-center justify-center">
         <div className="roadmap-core-pulse h-10 w-10 rounded-full bg-accent/25 blur-md" />
-        <div className="absolute h-5 w-5 rounded-full bg-accent shadow-[0_0_24px_rgba(0,255,136,0.75),0_0_48px_rgba(0,255,136,0.28)]" />
+        <div className="absolute h-5 w-5 rounded-full bg-accent shadow-[0_0_24px_rgb(var(--color-accent)/0.75),0_0_48px_rgb(var(--color-accent)/0.28)]" />
       </div>
     </div>
   )

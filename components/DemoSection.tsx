@@ -28,7 +28,7 @@ export default function DemoSection() {
         <motion.div
           className="inline-block max-w-full rounded-2xl border border-border/60 bg-card/70 p-5 shadow-xl backdrop-blur-sm sm:p-8 dark:border-white/10 dark:bg-gray-900/50"
           whileHover={{
-            boxShadow: '0 20px 40px -15px rgba(0, 255, 136, 0.12), 0 0 0 1px rgba(255,255,255,0.05)',
+            boxShadow: 'var(--demo-card-hover-shadow)',
             transition: { duration: 0.2 },
           }}
         >
