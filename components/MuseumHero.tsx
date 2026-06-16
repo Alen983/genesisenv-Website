@@ -74,7 +74,8 @@ export default function MuseumHero() {
           >
             <Terminal className="h-5 w-5 shrink-0" strokeWidth={2} aria-hidden />
             <span className="inline-flex items-center gap-1.5">
-              Try <BrandName className="text-[0.9375rem] sm:text-base" />
+              Try{' '}
+              <BrandName className="text-[0.9375rem] !text-inherit sm:text-base" />
             </span>
           </Link>
           <a
