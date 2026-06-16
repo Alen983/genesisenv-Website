@@ -7,6 +7,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import { Github, Menu, X } from 'lucide-react'
 import ThemeToggle from '@/components/ThemeToggle'
 import BrandName from '@/components/BrandName'
+import NavbarLogoMark from '@/components/NavbarLogoMark'
 import { GITHUB_REPO_URL } from '@/lib/site'
 
 const navLinks = [
@@ -60,9 +61,10 @@ export default function Navbar() {
           <div className="relative flex h-14 items-center justify-center md:hidden">
             <Link
               href="/"
-              className="min-w-0 transition-opacity hover:opacity-90"
+              className="flex min-w-0 items-center gap-2 transition-opacity hover:opacity-90"
               onClick={close}
             >
+              <NavbarLogoMark className="h-6 w-6 sm:h-7 sm:w-7" />
               <BrandName className="text-[15px]" />
             </Link>
             <div className="absolute right-0 flex shrink-0 items-center gap-1.5">
@@ -85,9 +87,10 @@ export default function Navbar() {
             <div className="flex min-w-0 justify-self-start">
               <Link
                 href="/"
-                className="shrink-0 py-1 transition-opacity hover:opacity-90"
+                className="flex shrink-0 items-center gap-2 py-1 transition-opacity hover:opacity-90"
                 aria-label="Genesis-env home"
               >
+                <NavbarLogoMark />
                 <BrandName className="text-sm sm:text-base" />
               </Link>
             </div>
@@ -185,8 +188,9 @@ export default function Navbar() {
                 <Link
                   href="/"
                   onClick={close}
-                  className="block transition-opacity hover:opacity-80"
+                  className="flex items-center gap-2 transition-opacity hover:opacity-80"
                 >
+                  <NavbarLogoMark className="h-6 w-6" />
                   <BrandName className="text-sm" />
                 </Link>
               </div>
