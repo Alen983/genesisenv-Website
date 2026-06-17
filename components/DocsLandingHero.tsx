@@ -27,7 +27,7 @@ const DOC_SECTION_LINKS = [
   { href: '/docs/corporate-systems', label: 'Resources', key: 'resources' },
 ] as const
 
-/** Unicode block phoenix — decorative */
+/** Unicode block phoenix (decorative) */
 const PHOENIX_ART = `⢠⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀
 ⠈⠙⠶⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣠⠓
 ⠀⠀⠀⠈⠙⠲⢤⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⢀⡼⠉⠀
@@ -121,7 +121,7 @@ function DocsAsciiHeadline() {
   )
 }
 
-/** Tiny looping terminal stream — duplicated block + translateY(-50%) in CSS. */
+/** Tiny looping terminal stream: duplicated block + translateY(-50%) in CSS. */
 function LoopingTerminalLog() {
   const reduceMotion = useReducedMotion()
 
@@ -312,7 +312,7 @@ export default function DocsLandingHero() {
               transition={{ duration: 0.5, delay: 0.08 }}
             >
               The <BrandName className="text-[0.9375rem] sm:text-[0.9375rem]" /> CLI scaffolds and refreshes environment
-              files from templates—install with npm or{' '}
+              files from templates. Install with npm or{' '}
               <code className="text-foreground/85">npx</code>, run <code className="text-foreground/85">init</code> and{' '}
               <code className="text-foreground/85">generate</code> from your project root, and keep contributors on the same
               baseline without copying secrets by hand.

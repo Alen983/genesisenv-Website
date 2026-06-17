@@ -20,14 +20,14 @@ const ROADMAP_ITEMS: {
     id: '01',
     title: 'Core CLI shipped locally',
     description:
-      'Done (in repo): init + generate (default), templates, prompts — matches README / source layout.',
+      'Done (in repo): init + generate (default), templates, prompts. Matches README / source layout.',
     status: 'completed',
   },
   {
     id: '02',
     title: 'README: discoverability',
     description:
-      'Done: install, badges, quick start, example, usage — as documented in the repo README.',
+      'Done: install, badges, quick start, example, usage. Same as documented in the repo README.',
     status: 'completed',
   },
   {
@@ -48,8 +48,8 @@ const ROADMAP_ITEMS: {
     title: 'npm publish: name + account',
     description: (
       <>
-        To do: fix E404 — confirm npm whoami, who owns <BrandName className="text-sm" /> on npm, scoped rename or access —
-        until this works, installs from npm as documented may not match your package.
+        To do: fix E404. Confirm npm whoami, who owns <BrandName className="text-sm" /> on npm, scoped rename or access.
+        Until this works, installs from npm as documented may not match your package.
       </>
     ),
     status: 'todo',
@@ -65,7 +65,7 @@ const ROADMAP_ITEMS: {
     id: '07',
     title: 'Publish tarball hygiene',
     description:
-      'To do: npm warned about .gitignore as fallback — consider .npmignore or files so only dist + essentials ship (avoid publishing unnecessary src if you don’t want that).',
+      'To do: npm warned about .gitignore as fallback. Consider .npmignore or files so only dist + essentials ship (avoid publishing unnecessary src if you don’t want that).',
     status: 'todo',
   },
   {
@@ -84,7 +84,7 @@ const ROADMAP_ITEMS: {
   },
   {
     id: '10',
-    title: 'Post–v1 quality & ecosystem',
+    title: 'Post-v1 quality & ecosystem',
     description:
       'To do: changelog/releases, issue templates usage, semver discipline, and v0.2+ themes (progress UI, stricter validation, optional keys, etc.).',
     status: 'todo',
@@ -207,7 +207,7 @@ function RoadmapCard({ item }: { item: (typeof ROADMAP_ITEMS)[number] }) {
 export default function RoadmapPage() {
   return (
     <div className="relative min-h-screen overflow-x-hidden bg-background pb-24 pt-24 text-foreground">
-      {/* Starfield + grid — dark only; light mode uses subtle grid */}
+      {/* Starfield + grid: dark only; light mode uses subtle grid */}
       <div
         className="pointer-events-none absolute inset-0 hidden opacity-[0.45] dark:block dark:opacity-[0.55]"
         aria-hidden

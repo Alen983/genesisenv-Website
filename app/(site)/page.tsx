@@ -61,8 +61,8 @@ export default function Home() {
               It&apos;s a configuration discipline.
             </p>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              <BrandName className="text-lg" /> enforces standards, validates configurations, and ensures your environment
-              variables are never a source of production failures. It&apos;s the difference between chaos and control.
+              <BrandName className="text-lg" /> keeps your environment variables aligned with the committed template so
+              drift and missing keys are less likely to ship. It&apos;s the difference between chaos and control.
             </p>
           </div>
         </section>
@@ -86,7 +86,7 @@ export default function Home() {
               Ready to enforce configuration discipline?
             </h2>
             <p className="text-lg text-muted-foreground mb-8">
-              Start with the playground — full documentation is in the nav.
+              Start with the playground. Full documentation is in the nav.
             </p>
             <div className="flex flex-col items-stretch justify-center gap-3 sm:flex-row sm:flex-wrap sm:items-center">
               <Link

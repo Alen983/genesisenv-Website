@@ -4,11 +4,9 @@ import { Fragment, useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import {
   Braces,
-  CheckCircle2,
   Clock,
   FileCode2,
   Lock,
-  RefreshCw,
   ShieldCheck,
   Users,
 } from 'lucide-react'
@@ -16,31 +14,24 @@ import {
 const processSteps = [
   {
     num: '01',
-    title: 'Template',
+    title: 'Define',
     Icon: FileCode2,
     description:
-      'Define variables once in `.env.template` — one versioned file that lists what your app needs from dev to prod.',
+      'Commit a `.env.template` in your repo. That one versioned file lists every key your app expects, without secrets.',
   },
   {
     num: '02',
-    title: 'Validate',
-    Icon: CheckCircle2,
-    description:
-      'Run `genesis-env validate` to catch missing keys and sketchy placeholders before they become production incidents.',
-  },
-  {
-    num: '03',
     title: 'Generate',
     Icon: Braces,
     description:
-      'Use `genesis-env generate` to materialize local `.env` files from the template with a consistent shape for every developer.',
+      'Run `npx genesis-env` (or `npx genesis-env generate`) from the project root, answer the prompts once per key, and get a local `.env` written from the template.',
   },
   {
-    num: '04',
-    title: 'Sync',
-    Icon: RefreshCw,
+    num: '03',
+    title: 'Onboard',
+    Icon: Users,
     description:
-      'Wire validation into CI so the template stays the single source of truth — teams and pipelines stay aligned automatically.',
+      'Every developer runs the same command against the same template. Same prompts, same shape, so new hires are not reverse‑engineering Slack screenshots.',
   },
 ] as const
 
@@ -48,22 +39,25 @@ const outcomes = [
   {
     title: 'Fewer errors',
     Icon: ShieldCheck,
-    description: 'Validate early and stop “works on my machine” env drift before it hits runtime.',
+    description:
+      'One template and one generate flow means fewer missing keys and less copy‑paste drift between laptops.',
   },
   {
     title: 'Aligned teams',
     Icon: Users,
-    description: 'Everyone pulls from the same template — onboarding is copy the file, not tribal knowledge.',
+    description:
+      'Everyone pulls from the same template. Onboarding is running the CLI, not chasing tribal knowledge.',
   },
   {
     title: 'Faster setup',
     Icon: Clock,
-    description: 'Regenerate env files in seconds when keys change instead of hand-editing ten `.env` variants.',
+    description: 'Regenerate `.env` in seconds when keys change instead of hand-editing ten local variants.',
   },
   {
     title: 'Production confidence',
     Icon: Lock,
-    description: 'Ship knowing required keys and formats were checked against the template you already trust.',
+    description:
+      'Ship knowing every developer materialized their env from the committed template your team already agreed on.',
   },
 ] as const
 
@@ -149,7 +143,7 @@ export default function HowItWorksTimeline() {
 
   return (
     <div ref={sectionRef} className="relative bg-background">
-      {/* —— How it works —— */}
+      {/* How it works */}
       <section className="border-b border-border/40 py-16 sm:py-20 lg:py-24 dark:border-white/[0.06]">
         <div className="mx-auto w-full max-w-[min(100%,1400px)] px-4 sm:px-8 lg:px-12">
           <div className="grid gap-12 lg:grid-cols-[minmax(0,22rem)_1fr] lg:gap-16 xl:gap-24">
@@ -163,15 +157,15 @@ export default function HowItWorksTimeline() {
                 How it works
               </p>
               <h2 className="mt-4 text-3xl font-bold leading-[1.15] tracking-tight text-foreground sm:text-4xl lg:text-[2.35rem] lg:leading-[1.12]">
-                Four steps to configuration that{' '}
+                Three steps to configuration that{' '}
                 <span className="font-display text-[1.65rem] italic font-normal text-foreground/95 sm:text-[2rem] lg:text-[2.15rem]">
                   just works
                 </span>
                 .
               </h2>
               <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
-                Define once. Validate automatically. Synchronize everywhere. Generate, validate, and sync
-                configuration from development to production.
+                Commit a template, run generate from the project root, and onboard the whole team on the same flow. No
+                mystery commands, no stale docs.
               </p>
             </motion.div>
 
@@ -184,7 +178,7 @@ export default function HowItWorksTimeline() {
         </div>
       </section>
 
-      {/* —— The outcome —— */}
+      {/* The outcome */}
       <section className="bg-surface/25 py-16 sm:py-20 lg:py-24 dark:bg-white/[0.02]">
         <div className="mx-auto w-full max-w-[min(100%,1400px)] px-4 sm:px-8 lg:px-12">
           <div className="grid gap-12 lg:grid-cols-[minmax(0,22rem)_1fr] lg:gap-16 xl:gap-24">

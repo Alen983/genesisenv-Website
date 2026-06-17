@@ -47,9 +47,14 @@ export default function MuseumHero() {
           className="mt-10 flex min-w-0 w-full justify-center px-0.5"
         >
           <TerminalHero
-            command="npx genesis-env validate .env.template"
-            highlightKeyword="validate"
+            command="npx genesis-env"
+            highlightKeyword="genesis-env"
             compact={false}
+            successMessage={`✔ Found .env.template
+? DATABASE_URL: (postgres://localhost:5432/app)
+? API_KEY:
+? NODE_ENV: (development)
+✔ .env written successfully.`}
           />
         </motion.div>
 
@@ -59,7 +64,7 @@ export default function MuseumHero() {
           transition={{ duration: 0.5, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
           className="mx-auto mt-8 max-w-2xl text-lg text-muted-foreground md:text-xl"
         >
-          Define once. Validate automatically. Synchronize everywhere.
+          Define in the repo. Generate locally. Onboard the whole team the same way.
         </motion.p>
 
         <motion.div

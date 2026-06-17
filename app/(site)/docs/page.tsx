@@ -21,7 +21,7 @@ const docSections = [
     description: 'Template files, defaults, generate behavior, and quick examples',
   },
   {
-    title: 'Teams & onboarding',
+    title: 'Teams & CI (planned)',
     href: '/docs/corporate-systems',
     description: 'Shared templates, contributor flow, and honest CI notes',
   },

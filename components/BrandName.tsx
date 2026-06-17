@@ -1,6 +1,6 @@
 /**
  * Product wordmark: serif italic (Instrument Serif), matches “just works” treatment on dark.
- * Use for the name only — not for CLI tokens (`genesis-env` in code).
+ * Use for the name only. Do not use for CLI tokens (`genesis-env` in code).
  */
 export default function BrandName({ className = '' }: { className?: string }) {
   return (

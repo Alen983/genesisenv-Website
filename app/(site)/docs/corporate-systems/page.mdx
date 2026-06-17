@@ -1,10 +1,12 @@
 # Teams & onboarding
 
+> **Not shipped yet:** Automated CI checks, policy enforcement, and “sync to pipelines” are **roadmap** ideas, not in the CLI today. This page is about **how teams think about** the template today and what is planned. For what actually runs on a machine, use [Commands](/docs/commands). For timelines, see the [Roadmap](/roadmap).
+
 How teams use genesis-env with a single committed template and a repeatable local setup. This matches what the CLI supports today: **`init`** and **`generate`** (default `npx genesis-env`).
 
 ## Shared template in the repo
 
-Keep one committed template in the project root (see format and line rules in [Templates & `.env`](/docs/validation)). Each developer generates their own **`.env`** locally — never commit secrets.
+Keep one committed template in the project root (see format and line rules in [Templates & `.env`](/docs/validation)). Each developer generates their own **`.env`** locally. Never commit secrets.
 
 ## Contributor workflow
 
@@ -26,7 +28,7 @@ For future direction (validation in CI, policy, and so on), see the [Roadmap](/r
 
 ## Planned ideas (not in the CLI yet)
 
-The following are **not** shipped features—only roadmap-style ideas:
+The following are **not** shipped features. They are only roadmap-style ideas:
 
 - Role-based access to who can change templates  
 - Audit logs for template changes  

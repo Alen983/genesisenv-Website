@@ -54,8 +54,10 @@ export default function PlaygroundPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.08 }}
           >
-            Test <BrandName className="text-[0.9375rem] sm:text-[0.9375rem]" /> validation in real-time. Edit the
-            template, click validate, and see instant feedback.
+            Test <BrandName className="text-[0.9375rem] sm:text-[0.9375rem]" /> in the browser. Run{' '}
+            <code className="rounded bg-muted/60 px-1 py-0.5 font-mono text-foreground/90">init</code> and{' '}
+            <code className="rounded bg-muted/60 px-1 py-0.5 font-mono text-foreground/90">generate</code>{' '}
+            simulations and see the same prompt-and-write flow the CLI uses.
           </motion.p>
         </div>
 

@@ -3,13 +3,13 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 
-const TEMPLATE_SNIPPET = `# .env.template (committed — no secrets)
+const TEMPLATE_SNIPPET = `# .env.template (committed; no secrets)
 DATABASE_URL=
 API_KEY=
 STRIPE_WEBHOOK_SECRET=
 NODE_ENV=development`
 
-const ENV_SNIPPET = `# .env (local — gitignored)
+const ENV_SNIPPET = `# .env (local; gitignored)
 DATABASE_URL=postgres://localhost:5432/app
 API_KEY=sk_live_xxx…
 STRIPE_WEBHOOK_SECRET=whsec_xxx…
@@ -30,7 +30,7 @@ export default function EnvShowcase() {
         <h2 className="mb-4 text-center text-3xl font-bold text-foreground md:text-4xl">From template to local env</h2>
         <p className="mx-auto mb-12 max-w-2xl text-center text-muted-foreground">
           One file describes every key your app needs. Developers run the CLI to materialize a real{' '}
-          <code className="text-foreground/85">.env</code> with their own values — without guessing names or
+          <code className="text-foreground/85">.env</code> with their own values, without guessing names or
           copy-pasting from Slack.
         </p>
         <div className="grid min-w-0 gap-8 lg:grid-cols-2 lg:gap-10">

@@ -119,7 +119,7 @@ body {
   border: 1px solid rgb(var(--color-border) / 0.5);
 }
 
-/* Docs landing status card — deep shadow only in dark */
+/* Docs landing status card: deep shadow only in dark */
 .docs-status-panel {
   box-shadow:
     inset 0 0 48px rgba(0, 0, 0, 0.04),
@@ -303,7 +303,7 @@ html.light .docs-atmosphere-grain {
   mix-blend-mode: multiply;
 }
 
-/* Sparse technical + marks — very low contrast */
+/* Sparse technical + marks: very low contrast */
 .docs-crosshair-layer {
   position: absolute;
   inset: 0;

@@ -1,6 +1,6 @@
 /**
  * Unicode-block phoenix art for the roadmap sidebar HUD panel (loader aesthetic).
- * Preserved exactly as provided — Braille blank (U+2800) + block drawing chars.
+ * Preserved exactly as provided. Braille blank (U+2800) + block drawing chars.
  */
 export const ROADMAP_PHOENIX_ASCII = `
 ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣷⡄⠀⠀⠀⠀⠀⠀⠀⠀⠀

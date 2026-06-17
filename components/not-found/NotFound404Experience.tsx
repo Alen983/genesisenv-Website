@@ -2,6 +2,7 @@
 
 import Link from 'next/link'
 import { useCallback, useEffect, useRef, useState } from 'react'
+import Navbar from '@/components/Navbar'
 
 const SYSTEM_LOG = [
   { t: '10:21:17', msg: '> GET /some/unknown/path', err: false },
@@ -107,7 +108,7 @@ export default function NotFound404Experience() {
   }, [startGame])
 
   useEffect(() => {
-    document.title = '404 — genesis-env'
+    document.title = '404: genesis-env'
   }, [])
 
   useEffect(() => {
@@ -453,7 +454,7 @@ export default function NotFound404Experience() {
 
       if (now < collisionFlashUntilRef.current) {
         const t = 1 - (collisionFlashUntilRef.current - now) / 260
-        ctx.fillStyle = `rgba(180, 60, 70, ${0.14 * (1 - t)})`
+        ctx.fillStyle = `rgba(${accentRgb}, ${0.12 * (1 - t)})`
         ctx.fillRect(0, 0, w, h)
         ctx.strokeStyle = `rgba(255,255,255,${0.06 * (1 - t)})`
         ctx.lineWidth = 1
@@ -498,11 +499,13 @@ export default function NotFound404Experience() {
   }, [])
 
   return (
-    <div className="min-h-[calc(100dvh-3.5rem)] bg-background pt-14 font-mono text-foreground">
+    <>
+      <Navbar />
+      <div className="min-h-[calc(100dvh-3.5rem)] bg-background pt-14 font-mono text-foreground">
       <div className="mx-auto flex max-w-[1720px] min-h-[calc(100dvh-8rem)] flex-col gap-4 px-4 pb-10 sm:flex-row sm:gap-5 sm:px-8 lg:px-12">
-        <aside className="flex w-full shrink-0 flex-col gap-5 rounded-lg border border-border/60 bg-card p-5 sm:max-w-[320px] sm:self-start sm:p-6 dark:border-white/[0.1] dark:bg-zinc-950/80">
+        <aside className="flex w-full shrink-0 flex-col gap-5 rounded-lg border border-border/60 bg-card p-5 sm:max-w-[320px] sm:self-start sm:p-6 dark:border-2 dark:border-white/50 dark:bg-zinc-950/80">
           <div>
-            <p className="text-xs font-medium uppercase tracking-[0.28em] text-red-500">Error 404</p>
+            <p className="text-xs font-medium uppercase tracking-[0.28em] text-accent">Error 404</p>
             <h1 className="mt-2 text-xl font-bold tracking-tight text-foreground sm:text-2xl">PAGE NOT FOUND</h1>
             <p className="mt-3 text-sm leading-relaxed text-muted-foreground">
               Looks like you&apos;ve wandered off into uncharted territory. Let&apos;s get you back.
@@ -539,7 +542,7 @@ export default function NotFound404Experience() {
               {SYSTEM_LOG.map((line, i) => (
                 <li key={i}>
                   <span className="text-muted-foreground/80 dark:text-zinc-600">{line.t}</span>{' '}
-                  <span className={line.err ? 'text-red-400' : ''}>{line.msg}</span>
+                  <span className={line.err ? 'text-accent' : ''}>{line.msg}</span>
                 </li>
               ))}
             </ul>
@@ -547,7 +550,7 @@ export default function NotFound404Experience() {
         </aside>
 
         {/* Dark stage: canvas colors/game logic assume a near-black field */}
-        <section className="flex min-h-[min(56vh,480px)] flex-1 flex-col overflow-hidden rounded-lg border border-border bg-[#050505] shadow-sm dark:border-white/[0.08]">
+        <section className="flex min-h-[min(56vh,480px)] flex-1 flex-col overflow-hidden rounded-lg border border-border bg-[#050505] shadow-sm dark:border-2 dark:border-white/35">
           <div className="flex items-center justify-between gap-3 border-b border-white/[0.06] px-3 py-2.5 sm:px-4">
             <p className="text-[10px] uppercase tracking-[0.22em] text-zinc-500 sm:text-[11px]">
               Routes recovered: <span className="font-medium text-zinc-100 tabular-nums">{routes}</span>
@@ -593,6 +596,7 @@ export default function NotFound404Experience() {
         </Link>
         . We won&apos;t tell anyone.
       </p>
-    </div>
+      </div>
+    </>
   )
 }

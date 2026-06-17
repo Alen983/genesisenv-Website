@@ -12,7 +12,7 @@ export type DocsNavSection = {
   links: DocsNavLink[]
 }
 
-/** Sidebar + search index — only real routes unless `external` */
+/** Sidebar + search index. Only real routes unless `external`. */
 export const DOC_NAV_SECTIONS: DocsNavSection[] = [
   {
     title: 'Get started',
@@ -40,9 +40,9 @@ export const DOC_NAV_SECTIONS: DocsNavSection[] = [
         keywords: ['generate', 'force', 'overwrite', 'flags', 'init', 'npx'],
       },
       {
-        label: 'Synchronization & teams',
+        label: 'Teams & CI (planned)',
         href: '/docs/corporate-systems',
-        keywords: ['ci', 'contributors', 'shared', 'pipeline', 'onboarding', 'sync'],
+        keywords: ['ci', 'contributors', 'roadmap', 'planned', 'onboarding', 'sync', 'teams'],
       },
     ],
   },

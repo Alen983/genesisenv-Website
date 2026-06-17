@@ -136,7 +136,7 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile: left sheet + dimmed backdrop — separate from desktop */}
+      {/* Mobile: left sheet + dimmed backdrop, separate from desktop */}
       <AnimatePresence mode="sync">
         {menuOpen && (
           <>

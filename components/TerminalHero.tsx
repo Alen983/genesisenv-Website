@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 
-const DEFAULT_COMMAND = 'genesis-env validate .env.template'
+const DEFAULT_COMMAND = 'npx genesis-env'
 const typingSpeed = 80
 
 type AccentVariant = 'gold' | 'green'
@@ -15,15 +15,18 @@ const accentClasses: Record<AccentVariant, string> = {
 
 export default function TerminalHero({
   command = DEFAULT_COMMAND,
-  highlightKeyword = 'validate',
+  highlightKeyword = 'genesis-env',
   accentVariant = 'green',
   compact = false,
+  /** Shown under the typed command when typing finishes (e.g. simulated generate output). Omit to hide. */
+  successMessage,
 }: {
   command?: string
   highlightKeyword?: string
   accentVariant?: AccentVariant
   /** Smaller padding and text for use inside headline or tight layouts */
   compact?: boolean
+  successMessage?: string
 }) {
   const [displayedText, setDisplayedText] = useState('')
   const [showCursor, setShowCursor] = useState(true)
@@ -100,14 +103,14 @@ export default function TerminalHero({
               {showCursor && <span className={accentClass}>▋</span>}
             </span>
           </div>
-          {!compact && displayedText === command && (
+          {!compact && successMessage && displayedText === command && (
             <motion.div
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-4 text-green-400"
+              className="mt-4 whitespace-pre-wrap text-left text-sm leading-relaxed text-green-400/90"
             >
-              ✓ Validation complete. 12 keys found.
+              {successMessage}
             </motion.div>
           )}
         </div>
