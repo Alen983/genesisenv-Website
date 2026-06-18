@@ -32,18 +32,18 @@ export default function DemoSection() {
             transition: { duration: 0.2 },
           }}
         >
-          <pre className="mb-6 max-w-full overflow-x-auto text-left font-mono text-xs leading-relaxed text-muted-foreground sm:text-sm">
-            <span className="text-muted-foreground">$ npx genesis-env</span>
+          <pre className="mb-6 max-w-full overflow-x-auto text-left font-mono text-xs leading-relaxed text-accent sm:text-sm">
+            <span>$ npx genesis-env</span>
             {'\n'}
-            <span className="text-green-400/90">✔ Found .env.template</span>
+            <span>✔ Found .env.template</span>
             {'\n'}
-            <span className="text-foreground/90">? DATABASE_URL: (postgres://localhost:5432/app)</span>
+            <span>? DATABASE_URL: (postgres://localhost:5432/app)</span>
             {'\n'}
-            <span className="text-foreground/90">? API_KEY:</span>
+            <span>? API_KEY:</span>
             {'\n'}
-            <span className="text-foreground/90">? NODE_ENV: (development)</span>
+            <span>? NODE_ENV: (development)</span>
             {'\n'}
-            <span className="text-green-400/90">✔ .env written successfully.</span>
+            <span>✔ .env written successfully.</span>
           </pre>
           <Link
             href="/playground"

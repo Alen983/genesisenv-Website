@@ -108,7 +108,7 @@ TIMEOUT=30`)
       </div>
 
       <div className="mb-2 text-xs font-semibold uppercase tracking-wide text-muted-foreground">Terminal</div>
-      <div className="min-h-[10rem] overflow-auto rounded-lg border border-border/80 bg-black/90 p-4 font-mono text-xs leading-relaxed text-green-400/90 sm:min-h-[12rem] sm:text-sm dark:bg-black/80">
+      <div className="min-h-[10rem] overflow-auto rounded-lg border border-border/80 bg-black/90 p-4 font-mono text-xs leading-relaxed text-accent sm:min-h-[12rem] sm:text-sm dark:bg-black/80">
         {log ? (
           <pre className="whitespace-pre-wrap break-words">{log}</pre>
         ) : (

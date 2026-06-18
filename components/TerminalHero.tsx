@@ -108,7 +108,7 @@ export default function TerminalHero({
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-4 whitespace-pre-wrap text-left text-sm leading-relaxed text-green-400/90"
+              className="mt-4 whitespace-pre-wrap text-left text-sm leading-relaxed text-accent"
             >
               {successMessage}
             </motion.div>
