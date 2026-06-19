@@ -4,6 +4,7 @@ import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import Link from 'next/link'
 import BrandName from '@/components/BrandName'
+import { butterTransition } from '@/lib/motion-presets'
 
 export default function DemoSection() {
   const ref = useRef(null)
@@ -17,7 +18,7 @@ export default function DemoSection() {
       <motion.div
         initial={{ opacity: 0, y: 24 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+        transition={butterTransition(0.5)}
         className="max-w-4xl min-w-0 mx-auto text-center"
       >
         <h2 className="text-3xl md:text-4xl font-bold mb-4">Virtual tour</h2>
@@ -29,7 +30,7 @@ export default function DemoSection() {
           className="inline-block max-w-full rounded-2xl border border-border/60 bg-card/70 p-5 shadow-xl backdrop-blur-sm sm:p-8 dark:border-white/10 dark:bg-gray-900/50"
           whileHover={{
             boxShadow: 'var(--demo-card-hover-shadow)',
-            transition: { duration: 0.2 },
+            transition: butterTransition(0.32),
           }}
         >
           <pre className="mb-6 max-w-full overflow-x-auto text-left font-mono text-xs leading-relaxed text-accent sm:text-sm">

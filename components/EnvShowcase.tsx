@@ -3,6 +3,7 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 import { ArrowRight, FileText, Lock, Monitor, ShieldCheck, type LucideIcon } from 'lucide-react'
+import { butterTransition } from '@/lib/motion-presets'
 
 const TEMPLATE_SNIPPET = `# .env.template (committed; no secrets)
 DATABASE_URL=
@@ -65,7 +66,7 @@ export default function EnvShowcase() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
-        transition={{ duration: 0.5 }}
+        transition={butterTransition(0.5)}
         className="mx-auto min-w-0 max-w-7xl"
       >
         {/* Copy gets a readable cap; cards column flexes to use remaining width (avoids squeezed twin cards). */}
@@ -92,7 +93,7 @@ export default function EnvShowcase() {
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.45, delay: 0.06 }}
+              transition={butterTransition(0.45, 0.06)}
               className="min-w-0 flex-1"
             >
               <WorkflowCard
@@ -115,7 +116,7 @@ export default function EnvShowcase() {
             <motion.div
               initial={{ opacity: 0, scale: 0.92 }}
               animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.4, delay: 0.12 }}
+              transition={butterTransition(0.4, 0.12)}
               className="flex shrink-0 items-center justify-center self-center sm:flex-col sm:justify-center sm:pt-10 md:pt-12"
               aria-hidden
             >
@@ -130,7 +131,7 @@ export default function EnvShowcase() {
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.45, delay: 0.18 }}
+              transition={butterTransition(0.45, 0.18)}
               className="min-w-0 flex-1"
             >
               <WorkflowCard

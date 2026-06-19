@@ -5,6 +5,7 @@ import { motion } from 'framer-motion'
 import { Check } from 'lucide-react'
 import BrandName from '@/components/BrandName'
 import { GITHUB_ISSUES_URL } from '@/lib/site'
+import { butterTransition } from '@/lib/motion-presets'
 import { ROADMAP_PHOENIX_ASCII } from '@/data/roadmapPhoenixAscii'
 
 /** Ship checklist: only items that are actually done vs still open (no speculative “future product” cards). */
@@ -185,7 +186,7 @@ function RoadmapCard({ item }: { item: (typeof ROADMAP_ITEMS)[number] }) {
       initial={{ opacity: 0, y: 14 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-40px' }}
-      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }}
+      transition={butterTransition(0.45)}
       className="relative min-w-0 rounded-lg border border-border/70 bg-card/90 px-5 py-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.04)] backdrop-blur-sm dark:border-zinc-800/90 dark:bg-zinc-950/80 sm:px-6 sm:py-5"
     >
       <div className="mb-3 flex flex-wrap items-start justify-between gap-2 font-mono text-[11px] uppercase tracking-[0.14em] sm:text-xs">
@@ -255,7 +256,7 @@ export default function RoadmapPage() {
               className="min-w-0 w-full"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+              transition={butterTransition(0.65)}
             >
               <pre
                 className="docs-ascii-headline w-full overflow-x-auto pb-1 text-left font-mono leading-[1.05] tracking-normal text-foreground [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden [font-size:clamp(0.38rem,1.05vw+0.32rem,0.95rem)] sm:leading-[1.04] dark:text-zinc-50"

@@ -2,6 +2,7 @@
 
 import { Fragment, useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
+import { butterTransition } from '@/lib/motion-presets'
 import {
   Braces,
   Clock,
@@ -90,7 +91,7 @@ function ProcessStepBlock({
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, margin: '-40px' }}
-        transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1], delay: index * 0.06 }}
+        transition={butterTransition(0.45, index * 0.06)}
         className="relative flex min-w-0 flex-1 flex-col border-l-2 border-accent/25 pl-5 lg:border-l-0 lg:pl-0 lg:text-left"
       >
         <span className="font-mono text-[11px] font-semibold uppercase tracking-[0.2em] text-accent">
@@ -125,7 +126,7 @@ function OutcomeCard({
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-50px' }}
-      transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1], delay: index * 0.05 }}
+      transition={butterTransition(0.45, index * 0.05)}
       className="flex flex-col items-start"
     >
       <div className="flex h-11 w-11 items-center justify-center rounded-full border border-accent/40 bg-accent/10 text-accent">
@@ -150,7 +151,7 @@ export default function HowItWorksTimeline() {
             <motion.div
               initial={{ opacity: 0, y: 16 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              transition={butterTransition(0.5)}
               className="max-w-lg lg:sticky lg:top-28 lg:self-start"
             >
               <p className="font-mono text-xs font-semibold uppercase tracking-[0.28em] text-accent">
@@ -186,7 +187,7 @@ export default function HowItWorksTimeline() {
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-60px' }}
-              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+              transition={butterTransition(0.5)}
               className="max-w-lg"
             >
               <p className="font-mono text-xs font-semibold uppercase tracking-[0.28em] text-accent">

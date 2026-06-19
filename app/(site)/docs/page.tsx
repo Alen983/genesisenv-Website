@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import DocsLandingHero from '@/components/DocsLandingHero'
+import { butterTransition } from '@/lib/motion-presets'
 
 const docSections = [
   {
@@ -40,7 +41,7 @@ export default function DocsPage() {
         <motion.div
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 0.6 }}
+          transition={butterTransition(0.6)}
           className="mb-2 border-b border-border/50 pb-1 sm:mb-3 dark:border-white/[0.06]"
         >
           <DocsLandingHero />
@@ -52,7 +53,7 @@ export default function DocsPage() {
               key={section.href}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.45, delay: 0.05 + index * 0.05 }}
+              transition={butterTransition(0.45, 0.05 + index * 0.05)}
             >
               <Link
                 href={section.href}
@@ -75,7 +76,7 @@ export default function DocsPage() {
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45, delay: 0.28 }}
+          transition={butterTransition(0.45, 0.28)}
           className="mx-auto mt-20 max-w-3xl border border-border/50 px-6 py-10 dark:border-white/[0.08]"
         >
           <h2 className="mb-4 text-sm font-medium uppercase tracking-[0.12em] text-foreground">Quick start</h2>

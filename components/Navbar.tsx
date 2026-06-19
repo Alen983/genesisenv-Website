@@ -8,6 +8,7 @@ import { Github, Menu, X } from 'lucide-react'
 import ThemeToggle from '@/components/ThemeToggle'
 import BrandName from '@/components/BrandName'
 import { GITHUB_REPO_URL } from '@/lib/site'
+import { EASE_BUTTER } from '@/lib/motion-presets'
 
 const navLinks = [
   { href: '/', label: 'Home' },
@@ -16,7 +17,7 @@ const navLinks = [
   { href: '/roadmap', label: 'Roadmap' },
 ] as const
 
-const overlayEase = [0.22, 1, 0.36, 1] as const
+const overlayEase = EASE_BUTTER
 const backdropTransition = { duration: 0.28, ease: overlayEase }
 const panelTransition = { duration: 0.36, ease: overlayEase }
 

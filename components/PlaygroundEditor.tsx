@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from 'react'
 import { motion } from 'framer-motion'
+import { TAP_SPRING } from '@/lib/motion-presets'
 
 const INIT_SIMULATION = `$ npx genesis-env init
 ✔ .env.template created
@@ -92,6 +93,7 @@ TIMEOUT=30`)
           onClick={runInit}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
+          transition={TAP_SPRING}
           className="rounded-2xl border border-border/80 bg-surface px-6 py-3 text-left font-mono text-xs font-semibold text-foreground transition hover:border-accent/50 hover:bg-muted/40 sm:text-sm"
         >
           Step 1: <span className="text-accent">npx genesis-env init</span>
@@ -101,6 +103,7 @@ TIMEOUT=30`)
           onClick={runGenerate}
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
+          transition={TAP_SPRING}
           className="rounded-2xl bg-foreground px-6 py-3 text-left font-mono text-xs font-semibold text-background transition hover:bg-foreground/90 dark:bg-gray-100 dark:text-zinc-950 dark:hover:bg-white sm:text-sm"
         >
           Step 2: npx genesis-env generate

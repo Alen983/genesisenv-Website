@@ -2,6 +2,7 @@
 
 import { useMemo, useSyncExternalStore } from 'react'
 import { motion } from 'framer-motion'
+import { EASE_GENTLE_IN_OUT } from '@/lib/motion-presets'
 
 const SYMBOLS = ['{', '}', '=', '.', 'env', 'KEY']
 const COUNT = 32
@@ -71,7 +72,7 @@ export default function ParticleField() {
             duration: p.duration,
             delay: p.delay,
             repeat: Infinity,
-            ease: 'easeInOut',
+            ease: EASE_GENTLE_IN_OUT,
           }}
         >
           {p.symbol}

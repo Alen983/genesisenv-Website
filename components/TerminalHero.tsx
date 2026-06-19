@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
+import { butterTransition, LAYOUT_BUTTER, TERMINAL_EXPAND } from '@/lib/motion-presets'
 
 const DEFAULT_COMMAND = 'npx genesis-env'
 const typingSpeed = 80
@@ -73,10 +74,12 @@ export default function TerminalHero({
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+      transition={butterTransition(0.6)}
       className={`min-w-0 ${compact ? 'w-full max-w-md' : 'w-full max-w-3xl mx-auto'}`}
     >
-      <div
+      <motion.div
+        layout={!compact}
+        transition={{ layout: LAYOUT_BUTTER }}
         className={
           compact
             ? 'min-w-0 overflow-hidden rounded-lg border border-border/70 bg-surface/95 shadow-xl shadow-black/10 backdrop-blur-sm dark:shadow-black/40'
@@ -105,16 +108,19 @@ export default function TerminalHero({
           </div>
           {!compact && successMessage && displayedText === command && (
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
-              className="mt-4 whitespace-pre-wrap text-left text-sm leading-relaxed text-accent"
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: 'auto', opacity: 1 }}
+              style={{ overflow: 'hidden' }}
+              transition={TERMINAL_EXPAND}
+              className="will-change-[height]"
             >
-              {successMessage}
+              <div className="pt-4 whitespace-pre-wrap text-left text-sm leading-relaxed text-accent">
+                {successMessage}
+              </div>
             </motion.div>
           )}
         </div>
-      </div>
+      </motion.div>
     </motion.div>
   )
 }

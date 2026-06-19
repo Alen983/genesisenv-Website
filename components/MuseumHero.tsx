@@ -6,35 +6,50 @@ import Link from 'next/link'
 import { Github, Terminal } from 'lucide-react'
 import { GITHUB_REPO_URL } from '@/lib/site'
 import BrandName from '@/components/BrandName'
+import { useIntroSplashComplete } from '@/components/intro-splash-context'
+import { BRAND_LAYOUT_SPRING, butterTransition } from '@/lib/motion-presets'
+import HeroFlowLines from '@/components/HeroFlowLines'
 import ParticleField from '@/components/ParticleField'
 import TerminalHero from '@/components/TerminalHero'
 import HeroFloatingIcons from '@/components/HeroFloatingIcons'
 
 export default function MuseumHero() {
   const ref = useRef<HTMLDivElement>(null)
+  const introSplashComplete = useIntroSplashComplete()
 
   return (
     <section
       ref={ref}
       className="museum-hero-bg relative flex min-h-screen flex-col items-center justify-center overflow-hidden px-4 pb-20 pt-24 sm:px-6 lg:px-8"
     >
+      <HeroFlowLines />
       <ParticleField />
       <HeroFloatingIcons />
 
       <div className="relative z-10 mx-auto w-full min-w-0 max-w-6xl text-center">
-        <motion.p
+        <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          transition={butterTransition(0.5)}
           className="mb-6 text-muted-foreground md:text-base"
         >
-          <BrandName className="text-lg md:text-xl" />
-        </motion.p>
+          {introSplashComplete ? (
+            <motion.div
+              layoutId="genesis-env-home-brand"
+              className="inline-block"
+              transition={BRAND_LAYOUT_SPRING}
+            >
+              <BrandName className="text-lg md:text-xl" />
+            </motion.div>
+          ) : (
+            <BrandName className="text-lg md:text-xl" />
+          )}
+        </motion.div>
 
         <motion.h1
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          transition={butterTransition(0.6)}
           className="break-words text-4xl font-extrabold tracking-tight text-foreground sm:text-6xl md:text-7xl lg:text-8xl"
         >
           STOP BREAKING YOUR .ENV FILES.
@@ -43,7 +58,7 @@ export default function MuseumHero() {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+          transition={butterTransition(0.5, 0.2)}
           className="mt-10 flex min-w-0 w-full justify-center px-0.5"
         >
           <TerminalHero
@@ -61,7 +76,7 @@ export default function MuseumHero() {
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.35, ease: [0.22, 1, 0.36, 1] }}
+          transition={butterTransition(0.5, 0.35)}
           className="mx-auto mt-8 max-w-2xl text-lg text-muted-foreground md:text-xl"
         >
           Define in the repo. Generate locally. Onboard the whole team the same way.
@@ -70,7 +85,7 @@ export default function MuseumHero() {
         <motion.div
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          transition={butterTransition(0.5, 0.5)}
           className="mt-10 flex flex-col items-stretch justify-center gap-3 sm:mt-10 sm:flex-row sm:flex-wrap sm:items-center sm:justify-center"
         >
           <Link

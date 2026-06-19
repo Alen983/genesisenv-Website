@@ -5,6 +5,7 @@ import { usePathname } from 'next/navigation'
 import { animate, motion, useReducedMotion } from 'framer-motion'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import BrandName from '@/components/BrandName'
+import { EASE_BUTTER, butterTransition } from '@/lib/motion-presets'
 
 const STATUS_LOG_LINES = [
   'TRAINING.STARTED .......... EPOCH 001',
@@ -163,7 +164,7 @@ function DocsStatusSidebar() {
     if (reduceMotion) return
     const ctrl = animate(0, 100, {
       duration: LOAD_SEQUENCE_MS / 1000,
-      ease: [0.22, 0.99, 0.36, 1],
+      ease: [...EASE_BUTTER],
       onUpdate: (latest) => setLiveProgress(latest),
     })
     return () => ctrl.stop()
@@ -287,7 +288,7 @@ export default function DocsLandingHero() {
           className="mb-6 scroll-mt-24 text-xs uppercase tracking-[0.28em] text-muted-foreground sm:mb-7 sm:text-[13px]"
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45 }}
+          transition={butterTransition(0.45)}
         >
           [01] OVERVIEW
         </motion.p>
@@ -300,7 +301,7 @@ export default function DocsLandingHero() {
               className="min-w-0 w-full"
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+              transition={butterTransition(0.65)}
             >
               <DocsAsciiHeadline />
             </motion.div>
@@ -309,7 +310,7 @@ export default function DocsLandingHero() {
               className="mt-6 max-w-[28rem] text-sm leading-[1.75] tracking-[0.02em] text-muted-foreground sm:mt-7 sm:max-w-[36rem] sm:text-[0.9375rem] sm:leading-[1.8]"
               initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: 0.08 }}
+              transition={butterTransition(0.5, 0.08)}
             >
               The <BrandName className="text-[0.9375rem] sm:text-[0.9375rem]" /> CLI scaffolds and refreshes environment
               files from templates. Install with npm or{' '}

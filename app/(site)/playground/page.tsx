@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import BrandName from '@/components/BrandName'
 import PlaygroundEditor from '@/components/PlaygroundEditor'
+import { butterTransition } from '@/lib/motion-presets'
 
 const PLAYGROUND_ASCII_LINES = [
   '  _____  _                                             _ ',
@@ -25,7 +26,7 @@ export default function PlaygroundPage() {
           className="mb-6 text-left text-xs uppercase tracking-[0.28em] text-muted-foreground sm:mb-7 sm:text-[13px]"
           initial={{ opacity: 0, y: 6 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.45 }}
+          transition={butterTransition(0.45)}
         >
           [02] INTERACTIVE
         </motion.p>
@@ -37,7 +38,7 @@ export default function PlaygroundPage() {
             className="min-w-0 w-full"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
+            transition={butterTransition(0.65)}
           >
             <pre
               className="docs-ascii-headline w-full overflow-x-auto pb-1 font-mono leading-[1.05] tracking-normal text-foreground [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden [font-size:clamp(0.38rem,1.05vw+0.32rem,0.95rem)] sm:leading-[1.04] dark:text-zinc-50"
@@ -52,7 +53,7 @@ export default function PlaygroundPage() {
             className="mt-6 max-w-[36rem] text-left text-sm leading-[1.75] tracking-[0.02em] text-muted-foreground sm:mt-7 sm:text-[0.9375rem] sm:leading-[1.8]"
             initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.08 }}
+            transition={butterTransition(0.5, 0.08)}
           >
             Test <BrandName className="text-[0.9375rem] sm:text-[0.9375rem]" /> in the browser. Run{' '}
             <code className="rounded bg-muted/60 px-1 py-0.5 font-mono text-foreground/90">init</code> and{' '}

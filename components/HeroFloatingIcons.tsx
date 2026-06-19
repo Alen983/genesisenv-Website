@@ -1,6 +1,7 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import { EASE_GENTLE_IN_OUT } from '@/lib/motion-presets'
 
 const icons = [
   {
@@ -59,7 +60,7 @@ export default function HeroFloatingIcons() {
             duration: icon.duration,
             delay: icon.delay,
             repeat: Infinity,
-            ease: 'easeInOut',
+            ease: EASE_GENTLE_IN_OUT,
           }}
         >
           {icon.symbol}
