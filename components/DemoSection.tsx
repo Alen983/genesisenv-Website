@@ -23,7 +23,7 @@ export default function DemoSection() {
       >
         <h2 className="text-3xl md:text-4xl font-bold mb-4">Virtual tour</h2>
         <p className="text-muted-foreground mb-10 max-w-xl mx-auto">
-          Explore <BrandName className="text-base" /> in the browser. Run commands and see output live, like a hands-on
+          Explore <BrandName className="text-base" /> in the browser. Run commands and see output live, like an interactive
           exhibit.
         </p>
         <motion.div
@@ -34,6 +34,17 @@ export default function DemoSection() {
           }}
         >
           <pre className="mb-6 max-w-full overflow-x-auto text-left font-mono text-xs leading-relaxed text-accent sm:text-sm">
+            <span>$ npx genesis-env init</span>
+            {'\n'}
+            <span>✔ .env created</span>
+            {'\n'}
+            <span>✔ .env.template created</span>
+            {'\n'}
+            <span>✔ .gitignore created</span>
+            {'\n'}
+            <span>✔ .env added to .gitignore</span>
+            {'\n'}
+            {'\n'}
             <span>$ npx genesis-env</span>
             {'\n'}
             <span>✔ Found .env.template</span>

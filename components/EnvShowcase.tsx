@@ -88,7 +88,7 @@ export default function EnvShowcase() {
             </p>
           </div>
 
-          {/* Visual workflow — row stretches with viewport; each card grows equally */}
+          {/* Visual workflow: row stretches with viewport; each card grows equally */}
           <div className="flex min-w-0 w-full flex-col items-stretch gap-6 sm:flex-row sm:items-stretch sm:gap-5 md:gap-6 lg:min-w-0">
             <motion.div
               initial={{ opacity: 0, y: 16 }}

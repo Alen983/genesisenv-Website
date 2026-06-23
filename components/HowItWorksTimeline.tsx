@@ -32,7 +32,7 @@ const processSteps = [
     title: 'Onboard',
     Icon: Users,
     description:
-      'Every developer runs the same command against the same template. Same prompts, same shape, so new hires are not reverse‑engineering Slack screenshots.',
+      'Every developer runs the same command against the same template. Same prompts, same shape, so new hires are not reverse engineering Slack screenshots.',
   },
 ] as const
 
@@ -41,7 +41,7 @@ const outcomes = [
     title: 'Fewer errors',
     Icon: ShieldCheck,
     description:
-      'One template and one generate flow means fewer missing keys and less copy‑paste drift between laptops.',
+      'One template and one generate flow means fewer missing keys and less copying and pasting drift between laptops.',
   },
   {
     title: 'Aligned teams',
@@ -52,7 +52,7 @@ const outcomes = [
   {
     title: 'Faster setup',
     Icon: Clock,
-    description: 'Regenerate `.env` in seconds when keys change instead of hand-editing ten local variants.',
+    description: 'Regenerate `.env` in seconds when keys change instead of editing ten local variants by hand.',
   },
   {
     title: 'Production confidence',
@@ -200,6 +200,25 @@ export default function HowItWorksTimeline() {
                 </span>
                 .
               </h2>
+              <p className="mt-5 text-base leading-relaxed text-muted-foreground sm:text-lg">
+                Bootstrap once with{' '}
+                <code className="rounded bg-muted/80 px-1 py-0.5 font-mono text-sm text-foreground/90 dark:bg-white/[0.06]">
+                  npx genesis-env init
+                </code>
+                : creates the starter template, generates an empty local{' '}
+                <code className="rounded bg-muted/80 px-1 py-0.5 font-mono text-sm text-foreground/90 dark:bg-white/[0.06]">
+                  .env
+                </code>
+                , and ensures{' '}
+                <code className="rounded bg-muted/80 px-1 py-0.5 font-mono text-sm text-foreground/90 dark:bg-white/[0.06]">
+                  .env
+                </code>{' '}
+                is ignored by git (creating or updating{' '}
+                <code className="rounded bg-muted/80 px-1 py-0.5 font-mono text-sm text-foreground/90 dark:bg-white/[0.06]">
+                  .gitignore
+                </code>{' '}
+                automatically).
+              </p>
             </motion.div>
 
             <div className="grid min-w-0 grid-cols-1 gap-10 sm:grid-cols-2 sm:gap-x-8 sm:gap-y-12 lg:grid-cols-2 xl:grid-cols-4 xl:gap-8">

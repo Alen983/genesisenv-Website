@@ -58,7 +58,7 @@ export default function PlaygroundPage() {
             Test <BrandName className="text-[0.9375rem] sm:text-[0.9375rem]" /> in the browser. Run{' '}
             <code className="rounded bg-muted/60 px-1 py-0.5 font-mono text-foreground/90">init</code> and{' '}
             <code className="rounded bg-muted/60 px-1 py-0.5 font-mono text-foreground/90">generate</code>{' '}
-            simulations and see the same prompt-and-write flow the CLI uses.
+            simulations and see the same prompt and write flow the CLI uses.
           </motion.p>
         </div>
 

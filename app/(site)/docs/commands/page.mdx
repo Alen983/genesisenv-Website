@@ -46,6 +46,30 @@ npx genesis-env init
 
 Creates missing `.env` and `.env.template` when needed, and ensures `.env` is listed in `.gitignore` (no duplicate lines).
 
+Typical output on a fresh repo:
+
+```bash
+$ npx genesis-env init
+✔ .env created
+✔ .env.template created
+✔ .gitignore created
+✔ .env added to .gitignore
+```
+
+### `.gitignore` behavior
+
+`init` handles three cases. You can run it on an existing repo without duplicating entries:
+
+| Scenario | What happens |
+|----------|----------------|
+| No `.gitignore` exists | Creates `.gitignore` with `.env` |
+| `.gitignore` exists, `.env` not in it | Appends `.env` |
+| `.env` already ignored | Prints that it is already ignored; no duplicate line added |
+
+### Security defaults
+
+genesis-env **never reads the values in your `.env`**. It only writes to it. Running `init` ensures `.env` is gitignored **before** any values are written, so secrets do not accidentally get committed.
+
 ## Options / flags
 
 | Flag | Effect |

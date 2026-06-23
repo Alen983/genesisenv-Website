@@ -33,7 +33,7 @@ const ROADMAP_ITEMS: {
   },
   {
     id: '03',
-    title: 'Package metadata for npm/GitHub',
+    title: 'Package metadata for npm and GitHub',
     description: 'Done: repository, bugs, PR/discussion URLs, homepage.',
     status: 'completed',
   },
@@ -85,7 +85,7 @@ const ROADMAP_ITEMS: {
   },
   {
     id: '10',
-    title: 'Post-v1 quality & ecosystem',
+    title: 'Post v1 quality and ecosystem',
     description:
       'To do: changelog/releases, issue templates usage, semver discipline, and v0.2+ themes (progress UI, stricter validation, optional keys, etc.).',
     status: 'todo',

@@ -5,9 +5,10 @@ import { motion } from 'framer-motion'
 import { TAP_SPRING } from '@/lib/motion-presets'
 
 const INIT_SIMULATION = `$ npx genesis-env init
-✔ .env.template created
 ✔ .env created
-✔ .gitignore updated (ignored .env)`
+✔ .env.template created
+✔ .gitignore created
+✔ .env added to .gitignore`
 
 function parseTemplateKeys(text: string): { key: string; defaultVal: string }[] {
   const out: { key: string; defaultVal: string }[] = []

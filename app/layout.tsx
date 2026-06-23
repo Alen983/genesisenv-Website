@@ -37,7 +37,7 @@ const SITE_BASE_PATH = process.env.NODE_ENV === 'production' ? '/genesisenv-Webs
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteMetadataBase),
-  title: 'genesis-env - Configuration Discipline for Environment Variables',
+  title: 'genesis-env: Configuration Discipline for Environment Variables',
   description: 'genesis-env is not a tool. It\'s a configuration discipline. Validate, manage, and enforce environment variable standards.',
   icons: {
     icon: [
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     ],
   },
   openGraph: {
-    title: 'genesis-env - Configuration Discipline',
+    title: 'genesis-env: Configuration Discipline',
     description: 'Validate, manage, and enforce environment variable standards.',
     images: ['/og-image.png'],
   },
